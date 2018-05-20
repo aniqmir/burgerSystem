@@ -11,7 +11,7 @@ app.use(helmet());
 
 var indexRouter = require('./routes/index')
 var UserRouter = require('./routes/users');
-
+var adminRouter= require('./routes/admin');
 
 // view engine setup
 
@@ -39,7 +39,8 @@ expires: expiryDate }
 //app.res.header("Access-Control-Allow-Origin", "http://127.0.0.1:9000");
 
 app.use('/', indexRouter);
-app.use('/api',UserRouter);
+app.use('/api/user',UserRouter);
+app.use('/api/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
