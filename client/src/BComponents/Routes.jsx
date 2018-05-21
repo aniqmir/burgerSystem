@@ -11,6 +11,7 @@ import Navbar from './Navbar';
 import MainPage from './MainPage';
 import Features from './Features';
 import LandingPage from './LandingPage'
+import Cart from './Cart';
 
 const customHistory = createBrowserHistory();
 
@@ -19,6 +20,7 @@ const CustomRoutes = () => (
         <div>
             <Navbar history={customHistory} />
             <Route exact path='/' component={LandingPage}/>
+            <Route exact path='/cart' component={Cart}/>
             <Route path='/home' component={MainPage}/>
             <Route path='/f' component={Features}/>
         </div>
