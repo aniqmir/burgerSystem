@@ -15,6 +15,7 @@ import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Carousel from './Carousel';
 import Paper from '@material-ui/core/Paper';
+import Search from './SearchField';
 
 
 
@@ -133,7 +134,7 @@ class SimpleTabs extends React.Component {
     return (
      <MuiThemeProvider theme={theme}>
       <div className={classes.root}>
-     
+       <Search/>
         <Grid container spacing={12}>
        {
          /*<Grid item xs={12}>
