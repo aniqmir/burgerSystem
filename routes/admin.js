@@ -8,8 +8,10 @@ router.use(varifyToken);
 router.post('/add',function(req,res){
    res.send({msg:'Hello'});
 });
-
+router.post('/addEmployee',Controller.CreateEmployee);
+router.post('/Employeeindex',Controller.fetchallemps);
+router.post('/findEmployee',Controller.fetchoneemp);
+router.post('/delEmployee',Controller.Deleteemp);
 
 
 module.exports = router;
-
