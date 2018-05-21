@@ -1,5 +1,5 @@
 module.exports = {
 
-    'database': 'mongodb://localhost:27017/Auth',
+    'database': 'mongodb://localhost:27017/Burger',
     'secret': 'PakistanZindabad'
 };
