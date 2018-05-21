@@ -67,7 +67,7 @@ class FullScreenDialog extends React.Component {
           </AppBar>
           <List>
             <ListItem button>
-              <ListItemText primary="Phone ringtone" secondary="Titania" />
+              <ListItemText primary="Burger ONE" secondary="RS : 1000" />
             </ListItem>
             <Divider />
             <ListItem button>
