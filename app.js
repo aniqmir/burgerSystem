@@ -3,24 +3,44 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
+//use helmet
+var helmet = require('helmet');
+app.use(helmet());
+
+
+var indexRouter = require('./routes/index')
+var UserRouter = require('./routes/users');
+var adminRouter= require('./routes/admin');
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+
+var expressSession = require('express-session');
+app.set('trust proxy', 1) // trust first proxy
+var expiryDate = new Date(Date.now() + 60 * 60 *60 * 1000 *1000*10) // 1 hour
+app.use(expressSession({
+name: 'eat',
+secret: 'burgerandfries',
+key: 'user',
+resave: true,
+saveUninitialized:true,
+cookie: {
+secure: false,
+httpOnly: true,
+expires: expiryDate }
+}));
+//app.res.header("Access-Control-Allow-Origin", "http://127.0.0.1:9000");
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/user',UserRouter);
+app.use('/api/admin',adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

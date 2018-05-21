@@ -1,9 +1,12 @@
 var express = require('express');
 var router = express.Router();
+var clientController= require('../APIController/UserController');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/signup',clientController.UserSignUP);
+router.post('/login',function(req,res){
+    if(req.session.user)
+    res.send({message:'no need to login',user:req.session.user});
+    else
+    res.send(req.sessionID);
 });
-
 module.exports = router;
