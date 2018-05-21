@@ -89,7 +89,7 @@ class SimpleMediaCard extends React.Component {
             <CardActions className={classes.cardactions}>
             <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler}>Buy</Button>
             <BuildBurger buildDetails={this.props.buildDetails}/>
-            <IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>
+            {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
          
