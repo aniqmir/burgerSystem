@@ -7,6 +7,11 @@ import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import purple from '@material-ui/core/colors/purple';
 import green from '@material-ui/core/colors/green';
+import Paper from '@material-ui/core/Paper';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Search from '@material-ui/icons/Search';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
   container: {
@@ -15,6 +20,14 @@ const styles = theme => ({
   },
   margin: {
     margin: theme.spacing.unit,
+  },
+  btn:{
+    paddingTop:'1%'
+  },
+  paperroot:{
+      width:"50%",
+      textAlign:'center',
+      margin:'auto',
   },
   cssLabel: {
     '&$cssFocused': {
@@ -28,9 +41,8 @@ const styles = theme => ({
     },
   },
   bootstrapRoot: {
-    paddingTop: '12px',
     'label + &': {
-      marginTop: theme.spacing.unit * 5,
+      margin: 'auto',
     },
   },
   bootstrapInput: {
@@ -67,6 +79,12 @@ function CustomizedInputs(props) {
     const { classes } = props;
     
     return (
+      
+      <Paper
+      className={classes.paperroot}
+      >
+      <Grid container spacing={12}>
+      <Grid item md={10} sm={6} xs={12}>
       <TextField
       //label="Search"
       id="search"
@@ -82,8 +100,16 @@ function CustomizedInputs(props) {
         shrink: true,
         className: classes.bootstrapFormLabel,
       }}
-      
+
+      fullWidth
     />
+    </Grid>
+    <Grid item md={2} sm={6} xs={12}>
+    <Button size="large"><Search/></Button>
+    </Grid>
+    </Grid>
+    </Paper>
+    
     )
 }
 
