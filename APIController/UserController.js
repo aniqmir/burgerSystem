@@ -1,6 +1,6 @@
 var express= require('express');
 var app= express();
-
+var bcrypt = require('bcrypt-nodejs');
 //Middleware to connect to database
 var mongoose = require('mongoose');
 var config= require('../config');
@@ -17,7 +17,6 @@ var user_instance =require('../models/user');
 
 exports.UserSignUP= function(req, res)
 {   
-  console.log(req.body);
     if (!req.body.email || !req.body.password) {
         res.json({success: false, msg: 'Please pass email and password.'});
       } else {
@@ -31,8 +30,28 @@ exports.UserSignUP= function(req, res)
             return res.json({success: false, msg: 'This email has already been registered.'});
           }
           req.session.user=newUser._id;
-          res.json({success: true, msg: 'Successful created new user.',session:req.session});
+          res.json({success: true, msg: 'Successful created new user.'});
           
         });
       }
+};
+//Function to get User Logged in
+exports.Userlogin= function(req, res)
+{   
+    user_instance.findOne(
+        // query
+        {email:req.body.email}, (err, user) => {
+if (err) return res.json(err);
+if(user==null)
+{
+   return res.status(200).json(message='Invalid Email')
+}
+bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
+  if (err) { return res.json(err); }
+  // Password did not match
+  if (!isMatch) { return res.json({msg:'invalid Password'}) }
+  if(req.session.user==null){req.session.user=user._id;}
+  res.json({msg:'Login Complete',useris:req.session.user});
+});
+});
 };
