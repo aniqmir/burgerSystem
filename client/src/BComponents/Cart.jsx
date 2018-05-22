@@ -28,7 +28,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-
+import Avatar from '@material-ui/core/Avatar';
 const styles = {
   root: {
     width: '100%',
@@ -69,10 +69,12 @@ const styles = {
   media: {
     height: '100%',
   },
-  paper: {
+  center:{
+    textAlign:'center',
+    margin:'auto'
   },
-  button: {
-    marginLeft:'80%'
+  paper: {
+    marginTop:'20px'
   }
 };
 
@@ -111,7 +113,7 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button size='small'variant='raised' onClick={this.handleClickOpen}><AddShoppingCartIcon/></Button>
+        <IconButton size='small' disableFocusRipple={true}  onClick={this.handleClickOpen}><AddShoppingCartIcon/></IconButton>
         
         <Dialog
           fullScreen
@@ -146,20 +148,89 @@ class FullScreenDialog extends React.Component {
           <Typography className='text' gutterBottom variant="p" component="h2">
            Please verify the order details and proceed to checkout.
           </Typography>
-          <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
+          <Paper className={classes.paper} elevation={8}>
             <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                value="Chicken"
-              />
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
             </ListItem>
-            
-          </List>
           </Paper>
+
+        <Paper className={classes.paper} elevation={8}>
+            <ListItem >
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+        <Paper className={classes.paper} elevation={8}>
+            <ListItem >
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+
+        <Paper className={classes.paper} elevation={8}>
+            <ListItem >
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+
+          </List>
           </CardContent>
           <CardActions>
-          <Button className={classes.button} variant='outlined' size='medium'>Done</Button>
+          <Button className='text-black' variant='outlined' size='medium'>Proceed</Button>
           </CardActions>
           </Card>
           </Grid>

@@ -67,11 +67,11 @@ render() {
         <div className={classes.root}>
           <AppBar color="primary" position="sticky">
             <Toolbar >
-              <Typography variant="title" color="primary" className={classes.flex}>
-                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Title</Button>
+              <Typography color="primary" className={classes.flex}>
+                <Button variant="flat" disableRipple={true} className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Title</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
-              <Button color="inherit"><Cart/></Button>
+              <IconButton color="inherit"><Cart/></IconButton>
             </Toolbar>
           </AppBar>
         </div>
