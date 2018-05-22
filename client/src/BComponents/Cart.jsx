@@ -128,32 +128,23 @@ class FullScreenDialog extends React.Component {
                 <CloseIcon />
               </IconButton>
               <Typography variant="title" color="inherit" className={classes.flex}>
-                Sound
+                Cart
               </Typography>
               <Button color="inherit" onClick={this.handleClose}>
-                save
+                done
               </Button>
             </Toolbar>
           </AppBar>
         <Grid container spacing={12}>
-          <Grid item md={4} sm={6}>
-        <Card className={classes.cardLeft}>
-        <CardMedia
-          className={classes.media}
-          image="https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg"
-          title="Contemplative Reptile"
-        />
-          </Card>
-          </Grid>
 
-          <Grid item md={8} sm={6}>
+          <Grid item md={12} sm={12}>
           <Card className={classes.cardRight}>
           <CardContent>
-          <Typography className='text' gutterBottom variant="display2" component="h2">
-           Texas Jack
+          <Typography className='text text-white' gutterBottom variant="display2" component="h2">
+           Complete Your Order
           </Typography>
           <Typography className='text' gutterBottom variant="p" component="h2">
-           Lorem Ipsum what can you do, let us go. Yes very good. Nice.
+           Please verify the order details and proceed to checkout.
           </Typography>
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
