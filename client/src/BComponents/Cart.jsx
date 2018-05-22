@@ -111,7 +111,7 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button size='small'variant='raised' onClick={this.handleClickOpen} color='secondary'><AddShoppingCartIcon/></Button>
+        <Button size='small'variant='raised' onClick={this.handleClickOpen}><AddShoppingCartIcon/></Button>
         
         <Dialog
           fullScreen
@@ -151,45 +151,10 @@ class FullScreenDialog extends React.Component {
             <ListItem >
            Chicken<Checkbox
                 checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
                 value="Chicken"
               />
             </ListItem>
-            <ListItem>
-            Cheese<Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
-            <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            <ListItem>
-            Cheese<Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
-            <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            <ListItem>
-            Cheese<Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
+            
           </List>
           </Paper>
           </CardContent>
