@@ -51,7 +51,8 @@ else
 
 exports.CreateEmployee= function(req, res)
 {
-   var empmodel = new employee_instance({ Emp_fname:req.body.fname,Emp_lname:req.body.lname,Email:req.body.email,Emp_password:req.body.password,Emp_start_date:req.body.sdate,Emp_phone:req.body.phone});
+   var empmodel = new employee_instance({ Emp_fname:req.body.fname,Emp_lname:req.body.lname,Email:req.body.email,
+    Emp_password:req.body.password,Emp_start_date:req.body.sdate,Emp_phone:req.body.phone});
    empmodel.save(function (err) {
        if (err)
         return res.json(err);

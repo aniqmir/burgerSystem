@@ -14,6 +14,7 @@ var db = mongoose.connection;
 
 
 var user_instance =require('../models/user');
+var order_instance= require('../models/orders');
 
 exports.UserSignUP= function(req, res)
 {   
@@ -55,3 +56,16 @@ bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
 });
 });
 };
+
+//Function to Place New Order
+exports.order= function(req, res){
+  var ord = new order_instance({products:req.body.products, total:req.body.total,customer_email:req.body.email,
+    date_sale:req.body.date});
+   ord.save(function (err) {
+       if (err)
+        return res.json(err);
+       else
+         return res.json({message:'Order Recieved'});
+   });
+       // saved!
+}

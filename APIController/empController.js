@@ -1,6 +1,7 @@
 var express= require('express');
 var app= express();
 var bcrypt = require('bcrypt-nodejs');
+var jwt    = require('jsonwebtoken');
 //Middleware to connect to database
 var mongoose = require('mongoose');
 var config= require('../config');
