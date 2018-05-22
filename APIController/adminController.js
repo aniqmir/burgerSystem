@@ -54,7 +54,7 @@ exports.CreateEmployee= function(req, res)
    var empmodel = new employee_instance({ Emp_fname:req.body.fname,Emp_lname:req.body.lname,Email:req.body.email,Emp_password:req.body.password,Emp_start_date:req.body.sdate,Emp_phone:req.body.phone});
    empmodel.save(function (err) {
        if (err)
-        return handleError(err);
+        return res.json(err);
 
        else
          return res.json({message:'New Employee Added Succesfully'});
@@ -85,7 +85,7 @@ exports.fetchoneemp= function(req,res){
 
         // callback function
         (err, Emp) => {
-            if (err) return res.status(200).send(err)
+            if (err) return res.status(200).json(err)
             if(Emp==null)
             return res.status(200).json(message='No Employee With this email')
             else
@@ -105,13 +105,10 @@ exports.Deleteemp= function(req, res)
       }
       res.send({message: "Employee deleted successfully!"});
   }).catch(err => {
-      if(err.kind === 'Emp_email' || err.name === 'NotFound') {
+      if(err.kind === 'Email' || err.name === 'NotFound') {
           return res.status(404).send({
               message: "Employee not found with email " + req.body.email
           });
       }
-      return res.status(500).send({
-          message: "Could not delete Employee with cnic " + req.params.cnic
-      });
   });
  }
