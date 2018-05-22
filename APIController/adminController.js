@@ -13,6 +13,8 @@ var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 (db.on('error', console.error.bind(console, 'MongoDB connection error:')));
 
+var employee_instance =require('../models/emp');
+
 //Function To Login
 exports.loginandGetToken = function(req, res)
  {
@@ -42,7 +44,71 @@ else
             success: true,
             message: 'Enjoy your token!',
             token: token,
-            type: 'head'
+            type: 'admin'
           });
 }
 };
+
+exports.CreateEmployee= function(req, res)
+{
+   var empmodel = new employee_instance({ Emp_fname:req.body.fname,Emp_lname:req.body.lname,Email:req.body.email,Emp_password:req.body.password,Emp_start_date:req.body.sdate,Emp_phone:req.body.phone});
+   empmodel.save(function (err) {
+       if (err)
+        return res.json(err);
+
+       else
+         return res.json({message:'New Employee Added Succesfully'});
+         console.log("Employee Data entered");
+       // saved!
+   });
+}
+
+exports.fetchallemps= function(req,res){
+    employee_instance.find()
+    .then(Emp => {
+        if(Emp==null){ res.json({message:'No Employee Found'})}
+        else
+       return res.json(Emp);
+    }).catch(err => {
+        return res.status(500).send({
+            message: err.message || "Some error occurred while retrieving all Employeess."
+        });
+    });
+};
+//Funtion To Fetch an Employee
+exports.fetchoneemp= function(req,res){
+    employee_instance.findOne(
+        // query
+        {Email:req.body.email},
+
+        {Emp_fname: true,Emp_email:true},
+
+        // callback function
+        (err, Emp) => {
+            if (err) return res.status(200).json(err)
+            if(Emp==null)
+            return res.status(200).json(message='No Employee With this email')
+            else
+            return res.status(200).json(Emp)
+        }
+    );
+};
+//Function to Delete an Employee
+exports.Deleteemp= function(req, res)
+ {
+  employee_instance.findOneAndRemove({Email:req.body.email})
+  .then(Emp => {
+      if(!Emp) {
+          return res.status(404).send({
+              message: "Employee not found with this email  " + req.body.email
+          });
+      }
+      res.send({message: "Employee deleted successfully!"});
+  }).catch(err => {
+      if(err.kind === 'Email' || err.name === 'NotFound') {
+          return res.status(404).send({
+              message: "Employee not found with email " + req.body.email
+          });
+      }
+  });
+ }

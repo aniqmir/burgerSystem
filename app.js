@@ -12,7 +12,7 @@ app.use(helmet());
 var indexRouter = require('./routes/index')
 var UserRouter = require('./routes/users');
 var adminRouter= require('./routes/admin');
-
+var EmpRouter= require('./routes/emps');
 // view engine setup
 
 app.use(logger('dev'));
@@ -41,7 +41,7 @@ expires: expiryDate }
 app.use('/', indexRouter);
 app.use('/api/user',UserRouter);
 app.use('/api/admin',adminRouter);
-
+app.use('/api/emp',EmpRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

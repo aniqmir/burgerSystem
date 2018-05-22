@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
+
 var Schema = mongoose.Schema;
 
 var EmpSchema = new Schema(
@@ -8,6 +9,7 @@ var EmpSchema = new Schema(
     Emp_lname: {type: String, max: 100},
     Email: {type: String, required: true, max: 100},
     Emp_password: {type: String, required: true, max: 50},
+    Emp_phone: {type: String, required: true, max: 50},
     Emp_start_date: {type: Date},
   }
 
@@ -31,13 +33,5 @@ EmpSchema.pre('save', function(callback) {
   });
 });
 
-EmpSchema.methods.verifyPassword = function(password, cb) {
-  bcrypt.compare(password, this.Emp_password, function(err, isMatch) {
-    if (err) return cb(err);
-    cb(null, isMatch);
-  });
-};
-
 //Export model
 module.exports = mongoose.model('Employee',EmpSchema);
-
