@@ -31,7 +31,6 @@ const theme = createMuiTheme ({
 const styles = {
   root: {
     flexGrow: 1,
-    paddingBottom:'2%'
   },
   flex: {
     flex: 1,
@@ -66,7 +65,7 @@ render() {
           <AppBar color="primary" position="sticky">
             <Toolbar >
               <Typography variant="title" color="primary" className={classes.flex}>
-                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Title</Button>
+                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
               <Button color="inherit" onClick={this.operationFeatures.bind(this)}><AddShoppingCartIcon/></Button>

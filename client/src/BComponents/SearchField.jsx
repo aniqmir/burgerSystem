@@ -43,6 +43,7 @@ const styles = theme => ({
   bootstrapRoot: {
     'label + &': {
       margin: 'auto',
+      position:'absolute'
     },
   },
   bootstrapInput: {

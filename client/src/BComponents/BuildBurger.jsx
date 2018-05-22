@@ -76,7 +76,7 @@ const styles = {
   paper: {
   },
   button: {
-    marginLeft:'80%'
+    margin:'auto',
   }
 };
 
@@ -143,11 +143,13 @@ class FullScreenDialog extends React.Component {
           <Typography className='text' gutterBottom variant="display2" component="h2">
            Texas Jack
           </Typography>
-          <Typography className='text' gutterBottom variant="p" component="h2">
+          <Typography className='text' gutterBottom variant="p">
            Lorem Ipsum what can you do, let us go. Yes very good. Nice.
           </Typography>
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
+          <Grid container spacing={12}>
+            <Grid item md={6}>
             <ListItem >
            Chicken<Checkbox
                 checked={this.state.chicken}
@@ -155,6 +157,22 @@ class FullScreenDialog extends React.Component {
                 value="Chicken"
               />
             </ListItem>
+            <ListItem>
+            Cheese <Checkbox
+                checked={this.state.cheese}
+                onChange={this.handleChange('cheese')}
+                value="Cheese"
+              />
+            </ListItem>
+            <ListItem >
+           Chicken<Checkbox
+                checked={this.state.chicken}
+                onChange={this.handleChange('chicken')}
+                value="Chicken"
+              />
+            </ListItem>
+            </Grid>
+            <Grid item md={6}>
             <ListItem>
             Cheese<Checkbox
                 checked={this.state.cheese}
@@ -176,20 +194,8 @@ class FullScreenDialog extends React.Component {
                 value="Cheese"
               />
             </ListItem>
-            <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            <ListItem>
-            Cheese<Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
+            </Grid>
+            </Grid>
           </List>
           </Paper>
           </CardContent>

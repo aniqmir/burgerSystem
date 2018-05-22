@@ -18,14 +18,14 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
   card: {
-    maxWidth: 450,
+    maxWidth: 360,
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
   },
   divPad: {
-    paddingTop:'5%',
+    paddingTop:'10%',
     //paddingLeft: '5%',
     //paddingRight: '5%',
     paddingBottom:'5%',
