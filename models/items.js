@@ -16,4 +16,4 @@ var itemSchema = new Schema(
 );
 
 //Export model
-module.exports = mongoose.model('Employee',EmpSchema);
+module.exports = mongoose.model('Item',itemSchema);
