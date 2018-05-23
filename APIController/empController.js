@@ -64,3 +64,12 @@ exports.neworders = function(req,res){
         }
     ); 
 }
+//Function to Dispatch an Order
+exports.Dispatchorder = function(req,res){
+    order_instance.findByIdAndUpdate(req.body.id,{ $set: { status: 'Dispatched' }},function (err, tank) {
+        if (err) return res.json(err);
+        else res.json('Success');
+    });
+}
+
+//
