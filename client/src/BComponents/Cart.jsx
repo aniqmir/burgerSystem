@@ -119,6 +119,7 @@ class FullScreenDialog extends React.Component {
           fullScreen
           fullWidth={true}
           maxWidth={false}
+          autoScrollBodyContent={true}
           className={classes.dialog}
           open={this.state.open}
           onClose={this.handleClose}
@@ -137,6 +138,7 @@ class FullScreenDialog extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
+    <Paper  elevation={2}>
         <Grid container spacing={12}>
 
           <Grid item md={12} sm={12}>
@@ -150,10 +152,32 @@ class FullScreenDialog extends React.Component {
           </Typography>
           <List className={classes.root}>
           <Paper className={classes.paper} elevation={8}>
+            <ListItem>
+            <Grid container spacing={12}>
+              <Grid item md={1} className={classes.center}>
+              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
+              </Grid>
+              <Grid item md={3}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                button here
+              </Grid>
+              <Grid item md={1} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+                  <Paper className={classes.paper} elevation={8}>
             <ListItem >
             <Grid container spacing={12}>
               <Grid item md={2} className={classes.center}>
-              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={4}className={classes.center}>
                 Karachi Super Burger
@@ -167,12 +191,54 @@ class FullScreenDialog extends React.Component {
             </Grid>
             </ListItem>
           </Paper>
+
+
+                  <Paper className={classes.paper} elevation={8}>
+            <ListItem >
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+
+                <Paper className={classes.paper} elevation={8}>
+            <ListItem >
+            <Grid container spacing={12}>
+              <Grid item md={2} className={classes.center}>
+              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
+              </Grid>
+              <Grid item md={4}className={classes.center}>
+                Karachi Super Burger
+              </Grid>
+              <Grid item md={4} className={classes.center}>
+                description
+              </Grid>
+              <Grid item md={2} className={classes.center}>
+                $ 80
+              </Grid>
+            </Grid>
+            </ListItem>
+          </Paper>
+
+
 
         <Paper className={classes.paper} elevation={8}>
             <ListItem >
             <Grid container spacing={12}>
               <Grid item md={2} className={classes.center}>
-              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              <img  src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={4}className={classes.center}>
                 Karachi Super Burger
@@ -187,11 +253,11 @@ class FullScreenDialog extends React.Component {
             </ListItem>
           </Paper>
 
-        <Paper className={classes.paper} elevation={8}>
+                <Paper className={classes.paper} elevation={8}>
             <ListItem >
             <Grid container spacing={12}>
               <Grid item md={2} className={classes.center}>
-              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
+              <img  src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={4}className={classes.center}>
                 Karachi Super Burger
@@ -205,37 +271,16 @@ class FullScreenDialog extends React.Component {
             </Grid>
             </ListItem>
           </Paper>
-
-
-        <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/1101726/pexels-photo-1101726.jpeg" />
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
 
           </List>
           </CardContent>
           <CardActions>
-          <Button className='text-black' variant='outlined' size='medium'>Proceed</Button>
           </CardActions>
           </Card>
           </Grid>
 
            </Grid>
+           </Paper>
         </Dialog>
       </div>
     );
