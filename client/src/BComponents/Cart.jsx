@@ -96,6 +96,17 @@ class FullScreenDialog extends React.Component {
     counter:0
   };
    
+
+  proceedToCheckout = () => {
+    this.props.history.push({
+      pathname: '/checkout',
+      state: {
+        id: 7,
+        color: 'green'
+      }
+    })
+    }
+
   handleChange = name => event => {
     
     this.setState({ [name]: event.target.checked, 
@@ -154,7 +165,7 @@ class FullScreenDialog extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Cart
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
+              <Button color="inherit" onClick={this.proceedToCheckout}>
                 Proceed to checkout
               </Button>
             </Toolbar>
