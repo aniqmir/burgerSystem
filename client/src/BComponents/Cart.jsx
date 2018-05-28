@@ -29,6 +29,9 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Avatar from '@material-ui/core/Avatar';
+import { Input } from '@material-ui/core';
+import CartItems from './CartItems';
+
 const styles = {
   root: {
     width: '100%',
@@ -75,6 +78,10 @@ const styles = {
   },
   paper: {
     marginTop:'20px'
+  },
+  counterWidth:{
+    width:50,
+    margin:'auto'
   }
 };
 
@@ -85,9 +92,21 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
-    items:[]
+    items:[],
+    counter:0
   };
    
+
+  proceedToCheckout = () => {
+    this.props.history.push({
+      pathname: '/checkout',
+      state: {
+        id: 7,
+        color: 'green'
+      }
+    })
+    }
+
   handleChange = name => event => {
     
     this.setState({ [name]: event.target.checked, 
@@ -108,6 +127,19 @@ class FullScreenDialog extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
+  increment=()=>{
+    this,this.setState({
+      counter:this.state.counter+1
+    });
+  }
+
+  decrement=()=>{
+    this,this.setState({
+      counter:this.state.counter-1
+    });
+  }
+
 
   render() {
     const { classes } = this.props;
@@ -133,8 +165,8 @@ class FullScreenDialog extends React.Component {
               <Typography variant="title" color="inherit" className={classes.flex}>
                 Cart
               </Typography>
-              <Button color="inherit" onClick={this.handleClose}>
-                done
+              <Button color="inherit" onClick={this.proceedToCheckout}>
+                Proceed to checkout
               </Button>
             </Toolbar>
           </AppBar>
@@ -152,124 +184,7 @@ class FullScreenDialog extends React.Component {
           </Typography>
           <List className={classes.root}>
           <Paper className={classes.paper} elevation={8}>
-            <ListItem>
-            <Grid container spacing={12}>
-              <Grid item md={1} className={classes.center}>
-              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={3}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                button here
-              </Grid>
-              <Grid item md={1} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
-                  <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
-
-                  <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
-
-                <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
-
-
-        <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <img  src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
-          </Paper>
-
-                <Paper className={classes.paper} elevation={8}>
-            <ListItem >
-            <Grid container spacing={12}>
-              <Grid item md={2} className={classes.center}>
-              <img  src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
-              </Grid>
-              <Grid item md={4}className={classes.center}>
-                Karachi Super Burger
-              </Grid>
-              <Grid item md={4} className={classes.center}>
-                description
-              </Grid>
-              <Grid item md={2} className={classes.center}>
-                $ 80
-              </Grid>
-            </Grid>
-            </ListItem>
+          <CartItems/>
           </Paper>
 
           </List>
@@ -280,7 +195,7 @@ class FullScreenDialog extends React.Component {
           </Grid>
 
            </Grid>
-           </Paper>
+           </Paper> {/* end of Main Paper */}
         </Dialog>
       </div>
     );
