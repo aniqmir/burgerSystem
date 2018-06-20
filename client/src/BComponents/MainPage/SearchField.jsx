@@ -110,8 +110,7 @@ function CustomizedInputs(props) {
     </Grid>
     </Grid>
     </Paper>
-    
-    )
+    );
 }
 
 export default withStyles(styles)(CustomizedInputs);

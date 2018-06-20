@@ -14,6 +14,10 @@ const styles = theme => ({
   media: {
     paddingTop:'15%'
   },
+  typo:{
+     textShadow: ' 0 0 20px #0000FF',
+    
+  }
 });
 
 
@@ -26,6 +30,9 @@ function PaperSheet(props) {
         className={classes.media}
          image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg">
          <CardContent >
+         <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
+            <strong>  BUILD WHAT YOU WANT TO EAT </strong>
+            </Typography>
          <Search/>
          </CardContent>
         </CardMedia>
