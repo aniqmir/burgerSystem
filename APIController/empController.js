@@ -15,7 +15,7 @@ var db = mongoose.connection;
 
 
 var emp_instance =require('../models/emp');
-
+var order_instance= require('../models/orders');
 
 exports.loginandGetToken = function(req, res)
  {
@@ -47,3 +47,29 @@ bcrypt.compare(req.body.password, Emp.Emp_password, function(err, isMatch) {
         });
     });
 };
+
+
+//Function to get all Orders
+exports.neworders = function(req,res){
+    order_instance.find(
+        // query
+        {status:'Recieved'},
+        // callback function
+        (err, ord) => {
+            if (err) return res.status(200).json(err);
+            if(ord==null)
+            return res.status(200).json(message='No New Order');
+            else
+            return res.status(200).json(ord);
+        }
+    ); 
+}
+//Function to Dispatch an Order
+exports.Dispatchorder = function(req,res){
+    order_instance.findByIdAndUpdate(req.body.id,{ $set: { status: 'Dispatched' }},function (err, tank) {
+        if (err) return res.json(err);
+        else res.json('Success');
+    });
+}
+
+//
