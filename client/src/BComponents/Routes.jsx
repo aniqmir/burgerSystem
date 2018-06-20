@@ -13,7 +13,7 @@ import Features from './Features';
 import LandingPage from './LandingPage'
 import Cart from './Cart';
 import CheckOut from './CheckOut';
-import Cms from '../cms/admin/login';
+
 
 const customHistory = createBrowserHistory();
 
@@ -26,7 +26,6 @@ const CustomRoutes = () => (
             <Route path='/home' component={MainPage}/>
             <Route path='/f' component={Features}/>
             <Route path='/checkout'  component={CheckOut}/>
-            <Route path='/cms'  component={Cms}/>
         </div>
     </Router>
     )

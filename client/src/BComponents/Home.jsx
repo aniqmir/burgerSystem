@@ -50,6 +50,7 @@ class SimpleMediaCard extends React.Component {
   buyClickHandler = () => {
     console.log('buy')
     this.props.loadingHandle()
+    this.props.callBackFunction("aniq form cild");
     
   }
 
