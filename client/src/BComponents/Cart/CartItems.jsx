@@ -88,7 +88,9 @@ class CartItems extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            quantity:0
+            quantity:1,
+            price:0,
+            itemName:'F-10 super burger',
         }
     }
 
@@ -98,6 +100,8 @@ class CartItems extends React.Component {
             this.setState({
                 quantity:this.state.quantity+1
             });
+
+            this.props.updateDetails(this.state.quantity);
         }
     }
     
@@ -120,23 +124,23 @@ class CartItems extends React.Component {
               <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={3}className={classes.center}>
-                
+                F-10 jumbo burger
               </Grid>
               <Grid item md={4} className={classes.center}>
                 description
               </Grid>
               <Grid item md={2} className={classes.center}>
              
-                <Button className={classes.counterWidth} onClick={this.increment} >+</Button>
+                <Button className={classes.counterWidth} size='small' onClick={this.increment} >+</Button>
                     <TextField
                         id="margin-none"
                         value={this.state.quantity}
                         className={classes.counterWidth}
                     />
-                <Button className={classes.counterWidth} onClick={this.decrement} >-</Button>
+                <Button className={classes.counterWidth} size='small' onClick={this.decrement} >-</Button>
               </Grid>
               <Grid item md={1} className={classes.center}>
-                $ 80
+               {this.state.quantity} X $ 80
               </Grid>
             </Grid>
             </ListItem>

@@ -92,8 +92,16 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
-    items:[],
-    counter:0
+    items:{ 
+      cartitem1:{ name:'Big Mac',
+                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+                  status:true,
+                  loading:false,
+                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
+                  buildDetails: 'Yes'
+                },
+  },
+    details:[]
   };
    
 
@@ -128,18 +136,18 @@ class FullScreenDialog extends React.Component {
     this.setState({ open: false });
   };
 
-  increment=()=>{
-    this,this.setState({
-      counter:this.state.counter+1
+  cartItemValues=(detailChild)=>{
+    let newDetails=this.state.details;
+    this.setState({
+      details:newDetails.push(detailChild)
     });
+    console.log(detailChild);
+    console.log(this.state.details);
   }
 
-  decrement=()=>{
-    this,this.setState({
-      counter:this.state.counter-1
-    });
-  }
 
+  //function to get values
+  
 
   render() {
     const { classes } = this.props;
@@ -176,7 +184,7 @@ class FullScreenDialog extends React.Component {
           <Grid item md={12} sm={12}>
           <Card className={classes.cardRight}>
           <CardContent>
-          <Typography className='text text-white' gutterBottom variant="display2" component="h2">
+          <Typography className='text text-black' gutterBottom variant="display2" component="h2">
            Complete Your Order
           </Typography>
           <Typography className='text' gutterBottom variant="p" component="h2">
@@ -184,9 +192,9 @@ class FullScreenDialog extends React.Component {
           </Typography>
           <List className={classes.root}>
           <Paper className={classes.paper} elevation={8}>
-          <CartItems/>
-          </Paper>
-
+          <CartItems updateDetails={this.cartItemValues}/>
+          <CartItems increment= {()=>this.increment} decrement={()=>this.decrement}/>
+          </Paper>  
           </List>
           </CardContent>
           <CardActions>

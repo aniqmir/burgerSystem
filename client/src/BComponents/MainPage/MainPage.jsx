@@ -117,6 +117,7 @@ class SimpleTabs extends React.Component {
         checkoutDetails:[]
   };
 
+
   handleChange = (event, value) => {
     this.setState({ value });
   };
