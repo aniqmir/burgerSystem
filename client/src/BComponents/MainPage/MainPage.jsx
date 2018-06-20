@@ -71,7 +71,8 @@ class SimpleTabs extends React.Component {
                   status:true,
                   loading:false,
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
-                  buildDetails: 'Yes'
+                  buildDetails: 'Yes',
+                  price:500
                 },
               
        burger2:  {  name:'Texas Jack',
@@ -79,40 +80,56 @@ class SimpleTabs extends React.Component {
                   status:false,
                   loading:false,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+                  price:500
                },
                burger3:  {  name:'Texas Jack',
                details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                status:false,
                loading:false,
                image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+               price:500
             },
             burger4:  {  name:'Texas Jack',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
             loading:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+            price:500
          },
          burger5:  {  name:'Texas Jack',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
          loading:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+         price:500
       },
       burger6:  {  name:'Texas Jack',
       details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
       status:false,
       loading:false,
       image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+      price:500
    },
           },
         status:false,
         loading:false,           
         
+        checkoutDetails:[]
   };
 
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
+  checkoutDetailsHandle = (det) => {
+    let tempdetails = this.state.checkoutDetails;
+    tempdetails.push(det);
+      this.setState({
+        checkoutDetails: tempdetails
+      })
+      console.log('ing');
+      console.log(this.state.checkoutDetails);
+  }
 
   loadingHandle = () => {
     console.log('loading')
@@ -159,11 +176,14 @@ class SimpleTabs extends React.Component {
               <Home name={type.name}
                     details={type.details} 
                     status={type.status} 
-                    image={type.image} 
-                    loading={this.state.loading} 
+                    image={type.image}        
+                    price={type.price}             
                     buildDetails={type.buildDetails}
+                    loading={this.state.loading}
                     loadingHandle={this.loadingHandle}
-                    cancelHandler={this.cancelHandle}/>
+                    cancelHandler={this.cancelHandle}
+                    checkoutDet={this.checkoutDetailsHandle}
+                    />
               </Grid>    
               </Grow>
             );
