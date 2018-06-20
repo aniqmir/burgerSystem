@@ -21,8 +21,8 @@ const CustomRoutes = () => (
         <div>
             <Navbar history={customHistory} />
             <Route exact path='/' component={LandingPage}/>
-            <Route exact path='/cart' component={Cart}/>
-            <Route path='/home' component={MainPage}/>
+            <Route path='/home' component={MainPage} />
+            <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
         </div>
     </Router>

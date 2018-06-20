@@ -16,6 +16,10 @@ import Button from '@material-ui/core/Button';
 import Carousel from '../Carousel';
 import Paper from '@material-ui/core/Paper';
 import SearchImage from './SearchImage';
+import Cart from '../Cart/Cart';
+import {
+  Link
+  }   from 'react-router-dom';
 
 
 
@@ -51,6 +55,7 @@ const styles = theme => ({
     marginLeft: '10px',
     marginTop: '3px'
   },
+  
   /*parallax: {
       backgroundImage:`url(${"https://imageresizer.static9.net.au/7PEZE_-FEeeife-33FAB3atcYaM=/1024x0/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FNetwork%2FImages%2F2017%2F06%2F16%2F09%2F55%2F170617coach_hot_chips.jpg"})`,
       minHeight: '500px',
@@ -161,6 +166,7 @@ class SimpleTabs extends React.Component {
     return (
      <MuiThemeProvider theme={theme}>
      <SearchImage/>
+     <Link to ='/cart' checkout={this.state.checkoutDetails}>Cart</Link>
      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>

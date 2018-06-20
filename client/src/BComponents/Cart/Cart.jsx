@@ -110,7 +110,8 @@ class FullScreenDialog extends React.Component {
       pathname: '/checkout',
       state: {
         id: 7,
-        color: 'green'
+        color: 'green',
+        a:this.props.checkout
       }
     })
     }
@@ -147,14 +148,16 @@ class FullScreenDialog extends React.Component {
 
 
   //function to get values
-  
+  componentDidMount ()  {
+  console.log(this.state.a);
+  }
 
   render() {
+
     const { classes } = this.props;
     return (
       <div>
         <IconButton size='small' disableFocusRipple={true}  onClick={this.handleClickOpen}><AddShoppingCartIcon/></IconButton>
-        
         <Dialog
           fullScreen
           fullWidth={true}
