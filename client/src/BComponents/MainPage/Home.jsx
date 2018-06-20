@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
   card: {
-    maxWidth: 360,
+    maxWidth: 350,
   },
   media: {
     height: 0,

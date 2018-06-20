@@ -53,6 +53,7 @@ const styles = {
   text:{
     color:'inherit',
     paddingTop:'15px',
+    textShadow: ' 0 0 20px #0000FF'
   },
   bullet: {
     display: 'inline-block',
@@ -140,10 +141,10 @@ class FullScreenDialog extends React.Component {
           <Grid item md={8} sm={6}>
           <Card className={classes.cardRight}>
           <CardContent>
-          <Typography className='text' gutterBottom variant="display2" component="h2">
+          <Typography className={classes.text} gutterBottom variant="display2" component="h2">
            Texas Jack
           </Typography>
-          <Typography className='text' gutterBottom variant="p">
+          <Typography className={classes.text} gutterBottom variant="p">
            Lorem Ipsum what can you do, let us go. Yes very good. Nice.
           </Typography>
           <Paper className={classes.paper} elevation={8}>
@@ -174,7 +175,7 @@ class FullScreenDialog extends React.Component {
             </Grid>
             <Grid item md={6}>
             <ListItem>
-            Cheese<Checkbox
+            Cheese <Checkbox
                 checked={this.state.cheese}
                 onChange={this.handleChange('cheese')}
                 value="Cheese"

@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import Cart from './Cart';
+import Cart from '../Cart/Cart';
 
 
 const theme = createMuiTheme ({
@@ -79,7 +79,6 @@ render() {
         </MuiThemeProvider>
       );
 }
- 
 }
 
 ButtonAppBar.propTypes = {

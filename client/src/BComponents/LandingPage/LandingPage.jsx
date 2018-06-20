@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import { Carousel, CarouselCaption, CarouselControl, CarouselInner, CarouselItem, CarouselIndicators, CarouselIndicator, View, Mask, Container } from 'mdbreact';
 
