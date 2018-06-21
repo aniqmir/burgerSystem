@@ -101,7 +101,7 @@ class FullScreenDialog extends React.Component {
                   buildDetails: 'Yes'
                 },
   },
-    details:[]
+    details:[],
   };
    
 
@@ -111,8 +111,8 @@ class FullScreenDialog extends React.Component {
       state: {
         id: 7,
         color: 'green',
-        a:this.props.checkout
       }
+     
     })
     }
 
@@ -146,10 +146,14 @@ class FullScreenDialog extends React.Component {
     console.log(this.state.details);
   }
 
+  check = () => {
+    console.log(this.props.checkout);
+  }
+
 
   //function to get values
   componentDidMount ()  {
-  console.log(this.state.a);
+  console.log(this.props.checkout);
   }
 
   render() {
@@ -203,6 +207,7 @@ class FullScreenDialog extends React.Component {
           <CardActions>
           </CardActions>
           </Card>
+          <Button onClick={this.check}>Check</Button>
           </Grid>
 
            </Grid>

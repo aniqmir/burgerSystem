@@ -9,6 +9,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import Cart from '../Cart/Cart';
+import {
+  Link
+  }   from 'react-router-dom';
+
 
 
 const theme = createMuiTheme ({
@@ -55,6 +59,9 @@ operationLandingPage = () => {
   this.props.history.push('/');
 }
 
+operationCart = () => {
+  this.props.history.push('/cart');
+}
 render() {
     const { classes } = this.props;
     return (
@@ -66,7 +73,7 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
-             {/* <IconButton color="inherit"onClick={this.operationCart.bind(this)}><Cart/></IconButton> */} 
+             <Link to ='/cart'> <Button color="inherit"onClick={this.operationCart.bind(this)}>Cart</Button></Link> 
             </Toolbar>
           </AppBar>
         </div>
