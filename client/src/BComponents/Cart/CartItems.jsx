@@ -30,6 +30,8 @@ import Paper from '@material-ui/core/Paper';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
+
+
 const styles = {
   root: {
     width: '100%',
@@ -100,8 +102,8 @@ class CartItems extends React.Component {
             this.setState({
                 quantity:this.state.quantity+1
             });
-
-            this.props.updateDetails(this.state.quantity);
+            let quantitytemp = this.state.quantity;
+            this.props.updateDetails(quantitytemp);
         }
     }
     
