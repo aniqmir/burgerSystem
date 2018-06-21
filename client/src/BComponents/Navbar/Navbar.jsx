@@ -51,10 +51,6 @@ operationHome = () => {
     this.props.history.push('/home');
 }
 
-operationFeatures = () => {
-  this.props.history.push('/f');
-}
-
 operationLandingPage = () => {
   this.props.history.push('/');
 }
@@ -70,7 +66,7 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
-              <IconButton color="inherit"><Cart/></IconButton>
+             {/* <IconButton color="inherit"onClick={this.operationCart.bind(this)}><Cart/></IconButton> */} 
             </Toolbar>
           </AppBar>
         </div>
