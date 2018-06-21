@@ -137,12 +137,12 @@ class FullScreenDialog extends React.Component {
   };
 
   cartItemValues=(detailChild)=>{
-    let newDetails=this.state.details;
+    let newDetails=[];
+    newDetails = this.state.details;
+    newDetails.push(detailChild);
     this.setState({
-      details:newDetails.push(detailChild)
+      details:newDetails
     });
-    console.log(detailChild);
-    console.log(this.state.details);
   }
 
 
@@ -153,18 +153,6 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <IconButton size='small' disableFocusRipple={true}  onClick={this.handleClickOpen}><AddShoppingCartIcon/></IconButton>
-        
-        <Dialog
-          fullScreen
-          fullWidth={true}
-          maxWidth={false}
-          autoScrollBodyContent={true}
-          className={classes.dialog}
-          open={this.state.open}
-          onClose={this.handleClose}
-          TransitionComponent={Transition}
-        >
         <AppBar className={classes.appBar}>
             <Toolbar>
               <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
@@ -204,7 +192,7 @@ class FullScreenDialog extends React.Component {
 
            </Grid>
            </Paper> {/* end of Main Paper */}
-        </Dialog>
+        
       </div>
     );
   }

@@ -59,8 +59,6 @@ operationLandingPage = () => {
   this.props.history.push('/');
 }
 
-operationCar
-
 render() {
     const { classes } = this.props;
     return (
