@@ -45,11 +45,25 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
 },
-transbox : {
+transboxLeft : {
     backgroundColor: '#ffffff',
     //border: '1px solid black',
     opacity: '0.5',
-    filter: 'alpha(opacity=60)' /* For IE8 and earlier */
+    filter: 'alpha(opacity=60)', /* For IE8 and earlier */
+    margin:'auto',
+    align:'center',
+    marginTop:'5%',
+    marginLeft:'10%',
+  },
+  transboxRight : {
+    backgroundColor: '#ffffff',
+    //border: '1px solid black',
+    opacity: '0.5',
+    filter: 'alpha(opacity=60)', /* For IE8 and earlier */
+    margin:'auto',
+    align:'center',
+    marginTop:'5%',
+    marginRight:'10%',
   }
 };
 
@@ -85,14 +99,14 @@ transbox : {
             <div className={classes.bgImage}>
                 <Grid container spacing = {12}>
                     <Grid item md={6} sm={6} xs={6}>
-                    <Card className={classes.transbox}>
+                    <Card className={classes.transboxLeft}>
                     <CardContent>
                         Personal Information
                         </CardContent>
                     </Card>
                     </Grid>
                     <Grid item md={6} sm={6} xs={6}>
-                    <Card className={classes.transbox}>
+                    <Card className={classes.transboxRight}>
                     <CardContent>
                         Card Information
                     </CardContent>
