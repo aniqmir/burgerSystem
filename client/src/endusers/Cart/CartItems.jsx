@@ -103,7 +103,9 @@ class CartItems extends React.Component {
                 quantity:this.state.quantity+1
             });
             let quantitytemp = this.state.quantity;
+            this.props.cartTest("a","b");
             this.props.updateDetails(quantitytemp);
+          
         }
     }
     

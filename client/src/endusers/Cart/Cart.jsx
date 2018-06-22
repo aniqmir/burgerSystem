@@ -9,9 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Avatar from '@material-ui/core/Avatar';
-import { Input } from '@material-ui/core';
 import CartItems from './CartItems';
 
 const styles = {
@@ -115,15 +112,27 @@ class FullScreenDialog extends React.Component {
     });
   }
 
-  check = () => {
-    console.log(this.props.checkout);
+  //updating cart new function
+
+  updateCart=(itemID, quantity)=>{
+    for (let i = 0; i<this.state.items.length;i++){
+      console.log("from cart",i);
+      let item=this.state.items[i];
+      for(let j=0;j<item.length;j++){
+        console.log(item[j]);
+      }
+
+    }
   }
+
 
 
   //function to get values
   componentDidMount ()  {
-  console.log(this.props.checkout);
+  console.log(this.state.a);
+  this.updateCart("a","b");
   }
+
 
   render() {
 
@@ -145,8 +154,7 @@ class FullScreenDialog extends React.Component {
                 </Typography>
                 <List className={classes.root}>
                 <Paper className={classes.paper} elevation={8}>
-                <CartItems updateDetails={this.cartItemValues}/>
-                <CartItems increment= {()=>this.increment} decrement={()=>this.decrement}/>
+                <CartItems  cartTest={this.updateCart} updateDetails={this.cartItemValues}/>
                 </Paper>  
                 </List>
                 </CardContent>

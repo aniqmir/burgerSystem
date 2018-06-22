@@ -14,6 +14,8 @@ var db = mongoose.connection;
 (db.on('error', console.error.bind(console, 'MongoDB connection error:')));
 
 var employee_instance =require('../models/emp');
+var item_instance =require('../models/items');
+
 
 //Function To Login
 exports.loginandGetToken = function(req, res)
@@ -113,3 +115,8 @@ exports.Deleteemp= function(req, res)
       }
   });
  }
+//Function To Add New Item
+exports.additem= function(req,res){
+
+
+}

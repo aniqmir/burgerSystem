@@ -14,6 +14,8 @@ import Cart from '../Cart/Cart';
 import CheckOut from '../Cart/CheckOut';
 import ClientSignIn from '../ClientSign/ClientSignIn'
 import ClientSignUp from '../ClientSign/ClientSignUp'
+import AdminDrawer from '../../cms/admin/Drawer';
+
 
 
 const customHistory = createBrowserHistory();
@@ -26,6 +28,8 @@ const CustomRoutes = () => (
             <Route path='/home' component={MainPage} history={customHistory} />
             <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
+            <Route path='/cms'  component={AdminDrawer}/>
+           
             <Route path='/signin' component={ClientSignIn}/>
             <Route path='/signup' component={ClientSignUp}/>
         </div>
