@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CustomRoutes from './BComponents/Routes';
+import CustomRoutes from './endusers/Routes/Routes';
 class App extends Component {
       render() {
         return (

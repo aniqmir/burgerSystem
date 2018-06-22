@@ -11,7 +11,6 @@ var itemSchema = new Schema(
     build: {type: Boolean, required: true, max: 100},
     img: {type: Buffer,contentType: String, max: 100}
   }
-
 );
 
 //Export model

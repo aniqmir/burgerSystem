@@ -8,7 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import Cart from './Cart';
+import Cart from '../Cart/Cart';
+import {
+  Link
+  }   from 'react-router-dom';
+
 
 
 const theme = createMuiTheme ({
@@ -42,6 +46,8 @@ const styles = {
 };
 
 
+
+
 class ButtonAppBar extends React.Component {
  
   
@@ -49,16 +55,17 @@ operationHome = () => {
     this.props.history.push('/home');
 }
 
-operationFeatures = () => {
-  this.props.history.push('/f');
-}
-
 operationLandingPage = () => {
   this.props.history.push('/');
 }
 
-operationCar
+operationCart = () => {
+  this.props.history.push('/cart');
+}
 
+operationSignIn = () => {
+  this.props.history.push('/signin');
+}
 render() {
     const { classes } = this.props;
     return (
@@ -70,14 +77,14 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
-              <IconButton color="inherit"><Cart/></IconButton>
+             <Link to ='/cart'> <Button color="inherit"onClick={this.operationCart.bind(this)}>Cart</Button></Link> 
+             <Button color="inherit" onClick={this.operationSignIn.bind(this)}>Sign In</Button>
             </Toolbar>
           </AppBar>
         </div>
         </MuiThemeProvider>
       );
 }
- 
 }
 
 ButtonAppBar.propTypes = {
