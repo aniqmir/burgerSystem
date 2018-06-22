@@ -12,8 +12,8 @@ import MainPage from '../MainPage/MainPage';
 import LandingPage from '../LandingPage/LandingPage'
 import Cart from '../Cart/Cart';
 import CheckOut from '../Cart/CheckOut';
+import AdminDrawer from '../../cms/admin/Drawer';
 import ClientSignIn from '../ClientSign/ClientSigIn'
-import Login from "../../cms/Login/Login"
 
 
 const customHistory = createBrowserHistory();
@@ -26,8 +26,9 @@ const CustomRoutes = () => (
             <Route path='/home' component={MainPage} history={customHistory} />
             <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
+            <Route path='/cms'  component={AdminDrawer}/>
+           
             <Route path='/signin' component={ClientSignIn}/>
-            <Route path='/cms' component={Login}/>
         </div>
     </Router>
     )
