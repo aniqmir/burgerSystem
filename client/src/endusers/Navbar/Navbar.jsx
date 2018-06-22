@@ -77,8 +77,14 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
+<<<<<<< HEAD:client/src/BComponents/Navbar/Navbar.jsx
+              <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
+              <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
+              <IconButton color="inherit"><Cart/></IconButton>
+=======
              <Link to ='/cart'> <Button color="inherit"onClick={this.operationCart.bind(this)}>Cart</Button></Link> 
              <Button color="inherit" onClick={this.operationSignIn.bind(this)}>Sign In</Button>
+>>>>>>> 4ef9ed5145ada190de33ecb9283d1505ad63400a:client/src/endusers/Navbar/Navbar.jsx
             </Toolbar>
           </AppBar>
         </div>
