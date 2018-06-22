@@ -12,9 +12,11 @@ import MainPage from '../MainPage/MainPage';
 import LandingPage from '../LandingPage/LandingPage'
 import Cart from '../Cart/Cart';
 import CheckOut from '../Cart/CheckOut';
+import ClientSignIn from '../ClientSign/ClientSignIn'
+import ClientSignUp from '../ClientSign/ClientSignUp'
 import AdminDrawer from '../../cms/admin/Drawer';
-import ClientSignIn from '../ClientSign/ClientSigIn'
-import Login from '../../cms/Login/login'
+
+
 
 const customHistory = createBrowserHistory();
 
@@ -30,6 +32,7 @@ const CustomRoutes = () => (
             <Route path='/cms'  component={Login}/>
            
             <Route path='/signin' component={ClientSignIn}/>
+            <Route path='/signup' component={ClientSignUp}/>
         </div>
     </Router>
     )
