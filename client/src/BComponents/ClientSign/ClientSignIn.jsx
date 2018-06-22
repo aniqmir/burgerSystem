@@ -8,17 +8,19 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
+import {
+  Link
+  }   from 'react-router-dom';
+
 
 const styles = {
   card: {
-    margin:'auto',
-    align:'center',
-    maxWidth: '100vh',
-    marginTop:'15%'
-  },
+      height:'100%',
+      width:'100%'
+   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop:'50%'
   },
   textField: {
     margin:'auto',
@@ -26,15 +28,21 @@ const styles = {
     align:'center',
     width: '85%',
   },
-  button: {
-    //margin: 'auto',
-    marginTop:'3%',
-    marginLeft:'75%',
+  cardcontent:{
+    marginTop:'20%',
   },
-   MainCard: {
-      maxWidth:'100%',
-    backgroundImage:`url(${"https://imageresizer.static9.net.au/7PEZE_-FEeeife-33FAB3atcYaM=/1024x0/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FNetwork%2FImages%2F2017%2F06%2F16%2F09%2F55%2F170617coach_hot_chips.jpg"})`
-  }
+  buttonLogin: {
+    marginTop:'3%',
+    marginLeft:'25%'
+  },
+  buttonSignup: {
+    marginTop:'3%',
+  },
+  divMargin: {
+      marginTop:'5%',
+      marginLeft:'10%',
+      marginRight:'10%',
+  },
 
 };
 
@@ -61,6 +69,15 @@ const styles = {
     })
    }
 
+
+   signUpHandle = () => {
+       console.log('signup handle')
+   }
+
+   operationSignUp = () => {
+    this.props.history.push('/signup');
+  }
+
    changeEmail = e => {
     this.setState({
       email: e.target.value
@@ -76,10 +93,18 @@ const styles = {
     render() {
         const { classes } = this.props;
         return (
-            <div>
-            <Card className={classes.MainCard}>
-              <Card className={classes.card} raised={true}>
-                <CardContent>
+            <div className={classes.parallax}>
+            <div className={classes.divMargin}>
+                <Grid container spacing={12}>
+                <Grid item md={8} sm={12} xs={12}>
+                 <Card raised={true}>
+                 <CardMedia className={classes.media}
+                image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg"/>
+                </Card>
+                </Grid>
+                <Grid item md={4} sm={12} xs={12} >
+                <Card className={classes.card}>
+                 <CardContent className={classes.cardcontent}>
                 <TextField
                   id="email"
                   label="Email"
@@ -89,8 +114,6 @@ const styles = {
                   margin="normal"
                   onChange={e => this.changeEmail(e)}
                 />
-                </CardContent>
-                <CardContent>
                 <TextField
                   id="password"
                   label="Password"
@@ -103,12 +126,23 @@ const styles = {
                 />
                 </CardContent>
                 <CardActions>
-                 <Button variant="outlined" size="medium" onClick={this.loginHandle} className={classes.button}>
+                    <Grid container spacing ={12}>
+                    <Grid item md={6} sm={6} xs={6}>
+                    <Button size="medium" onClick={this.loginHandle} className={classes.buttonLogin}>
                     Login
+                    </Button>
+                  </Grid>
+                  <Grid item md={6} sm={6} xs={6}>
+                <Button size="medium" onClick={this.operationSignUp} className={classes.buttonSignup}>
+                    Sign Up
                   </Button>
+                  </Grid>
+                  </Grid>
                 </CardActions>
-              </Card>
-              </Card>
+                 </Card>
+                 </Grid>
+                 </Grid>
+            </div>
             </div>
           );
         }
