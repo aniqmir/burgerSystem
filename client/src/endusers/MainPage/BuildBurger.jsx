@@ -90,7 +90,8 @@ class FullScreenDialog extends React.Component {
     open: false,
     chicken: false,
     cheese:false,
-    ingredients: []
+    ingredients: [],
+    ingredients2:[]
   };
    
   handleChange = name => event => {
@@ -100,11 +101,50 @@ class FullScreenDialog extends React.Component {
                   var newArr = this.state.ingredients;
                   newArr.push(name),
     this.setState({
-     ingredients:newArr
+     ingredients:newArr,
                   })
     console.log(this.state.ingredients)
-
+    this.ingredientsCheck();
   };
+
+  ingredientsCheck = () => {
+    var i,j;
+    var len = this.state.ingredients.length;
+    var newArr = this.state.ingredients;
+    var newArr2 = [];
+    for(i=0;i<len;i++){
+      var count=0;
+      for(j=0;j<len;j++){
+        if(newArr[i]===newArr[j])
+        {
+          count=count+1;
+        }
+      }
+      if(count%2!==0) {
+        newArr2.push(newArr[i])
+      }
+    }
+    this.setState({
+      ingredients2:newArr2
+    })
+    console.log(this.state.ingredients);
+  }
+
+  ingredientstoMainpage = () => {
+    let ing = this.state.ingredients2;
+    let itemDetail=[]
+    itemDetail.push(this.props.name);
+    itemDetail.push(this.props.price);
+    itemDetail.push(ing);
+    this.props.ingUpdate(itemDetail);
+    this.setState({
+      ingredients:[],
+      ingredients2:[],
+      chicken:false,
+      cheese:false,
+
+    })
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -133,7 +173,7 @@ class FullScreenDialog extends React.Component {
         <CardMedia
           className={classes.media}
           image="https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg"
-          title="Contemplative Reptile"
+          title="Burger"
         />
           </Card>
           </Grid>
@@ -201,11 +241,10 @@ class FullScreenDialog extends React.Component {
           </Paper>
           </CardContent>
           <CardActions>
-          <Button className={classes.button} variant='outlined' size='medium'>Done</Button>
+          <Button className={classes.button} variant='outlined' size='medium' onClick={this.ingredientstoMainpage}>Done</Button>
           </CardActions>
           </Card>
           </Grid>
-
            </Grid>
         </Dialog>
       </div>

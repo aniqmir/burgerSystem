@@ -48,10 +48,13 @@ class SimpleMediaCard extends React.Component {
 
   
   buyClickHandler = () => {
+    let det = []
+    det.push(this.props.name);
+    det.push(this.props.price);
+
     console.log('buy')
     this.props.loadingHandle()
-    this.props.callBackFunction("aniq form cild");
-    
+    this.props.checkoutDet(det)
   }
 
 
@@ -60,13 +63,11 @@ class SimpleMediaCard extends React.Component {
     this.props.cancelHandler()
    
   }
-
  render() {
   const { classes } = this.props;
   let isstatusTrue = this.props.status;
   let loading = this.props.loading;
 
-  
   return (
     <Container>
     <div className={classes.divPad}>
@@ -89,7 +90,7 @@ class SimpleMediaCard extends React.Component {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>
             <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler}>Buy</Button>
-            <BuildBurger buildDetails={this.props.buildDetails}/>
+            <BuildBurger buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price}/>
             {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
