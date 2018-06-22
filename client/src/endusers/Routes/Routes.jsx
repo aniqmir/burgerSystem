@@ -29,7 +29,6 @@ const CustomRoutes = () => (
             <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
             <Route path='/cms'  component={AdminDrawer}/>
-           
             <Route path='/signin' component={ClientSignIn}/>
             <Route path='/signup' component={ClientSignUp}/>
         </div>

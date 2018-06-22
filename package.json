@@ -18,6 +18,7 @@
     "http-errors": "~1.6.2",
     "jsonwebtoken": "^8.2.1",
     "lodash": "^4.17.10",
+    "mdbreact": "^4.5.0",
     "mongoose": "^5.1.1",
     "morgan": "~1.9.0"
   }
