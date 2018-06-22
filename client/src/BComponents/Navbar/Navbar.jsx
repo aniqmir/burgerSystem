@@ -72,6 +72,8 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
+              <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
+              <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
               <IconButton color="inherit"><Cart/></IconButton>
             </Toolbar>
           </AppBar>
