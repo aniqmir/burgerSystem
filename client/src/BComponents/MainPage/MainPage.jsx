@@ -17,9 +17,14 @@ import Carousel from '../Carousel';
 import Paper from '@material-ui/core/Paper';
 import SearchImage from './SearchImage';
 import Cart from '../Cart/Cart';
-import {
-  Link
-  }   from 'react-router-dom';
+  import {
+    //BrowserRouter as 
+    Router,
+    Route,
+    Link
+    }   from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory';
+
 
 
 
@@ -159,22 +164,26 @@ class SimpleTabs extends React.Component {
       loading:false,
     })
   }
+  operationCart = () => {
+    this.props.history.push('/cart');
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
 
+   
     return (
      <MuiThemeProvider theme={theme}>
      <SearchImage/>
-     <Link to ='/cart' checkout={this.state.checkoutDetails}>Cart</Link>
+     <Route path='/cart' render={(props) => <Cart {...props} checkout={this.state.checkoutDetails}/>}/>
+     <Link to='/cart'>Cart</Link>
      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>
-       {
-         /*<Grid item xs={12}>
+       {/*<Grid item xs={12}>
         <Carousel/>
-        </Grid>*/
-        } 
+        </Grid>*/ } 
           {Object.values(this.state.data).map((type,index) => {  
             //() => this.setStatus(type.status,type.loading)    
             return (

@@ -78,7 +78,7 @@ class FullScreenDialog extends React.Component {
                   buildDetails: 'Yes'
                 },
   },
-    details:[]
+    details:[],
   };
    
 
@@ -88,8 +88,8 @@ class FullScreenDialog extends React.Component {
       state: {
         id: 7,
         color: 'green',
-        a:this.props.checkout
       }
+     
     })
     }
 
@@ -115,6 +115,7 @@ class FullScreenDialog extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   //updating cart new function
 
   updateCart=(itemID, quantity)=>{
@@ -134,6 +135,16 @@ class FullScreenDialog extends React.Component {
   componentDidMount ()  {
   console.log(this.state.a);
   this.updateCart("a","b");
+=======
+  check = () => {
+    console.log(this.props.checkout);
+  }
+
+
+  //function to get values
+  componentDidMount ()  {
+  console.log(this.props.checkout);
+>>>>>>> acaacded91e231c90897067c37abee1171c0c1ad
   }
 
 
