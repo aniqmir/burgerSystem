@@ -9,9 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Avatar from '@material-ui/core/Avatar';
-import { Input } from '@material-ui/core';
 import CartItems from './CartItems';
 
 const styles = {
@@ -115,7 +112,6 @@ class FullScreenDialog extends React.Component {
     });
   }
 
-<<<<<<< HEAD
   //updating cart new function
 
   updateCart=(itemID, quantity)=>{
@@ -135,16 +131,6 @@ class FullScreenDialog extends React.Component {
   componentDidMount ()  {
   console.log(this.state.a);
   this.updateCart("a","b");
-=======
-  check = () => {
-    console.log(this.props.checkout);
-  }
-
-
-  //function to get values
-  componentDidMount ()  {
-  console.log(this.props.checkout);
->>>>>>> acaacded91e231c90897067c37abee1171c0c1ad
   }
 
 
