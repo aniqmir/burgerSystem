@@ -12,6 +12,7 @@ import MainPage from '../MainPage/MainPage';
 import LandingPage from '../LandingPage/LandingPage'
 import Cart from '../Cart/Cart';
 import CheckOut from '../Cart/CheckOut';
+import ClientSignIn from '../ClientSign/ClientSigIn'
 
 
 const customHistory = createBrowserHistory();
@@ -21,9 +22,10 @@ const CustomRoutes = () => (
         <div>
             <Navbar history={customHistory} />
             <Route exact path='/' component={LandingPage}/>
-            <Route path='/home' component={MainPage} />
+            <Route path='/home' component={MainPage} history={customHistory} />
             <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
+            <Route path='/signin' component={ClientSignIn}/>
         </div>
     </Router>
     )

@@ -164,6 +164,10 @@ class SimpleTabs extends React.Component {
       loading:false,
     })
   }
+  operationCart = () => {
+    this.props.history.push('/cart');
+  }
+
   render() {
     const { classes } = this.props;
     const { value } = this.state;
@@ -172,7 +176,8 @@ class SimpleTabs extends React.Component {
     return (
      <MuiThemeProvider theme={theme}>
      <SearchImage/>
-     <Route path="/cart" component={(props)=><Cart {...props} checkout={this.state.checkoutDetails}/>}/>
+     <Route path='/cart' render={(props) => <Cart {...props} checkout={this.state.checkoutDetails}/>}/>
+     <Link to='/cart'>Cart</Link>
      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>

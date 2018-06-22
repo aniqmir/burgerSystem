@@ -62,6 +62,10 @@ operationLandingPage = () => {
 operationCart = () => {
   this.props.history.push('/cart');
 }
+
+operationSignIn = () => {
+  this.props.history.push('/signin');
+}
 render() {
     const { classes } = this.props;
     return (
@@ -74,6 +78,7 @@ render() {
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
              <Link to ='/cart'> <Button color="inherit"onClick={this.operationCart.bind(this)}>Cart</Button></Link> 
+             <Button color="inherit" onClick={this.operationSignIn.bind(this)}>Sign In</Button>
             </Toolbar>
           </AppBar>
         </div>

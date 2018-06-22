@@ -159,37 +159,6 @@ class FullScreenDialog extends React.Component {
              <Button color="inherit" onClick={this.proceedToCheckout}>
                 Proceed to checkout
               </Button>
-<<<<<<< HEAD
-            </Toolbar>
-          </AppBar>
-    <Paper  elevation={2}>
-        <Grid container spacing={12}>
-
-          <Grid item md={12} sm={12}>
-          <Card className={classes.cardRight}>
-          <CardContent>
-          <Typography className='text text-black' gutterBottom variant="display2" component="h2">
-           Complete Your Order
-          </Typography>
-          <Typography className='text' gutterBottom variant="p" component="h2">
-           Please verify the order details and proceed to checkout.
-          </Typography>
-          <List className={classes.root}>
-          <Paper className={classes.paper} elevation={8}>
-          <CartItems updateDetails={this.cartItemValues}/>
-          <CartItems increment= {()=>this.increment} decrement={()=>this.decrement}/>
-          </Paper>  
-          </List>
-          </CardContent>
-          <CardActions>
-          </CardActions>
-          </Card>
-          <Button onClick={this.check}>Check</Button>
-          </Grid>
-
-           </Grid>
-=======
->>>>>>> 6b1e54911db18ada8e3fc760abfac17acac091b9
            </Paper> {/* end of Main Paper */}
         
       </div>
