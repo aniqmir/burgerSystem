@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
+ 
+
 //use helmet
 var helmet = require('helmet');
 app.use(helmet());
@@ -17,7 +19,7 @@ var EmpRouter= require('./routes/emps');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
@@ -42,6 +44,8 @@ app.use('/', indexRouter);
 app.use('/api/user',UserRouter);
 app.use('/api/admin',adminRouter);
 app.use('/api/emp',EmpRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
