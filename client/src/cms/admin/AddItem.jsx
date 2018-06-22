@@ -310,6 +310,9 @@ canBeSubmitted() {
         <TextField
           id="des"
           label="Description"
+          multiLine={true}
+          rows={2}
+          rowsMax={4}
           value={this.state.cnic}
           placeholder="Enter Description "
           onChange={e => this.changecnics(e)}
