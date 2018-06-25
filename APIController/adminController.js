@@ -20,7 +20,7 @@ var item_instance =require('../models/items');
 //Function To Login
 exports.loginandGetToken = function(req, res)
  {
-
+ console.log('We are here');
 var nam= req.body.name;
 var pass= req.body.password;
 if(nam != 'nerd')

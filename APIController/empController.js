@@ -41,7 +41,7 @@ bcrypt.compare(req.body.password, Emp.Emp_password, function(err, isMatch) {
             success: true,
             message: 'logged in!!! Enjoy your token!',
             token: token,
-            type: 'Employee'
+            type: 'emp'
           });
 }
         });
