@@ -9,7 +9,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Icon from 'material-ui/Icon';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
-
+import axios, { post } from 'axios';
 const styles = theme => ({
   button: {
     margin:theme.spacing.unit,
@@ -52,32 +52,27 @@ const dropdowntypes = [
 
 function validate(username,password,cnic) {
   return {
-    userName: username.length === 0,
-    password: password.length === 0,
-    cnic: cnic.length === 0,
+    
   };
 }
 class TextFields extends React.Component {
-
-  state = {
-    username: '',
-    password: '',
-    cnic: '',
-    type:'admin',
+constructor(props){
+super(props);
+  this.state = {
+    name:'',
+    price:'',
+    imageUrl:'',
     t:this.props.token,
     shopID:'',
     isDisabledshop:true,
-    shopaddress:'',
-    city:'',
-    countryState:'',
-    zip:'',
-    phone:'',
-    nationality:'',
-    country:'',
-    mobile:'',
-    email:'',
-    address:''
+    file:null,
+    
   }
+  this.onFormSubmit = this.onFormSubmit.bind(this)
+  this.onChange = this.onChange.bind(this)
+this.fileUpload = this.fileUpload.bind(this)
+}
+  
 
 
 handleSubmit = (evt) => {
@@ -203,21 +198,7 @@ canBeSubmitted() {
       console.log(this.state)
       var details = {
        'name': this.state.username,
-       'type': this.state.type,
-       'password':this.state.password,
-        'cnic':this.state.cnic,
-        'shopID':this.state.shopID,
-        'token':this.state.t,
-        'shopaddress':this.state.shopaddress,
-        'city':this.state.city,
-        'countrystate':this.state.countryState,
-        'zip':this.state.zip,
-        'phone':this.state.phone,
-        'nationality':this.state.nationality,
-        'country':this.state.country,
-        'mobile':this.state.mobile,
-        'email':this.state.email,
-        'address':this.state.address,
+       'imageUrl' : this.state.imageUrl,
    };
    
    var formBody = [];
@@ -294,57 +275,9 @@ canBeSubmitted() {
           margin="normal"
           refs='name'
         />
-        </CardContent>
-        <CardContent>
-        <TextField
-          id="price"
-          label="Price"
-          value={this.state.password}
-          placeholder="Enter Price"
-          onChange={e => this.changepassword(e)}
-          className={classes.textField}
-          margin="normal"
-        />
-        </CardContent>
-        <CardContent>
-        <TextField
-          id="des"
-          label="Description"
-          multiLine={true}
-          rows={2}
-          rowsMax={4}
-          value={this.state.cnic}
-          placeholder="Enter Description "
-          onChange={e => this.changecnics(e)}
-          className={classes.textField}
-          margin="normal"
-        />
-        </CardContent>
-        <CardContent>
-        <TextField
-          id="ingredients"
-          label="Ingredients"
-          value={this.state.city}
-          placeholder="Enter Ingredients"
-          onChange={e => this.changecity(e)}
-          className={classes.textField}
-          margin="normal"
-        />
-        </CardContent>
-        <CardContent>
-        <TextField
-          id="email"
-          label="Email"
-          value={this.state.email}
-          placeholder="Enter Email"
-          onChange={e => this.changeemail(e)}
-          className={classes.textField}
-          margin="normal"
-        />
-        </CardContent>
+
+         
         
-      
-        <CardContent>
         <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClick} disabled={isDisabled}>
         <AddIcon/>
         </Button>
