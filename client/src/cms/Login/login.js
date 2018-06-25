@@ -119,7 +119,7 @@ class TextFields extends React.Component {
  formBody = formBody.join("&");
  
  var reqtype = this.state.type.toString();
- fetch('/'+reqtype, {
+ fetch('/api/'+reqtype+'/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
@@ -131,23 +131,21 @@ class TextFields extends React.Component {
    if(res){
     console.log(res);
     console.log(res.token);
-     if(res.type=="head"){
-      console.log('Head Login Successful');
-      {this.props.updateHeadOffice(res.token)}
+     if(res.type=="emp"){
+      console.log('Employee Login Successful');
+      this.props.history.push('/cms/emp');
      }
      else if(res.type=='admin'){
-      console.log('Ware House Login Successful');
-      {this.props.updateWarehouse(res.token)}
-     }
-     else if(res.type=='shop'){ //res.type not working properly, if they do, all dashboards will be displayed accoridingly
-      console.log('Shop Login Successful');
-      {this.props.updateShop(res.token,res.shopID)}
+      console.log('Admin Login Successful');
+      {this.props.updateAdmin(res.token)}
+      this.props.history.push('/cms/admin');
+      
      }
      else{
        this.props.handleOpen();
        console.log("error");
      }
-     console.log("After function");
+     console.log("After Login  function");
    };
  }
  );
