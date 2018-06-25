@@ -62,8 +62,8 @@ const styles = theme => ({
   },
   
   /*parallax: {
-      backgroundImage:`url(${"https://imageresizer.static9.net.au/7PEZE_-FEeeife-33FAB3atcYaM=/1024x0/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FNetwork%2FImages%2F2017%2F06%2F16%2F09%2F55%2F170617coach_hot_chips.jpg"})`,
-      minHeight: '500px',
+      backgroundImage:`url(${"https://www.xmple.com/wallpaper/grey-white-lines-streaks-stripes-2732x2048-c2-ffffff-a9a9a9-l2-59-59-a-315-f-1.svg"})`,
+      minHeight: '100vh',
       backgroundAttachment: 'fixed',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',

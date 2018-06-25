@@ -29,7 +29,7 @@ const CustomRoutes = () => (
             <Route path='/cart'  component={Cart}/>
             <Route path='/checkout'  component={CheckOut}/>
             <Route path='/admin'  component={AdminDrawer}/>
-            <Route path='/cms'  component={Login}/>
+            <Route path='/cms'  component={Login} />
             <Route path='/signin' component={ClientSignIn}/>
             <Route path='/signup' component={ClientSignUp}/>
         </div>

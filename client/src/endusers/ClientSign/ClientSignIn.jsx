@@ -13,7 +13,6 @@ import {
   Link
   }   from 'react-router-dom';
 
-
 const styles = {
   card: {
       height:'100%',
@@ -39,10 +38,18 @@ const styles = {
     marginTop:'3%',
   },
   divMargin: {
-      marginTop:'5%',
-      marginLeft:'10%',
-      marginRight:'10%',
+     // marginTop:'5%',
+      //marginLeft:'10%',
+      //marginRight:'10%',
+      margin:'7%'
   },
+  /*divBackground:{
+    backgroundImage:`url(${"https://rfclipart.com/image/big/45-77-91/striped-pattern-with-diagonal-lines-seamless-wallpaper-Download-Royalty-free-Vector-File-EPS-66694.jpg"})`,
+    minHeight: '100vh',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+  }*/
+
 
 };
 
@@ -93,7 +100,7 @@ const styles = {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.parallax}>
+            <div className={classes.divBackground}>
             <div className={classes.divMargin}>
                 <Grid container spacing={12}>
                 <Grid item md={8} sm={12} xs={12}>
@@ -103,7 +110,7 @@ const styles = {
                 </Card>
                 </Grid>
                 <Grid item md={4} sm={12} xs={12} >
-                <Card className={classes.card}>
+                <Card className={classes.card} raised={true}>
                  <CardContent className={classes.cardcontent}>
                 <TextField
                   id="email"
@@ -144,6 +151,7 @@ const styles = {
                  </Grid>
             </div>
             </div>
+            
           );
         }
     }
