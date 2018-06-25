@@ -119,7 +119,7 @@ class TextFields extends React.Component {
  formBody = formBody.join("&");
  
  var reqtype = this.state.type.toString();
- fetch('/api/admin/login', {
+ fetch('/api/'+reqtype+'/login', {
    method: 'POST',
    headers: {
      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
@@ -131,13 +131,15 @@ class TextFields extends React.Component {
    if(res){
     console.log(res);
     console.log(res.token);
-     if(res.type=="Employee"){
+     if(res.type=="emp"){
       console.log('Employee Login Successful');
-      {this.props.updateEployee(res.token)}
+      this.props.history.push('/cms/emp');
      }
      else if(res.type=='admin'){
       console.log('Admin Login Successful');
       {this.props.updateAdmin(res.token)}
+      this.props.history.push('/cms/admin');
+      
      }
      else{
        this.props.handleOpen();

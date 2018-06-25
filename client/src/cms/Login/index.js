@@ -41,6 +41,7 @@ class App extends Component {
   
   updateAdminDisplay = (token) => {
     console.log(token);
+    console.log("Admin Display Function");
     //now send token to the required component
     this.setState({
       IsLoggedInAdmin:true,
