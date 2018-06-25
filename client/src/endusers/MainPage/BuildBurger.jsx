@@ -27,6 +27,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
 
 const styles = {
   root: {
@@ -90,6 +91,7 @@ class FullScreenDialog extends React.Component {
     open: false,
     chicken: false,
     cheese:false,
+    extradetails:'',
     ingredients: [],
     ingredients2:[]
   };
@@ -154,6 +156,11 @@ class FullScreenDialog extends React.Component {
     this.setState({ open: false });
   };
 
+  handleChangeExtra = e => {
+    this.setState({
+      extradetails: e.target.value
+    });
+  }
   render() {
     const { classes } = this.props;
     return (
@@ -240,6 +247,19 @@ class FullScreenDialog extends React.Component {
           </List>
           </Paper>
           </CardContent>
+          <CardContent>
+          <TextField
+          id="extra details"
+          label="Extra Details"
+          multiline
+          rowsMax="4"
+          fullWidth
+          value={this.state.extradetails}
+          onChange={e=>this.handleChangeExtra(e)}
+          color='secondary'
+          margin="normal"
+          />
+         </CardContent>
           <CardActions>
           <Button className={classes.button} variant='outlined' size='medium' onClick={this.ingredientstoMainpage}>Done</Button>
           </CardActions>
@@ -250,7 +270,7 @@ class FullScreenDialog extends React.Component {
       </div>
     );
   }
-}
+  }
 
 FullScreenDialog.propTypes = {
   classes: PropTypes.object.isRequired,

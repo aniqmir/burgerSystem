@@ -17,6 +17,7 @@ import AccountBalance from '@material-ui/icons/AccountBalance';
 import Phone from '@material-ui/icons/PermPhoneMsg';
 import Label from '@material-ui/icons/Label';
 import Check from '@material-ui/icons/Check';
+import Accessibility from '@material-ui/icons/Accessibility';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -64,6 +65,7 @@ transboxLeft : {
     filter: 'alpha(opacity=60)', /* For IE8 and earlier */
     margin:'10%',
     align:'center',
+    paddingBottom:'5%'
     //marginTop:'15%',
     //marginLeft:'10%',
   },
@@ -74,6 +76,7 @@ transboxLeft : {
     filter: 'alpha(opacity=60)', /* For IE8 and earlier */
     margin:'10%',
     align:'center',
+    paddingBottom:'5%'
     //marginTop:'15%',
     //marginRight:'10%',
     //marginLeft:'10%'
@@ -163,7 +166,43 @@ changeBankName = e => {
 
 enterDetails = () => {
   console.log(this.state)
-  
+  var details = {
+    'name': this.state.name,
+    'password': this.state.password,
+    'email':this.state.email,
+    'address':this.state.address,
+
+};
+
+
+var formBody = [];
+for (var property in details) {
+  var encodedKey = encodeURIComponent(property);
+  var encodedValue = encodeURIComponent(details[property]);
+  formBody.push(encodedKey + "=" + encodedValue);
+}
+formBody = formBody.join("&");
+
+
+fetch('/api/user/signup', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+  },
+  body: formBody
+}).then(res=>res.json())
+.then(res=>{
+  console.log("we are in this function");
+  if(res){
+  // console.log(res);
+   console.log(res);
+    /*if(res.type=="head")*/{
+     console.log('Sign Up Function');
+    }
+    console.log("After function");
+  };
+}
+);
   this.setState({
     name:'',
     email:'',
@@ -186,7 +225,7 @@ enterDetails = () => {
                     <Grid container spacing = {12}>
                     <Grid item md={12} sm={12} xs={12}>
                     <CardContent>
-                       <Typography variant='subheading'>Personal Information</Typography>
+                       <Typography variant='display1'>Personal Information<Accessibility/></Typography>
                     </CardContent>
                     <CardContent>
                     <TextField
@@ -245,7 +284,7 @@ enterDetails = () => {
                             type="password"
                             className={classes.textField}
                             margin="normal"
-                            value={this.state.password}
+                            value={this.state.confirmpassword}
                             onChange={e=>this.changeConfirmPassword(e)}
                             InputProps={{
                               startAdornment: (
@@ -297,7 +336,7 @@ enterDetails = () => {
                     <Grid item md={6} sm={12} xs={12}>
                     <Card className={classes.transboxRight} raised={true}>
                     <CardContent>
-                        Card Information
+                       <Typography variant="display1"> Card Information <CreditCard/> </Typography>
                     </CardContent>
                     <CardContent>
                     <TextField

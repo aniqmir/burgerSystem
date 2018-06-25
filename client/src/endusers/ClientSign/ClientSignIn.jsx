@@ -12,7 +12,13 @@ import Grid from '@material-ui/core/Grid';
 import {
   Link
   }   from 'react-router-dom';
-
+  import Email from '@material-ui/icons/Email';
+  import Label from '@material-ui/icons/Label';
+  import Check from '@material-ui/icons/Check';
+  import Face from '@material-ui/icons/Face';
+  import Input from '@material-ui/core/Input';
+  import InputLabel from '@material-ui/core/InputLabel';
+  import InputAdornment from '@material-ui/core/InputAdornment';
 const styles = {
   card: {
       height:'100%',
@@ -70,6 +76,41 @@ const styles = {
     console.log('password')
     console.log(this.state.password)
 
+    var details = {
+      'password': this.state.password,
+      'email':this.state.email,
+  
+  };
+  
+  
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+  
+  
+  fetch('/api/user/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+    },
+    body: formBody
+  }).then(res=>res.json())
+  .then(res=>{
+    console.log("we are in this function");
+    if(res){
+    // console.log(res);
+     console.log(res);
+      /*if(res.type=="head")*/{
+       console.log('Sign Up Function');
+      }
+      console.log("After function");
+    };
+  }
+  );
     this.setState({
         email:'',
         password:''
@@ -119,7 +160,14 @@ const styles = {
                   className={classes.textField}
                   value={this.state.email}
                   margin="normal"
-                  onChange={e => this.changeEmail(e)}
+                  onChange={e => this.changeEmail(e)} 
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Email />
+                      </InputAdornment>
+                    ),
+                  }}               
                 />
                 <TextField
                   id="password"
@@ -130,18 +178,25 @@ const styles = {
                   value={this.state.password}
                   margin="normal"
                   onChange={e => this.changePassword(e)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Label />
+                      </InputAdornment>
+                    ),
+                  }}     
                 />
                 </CardContent>
                 <CardActions>
                     <Grid container spacing ={12}>
                     <Grid item md={6} sm={6} xs={6}>
                     <Button size="medium" onClick={this.loginHandle} className={classes.buttonLogin}>
-                    Login
+                    Login <Face/>
                     </Button>
                   </Grid>
                   <Grid item md={6} sm={6} xs={6}>
                 <Button size="medium" onClick={this.operationSignUp} className={classes.buttonSignup}>
-                    Sign Up
+                    Sign Up <Check/>
                   </Button>
                   </Grid>
                   </Grid>
