@@ -2,33 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import Avatar from '@material-ui/core/Avatar';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -91,20 +66,18 @@ class CartItems extends React.Component {
         super(props);
         this.state={
             quantity:1,
-            price:0,
-            itemName:'F-10 super burger',
+            price:this.props.price,
+            itemName: this.props.name,
+            image: this.props.image,
+            description: this.props.details
         }
     }
 
     increment = () =>{
-        console.log(this.state.quantity);
         if(this.state.quantity<=20){//remove it later
             this.setState({
                 quantity:this.state.quantity+1
             });
-            let quantitytemp = this.state.quantity;
-            this.props.cartTest("a","b");
-            this.props.updateDetails(quantitytemp);
           
         }
     }
@@ -125,13 +98,13 @@ class CartItems extends React.Component {
             <ListItem>
             <Grid container spacing={12}>
               <Grid item md={1} className={classes.center}>
-              <img src="https://cdn.pixabay.com/photo/2018/03/04/20/08/burger-3199088__340.jpg"  className='img img-responsive img-thumbnail' alt="" srcset=""/>
+              <img src={this.state.image}  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={3}className={classes.center}>
-                F-10 jumbo burger
+                <h4><strong>{this.state.itemName}</strong></h4>
               </Grid>
               <Grid item md={4} className={classes.center}>
-                description
+                {this.state.description}
               </Grid>
               <Grid item md={2} className={classes.center}>
              
@@ -144,7 +117,7 @@ class CartItems extends React.Component {
                 <Button className={classes.counterWidth} size='small' onClick={this.decrement} >-</Button>
               </Grid>
               <Grid item md={1} className={classes.center}>
-               {this.state.quantity} X $ 80
+               {this.state.quantity} X $ {this.state.price}
               </Grid>
             </Grid>
             </ListItem>

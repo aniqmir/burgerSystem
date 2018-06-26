@@ -5,16 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import brown from '@material-ui/core/colors/brown';
-import orange from '@material-ui/core/colors/orange';
-import grey from '@material-ui/core/colors/grey';
 import Home from './Home';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Grow from '@material-ui/core/Grow';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import Carousel from '../Carousel';
-import Paper from '@material-ui/core/Paper';
 import SearchImage from './SearchImage';
 import Cart from '../Cart/Cart';
   import {
@@ -101,37 +95,33 @@ class SimpleTabs extends React.Component {
       burger1: {  name:'Big Mac',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:true,
-                  loading:false,
+                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   buildDetails: 'Yes',
                   price:500
                 },
               
-       burger2:  {  name:'Texas Jack',
+       burger2:{  name:'Texas Jack',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:false,
-                  loading:false,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
                   price:500
                },
-               burger3:  {  name:'Texas Jack',
-               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-               status:false,
-               loading:false,
-               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-               price:500
-            },
+      burger3:{  name:'Texas Jack',
+              details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+              status:false,
+              image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+              price:500
+              },
             burger4:  {  name:'Texas Jack',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
-            loading:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
             price:500
          },
          burger5:  {  name:'Texas Jack',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
-         loading:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
          price:500
       },
@@ -177,9 +167,10 @@ class SimpleTabs extends React.Component {
       image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
       price:500
    },
-          },
-        status:false,
-        loading:false,           
+        
+    },
+
+      status:false,
         
         checkoutDetails:[]
   };
@@ -195,8 +186,8 @@ class SimpleTabs extends React.Component {
       this.setState({
         checkoutDetails: tempdetails
       })
-      console.log('ing');
       console.log(this.state.checkoutDetails);
+      localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
   }
 
   loadingHandle = () => {
