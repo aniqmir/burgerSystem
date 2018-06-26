@@ -138,8 +138,8 @@ class SimpleTabs extends React.Component {
       this.setState({
         checkoutDetails: tempdetails
       })
-      console.log('ing');
       console.log(this.state.checkoutDetails);
+      localStorage.setItem('cartItems',this.state.checkoutDetails);
   }
 
   loadingHandle = () => {
