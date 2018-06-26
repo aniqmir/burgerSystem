@@ -5,16 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import brown from '@material-ui/core/colors/brown';
-import orange from '@material-ui/core/colors/orange';
-import grey from '@material-ui/core/colors/grey';
 import Home from './Home';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Grow from '@material-ui/core/Grow';
-import Input from '@material-ui/core/Input';
-import Button from '@material-ui/core/Button';
-import Carousel from '../Carousel';
-import Paper from '@material-ui/core/Paper';
 import SearchImage from './SearchImage';
 import Cart from '../Cart/Cart';
   import {
@@ -134,7 +128,7 @@ class SimpleTabs extends React.Component {
         checkoutDetails: tempdetails
       })
       console.log(this.state.checkoutDetails);
-      localStorage.setItem('cartItems',this.state.checkoutDetails);
+      localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
   }
 
   loadingHandle = () => {

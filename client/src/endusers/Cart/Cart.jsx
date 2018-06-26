@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
+import { colors } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -74,6 +75,12 @@ class FullScreenDialog extends React.Component {
                   buildDetails: 'Yes',
                   price : 900
                 },
+      burger6:  {  name:'Texas Jack',
+                details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+                status:false,
+                image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+                price:500
+                },
   },
     details:[],
   };
@@ -96,14 +103,6 @@ class FullScreenDialog extends React.Component {
 
   };
 
-  cartItemValues=(detailChild)=>{
-    let newDetails=[];
-    newDetails = this.state.details;
-    newDetails.push(detailChild);
-    this.setState({
-      details:newDetails
-    });
-  }
 
   //updating cart new function
 
@@ -119,9 +118,17 @@ class FullScreenDialog extends React.Component {
   }
 
 
+  loadItems=()=>{
+    let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
+    console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
+    this.setState({
+      items1:tempSessionCart
+    })
+  }
 
   //function to get values
   componentDidMount(){
+    this.loadItems();
   }
 
 
@@ -147,15 +154,15 @@ class FullScreenDialog extends React.Component {
                   {/* Traversing Items here  */}
                   {Object.values(this.state.items).map((type,index) => {  
                     return (
-                      <Paper className={classes.paper} elevation={8}>
-                              <CartItems name={type.name}
-                                    details={type.details} 
-                                    status={type.status} 
-                                    image={type.image}        
-                                    price={type.price}             
-                                    buildDetails={type.buildDetails}
-                                    />
-                      </Paper>
+                        <Paper className={classes.paper} elevation={8}>
+                                <CartItems name={type.name}
+                                      details={type.details} 
+                                      status={type.status} 
+                                      image={type.image}        
+                                      price={type.price}             
+                                      buildDetails={type.buildDetails}
+                                      />
+                        </Paper>
                             );
                           })
                     }
