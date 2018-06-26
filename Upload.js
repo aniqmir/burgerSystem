@@ -1,6 +1,7 @@
-const multer =require('multer');
+const multer = require('multer');
 var path = require('path');
 const uuidv4 = require('uuid/v4');
+
  
  
  // configure storage
@@ -9,7 +10,7 @@ const uuidv4 = require('uuid/v4');
       cb(null, 'uploads');
     },
     filename: (req, file, cb) => {
-      const newFilename = `${req.body.name}${path.extname(file.originalname)}`;
+      const newFilename = `${uuidv4()}${path.extname(file.originalname)}`;
       cb(null, newFilename);
     },
   });
