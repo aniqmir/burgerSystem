@@ -62,8 +62,8 @@ const styles = theme => ({
   },
   
   /*parallax: {
-      backgroundImage:`url(${"https://imageresizer.static9.net.au/7PEZE_-FEeeife-33FAB3atcYaM=/1024x0/http%3A%2F%2Fprod.static9.net.au%2F_%2Fmedia%2FNetwork%2FImages%2F2017%2F06%2F16%2F09%2F55%2F170617coach_hot_chips.jpg"})`,
-      minHeight: '500px',
+      backgroundImage:`url(${"https://www.xmple.com/wallpaper/grey-white-lines-streaks-stripes-2732x2048-c2-ffffff-a9a9a9-l2-59-59-a-315-f-1.svg"})`,
+      minHeight: '100vh',
       backgroundAttachment: 'fixed',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
@@ -79,50 +79,45 @@ class SimpleTabs extends React.Component {
       burger1: {  name:'Big Mac',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:true,
-                  loading:false,
+                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   buildDetails: 'Yes',
                   price:500
                 },
               
-       burger2:  {  name:'Texas Jack',
+       burger2:{  name:'Texas Jack',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:false,
-                  loading:false,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
                   price:500
                },
-               burger3:  {  name:'Texas Jack',
-               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-               status:false,
-               loading:false,
-               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-               price:500
-            },
+      burger3:{  name:'Texas Jack',
+              details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+              status:false,
+              image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+              price:500
+              },
             burger4:  {  name:'Texas Jack',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
-            loading:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
             price:500
          },
          burger5:  {  name:'Texas Jack',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
-         loading:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
          price:500
       },
-      burger6:  {  name:'Texas Jack',
-      details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-      status:false,
-      loading:false,
-      image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-      price:500
-   },
-          },
+        burger6:  {  name:'Texas Jack',
+        details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
         status:false,
-        loading:false,           
+        image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+        price:500
+        },
+    },
+
+      status:false,
         
         checkoutDetails:[]
   };
@@ -138,8 +133,8 @@ class SimpleTabs extends React.Component {
       this.setState({
         checkoutDetails: tempdetails
       })
-      console.log('ing');
       console.log(this.state.checkoutDetails);
+      localStorage.setItem('cartItems',this.state.checkoutDetails);
   }
 
   loadingHandle = () => {

@@ -60,7 +60,7 @@ class CustomizedTable extends React.Component {
     }
     formBody = formBody.join("&");
     
-    fetch('/head/ShowEmps', {
+    fetch('/api/admin/Employeeindex', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
@@ -106,28 +106,30 @@ class CustomizedTable extends React.Component {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <CustomTableCell>Name</CustomTableCell>
-              <CustomTableCell numeric>Type</CustomTableCell>
-              <CustomTableCell numeric>CNIC</CustomTableCell>
+              <CustomTableCell>First Name</CustomTableCell>
+              <CustomTableCell numeric>Last Name</CustomTableCell>
+              <CustomTableCell numeric>Email </CustomTableCell>
               <CustomTableCell numeric>Password</CustomTableCell>
-              <CustomTableCell numeric>Shop ID</CustomTableCell>
+              <CustomTableCell numeric>Start Date</CustomTableCell>
+              <CustomTableCell numeric>Phone </CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {/*data replaced with json pacakage from api*/}
             {
                Object.values(this.state.data).map((type) => {
-                 console.log(type.Emp_cnic);
+                 console.log(type.Emp_fname);
                  console.log(type.Emp_password);
-                 console.log(type.Emp_name);
-                 console.log(type.Emp_type);
+                 console.log(type.Emp_lname);
+                 console.log(type.Emp_email);
                  return (
                   <TableRow className={classes.row} key={type.Emp_cnic}>
-                    <CustomTableCell>{type.Emp_name}</CustomTableCell>
-                    <CustomTableCell numeric> {type.Emp_type} </CustomTableCell>
-                    <CustomTableCell numeric>{type.Emp_cnic}</CustomTableCell>
+                    <CustomTableCell>{type.Emp_fname}</CustomTableCell>
+                    <CustomTableCell numeric> {type.Emp_lname} </CustomTableCell>
+                    <CustomTableCell numeric>{type.Email}</CustomTableCell>
                     <CustomTableCell numeric>{type.Emp_password}</CustomTableCell>
-                    <CustomTableCell numeric>{type.shop_id}</CustomTableCell>
+                    <CustomTableCell numeric>{type.Emp_start_date}</CustomTableCell>
+                    <CustomTableCell nueric>{type.Emp_phone}</CustomTableCell>
                   </TableRow>
                 );
               })
