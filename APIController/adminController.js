@@ -117,6 +117,16 @@ exports.Deleteemp= function(req, res)
  }
 //Function To Add New Item
 exports.additem= function(req,res){
-
-
+    var itemmodel = new item_instance({item_name:req.body.name,item_desc:req.body.desc,
+        item_added_date:req.body.date,item_type:req.body.type,item_price:req.body.price,
+        build:req.body.build,imgPath:req.file.path});
+    itemmodel.save(function (err) {
+        if (err)
+         return res.json(err);
+ 
+        else
+          return res.json({message:'New Item Added Succesfully'});
+          console.log("Item Data entered");
+        // saved!
+    });
 }
