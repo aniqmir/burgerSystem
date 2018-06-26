@@ -79,50 +79,45 @@ class SimpleTabs extends React.Component {
       burger1: {  name:'Big Mac',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:true,
-                  loading:false,
+                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   buildDetails: 'Yes',
                   price:500
                 },
               
-       burger2:  {  name:'Texas Jack',
+       burger2:{  name:'Texas Jack',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:false,
-                  loading:false,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
                   price:500
                },
-               burger3:  {  name:'Texas Jack',
-               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-               status:false,
-               loading:false,
-               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-               price:500
-            },
+      burger3:{  name:'Texas Jack',
+              details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+              status:false,
+              image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+              price:500
+              },
             burger4:  {  name:'Texas Jack',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
-            loading:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
             price:500
          },
          burger5:  {  name:'Texas Jack',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
-         loading:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
          price:500
       },
-      burger6:  {  name:'Texas Jack',
-      details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-      status:false,
-      loading:false,
-      image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-      price:500
-   },
-          },
+        burger6:  {  name:'Texas Jack',
+        details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
         status:false,
-        loading:false,           
+        image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+        price:500
+        },
+    },
+
+      status:false,
         
         checkoutDetails:[]
   };
