@@ -15,8 +15,7 @@ const styles = theme => ({
     paddingTop:'15%'
   },
   typo:{
-     textShadow: ' 0 0 20px #0000FF',
-    
+     textShadow: ' 0 0 20px #000000',
   }
 });
 

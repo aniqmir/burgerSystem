@@ -61,6 +61,13 @@ const styles = {
   counterWidth:{
     width:50,
     margin:'auto'
+  },
+  divBackground:{
+    backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
+    minHeight: '100vh',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingTop:"10%"
   }
 };
 
@@ -138,8 +145,7 @@ class FullScreenDialog extends React.Component {
 
     const { classes } = this.props;
     return (
-      <div>
-
+      <div className={classes.divBackground}>
           <Paper  elevation={2}>
               <Grid container spacing={12}>
 

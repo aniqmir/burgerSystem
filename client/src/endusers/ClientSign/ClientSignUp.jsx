@@ -63,7 +63,8 @@ transboxLeft : {
     //border: '1px solid black',
     opacity: '0.8',
     filter: 'alpha(opacity=60)', /* For IE8 and earlier */
-    margin:'10%',
+    marginTop:'-15%',
+    marginLeft:"5%",
     align:'center',
     paddingBottom:'5%'
     //marginTop:'15%',
@@ -91,7 +92,25 @@ transboxLeft : {
     margin:'auto',
     align:'center',
     marginLeft:'45%'
-  }
+  },
+   footer: {
+    position: 'relative',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    backgroundColor: 'black',
+    color: 'white',
+ },
+ footerPadding: {
+    padding:'3%'
+ },
+ divBackground:{
+  backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
+  minHeight: '100vh',
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'cover',
+  paddingTop:"15%"
+}
 };
 
  class SimpleMediaCard extends React.Component {
@@ -218,7 +237,7 @@ fetch('/api/user/signup', {
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.bgImage}>
+            <div className={classes.divBackground}>
                 <Grid container spacing = {12}>
                     <Grid item md={6} sm={12} xs={12}>
                     <Card className={classes.transboxLeft} raised={true}>
@@ -378,6 +397,28 @@ fetch('/api/user/signup', {
                     <Button className={classes.button} size='large' onClick={this.enterDetails}>Enter <Check/></Button>
                     </Grid>
                 </Grid>
+                <div className={classes.footer}>
+        <div className={classes.footerPadding}>
+        <Grid container spacing={0} justify='center'>
+        <Grid item  md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
+        <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
+        
+        </Grid>
+        </Grid>
+        </div>
+        </div>
            </div>
           );
         }

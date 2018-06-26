@@ -21,6 +21,8 @@ import {
   import InputAdornment from '@material-ui/core/InputAdornment';
 const styles = {
   card: {
+    opacity: '0.8',
+    filter: 'alpha(opacity=60)', 
       height:'100%',
       width:'100%'
    },
@@ -34,6 +36,7 @@ const styles = {
     width: '85%',
   },
   cardcontent:{
+  
     marginTop:'20%',
   },
   buttonLogin: {
@@ -47,14 +50,29 @@ const styles = {
      // marginTop:'5%',
       //marginLeft:'10%',
       //marginRight:'10%',
-      margin:'7%'
+      marginLeft:'2%',
+      marginRight:'2%',
+      marginBottom:'2%',
+      marginTop:'-10%'
   },
-  /*divBackground:{
-    backgroundImage:`url(${"https://rfclipart.com/image/big/45-77-91/striped-pattern-with-diagonal-lines-seamless-wallpaper-Download-Royalty-free-Vector-File-EPS-66694.jpg"})`,
+  footer: {
+    position: 'fixed',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    backgroundColor: 'black',
+    color: 'white',
+ },
+ footerPadding: {
+  padding:'2%'
+ },
+  divBackground:{
+    backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
     minHeight: '100vh',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-  }*/
+    paddingTop:"15%"
+  }
 
 
 };
@@ -205,6 +223,28 @@ const styles = {
                  </Grid>
                  </Grid>
             </div>
+            <div className={classes.footer}>
+        <div className={classes.footerPadding}>
+        <Grid container spacing={0} justify='center'>
+        <Grid item  md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
+        <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
+        
+        </Grid>
+        </Grid>
+        </div>
+        </div>
             </div>
             
           );

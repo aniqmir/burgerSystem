@@ -29,6 +29,7 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 
 
+
 const theme = createMuiTheme ({
     palette: {
         primary:{
@@ -44,13 +45,21 @@ const theme = createMuiTheme ({
         error:red,
         contrastThreshold: 3,
         tonalOffset: 0.2,
- } })
+
+ },
+ typography: {
+  // Use the system font instead of the default Roboto font.
+  fontFamily: [
+    'Bangers'
+  ].join(','),
+}, })
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: brown,
-    marginLeft:'5%',
-    marginRight:'5%'
+    //backgroundColor: 'brown',
+    marginLeft:'3%',
+    marginRight:'3%',
+    //margin:'3%'
   },
 
   textfield: {
@@ -60,15 +69,28 @@ const styles = theme => ({
     marginLeft: '10px',
     marginTop: '3px'
   },
-  
-  /*parallax: {
-      backgroundImage:`url(${"https://www.xmple.com/wallpaper/grey-white-lines-streaks-stripes-2732x2048-c2-ffffff-a9a9a9-l2-59-59-a-315-f-1.svg"})`,
+  footer: {
+    position: 'relative',
+    left: 0,
+    bottom: 0,
+    width: '100%',
+    minHeight:'100px',
+    backgroundColor: 'black',
+    color: 'white',
+ },
+ footerPadding: {
+   paddingTop:'3%'
+ },
+
+  parallax: {
+      backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
       minHeight: '100vh',
       backgroundAttachment: 'fixed',
-      backgroundPosition: 'center',
+      backgroundPosition: 'relative',
       backgroundRepeat: 'no-repeat',
-      backgroundSize: 'cover',
-}*/
+     // backgroundSize: '100%',
+      //background:'linear-gradient(-180deg, red, yellow)'
+}
 
 })
 
@@ -114,6 +136,41 @@ class SimpleTabs extends React.Component {
          price:500
       },
       burger6:  {  name:'Texas Jack',
+      details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+      status:false,
+      loading:false,
+      image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+      price:500
+   },
+           burger7:   {  name:'Texas Jack',
+                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+                  status:false,
+                  loading:false,
+                  image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+                  price:500
+               },
+               burger8:  {  name:'Texas Jack',
+               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+               status:false,
+               loading:false,
+               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+               price:500
+            },
+            burger9:  {  name:'Texas Jack',
+            details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+            status:false,
+            loading:false,
+            image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+            price:500
+         },
+         burger10:  {  name:'Texas Jack',
+         details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+         status:false,
+         loading:false,
+         image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+         price:500
+      },
+      burger11:  {  name:'Texas Jack',
       details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
       status:false,
       loading:false,
@@ -189,8 +246,8 @@ class SimpleTabs extends React.Component {
           {Object.values(this.state.data).map((type,index) => {  
             //() => this.setStatus(type.status,type.loading)    
             return (
-              <Grow in={true} mountOnEnter unmountOnExit>
-              <Grid item md={4} sm={8} key={index}>
+              <Grow in={true} mountOnEnter unmountOnExit justify='center'>
+              <Grid item md={3} sm={6} xs={12}  key={index}>
               <Home name={type.name}
                     details={type.details} 
                     status={type.status} 
@@ -207,8 +264,30 @@ class SimpleTabs extends React.Component {
             );
           })
         }
-        </Grid> }
+        </Grid> 
       </div>
+        <div className={classes.footer}>
+        <div className={classes.footerPadding}>
+        <Grid container spacing={0} justify='center'>
+        <Grid item  md={1} sm={3} xs={6}>
+          <Typography color='primary' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='primary' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='primary' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
+        </Grid>
+        <Grid item md={1} sm={3} xs={6}>
+          <Typography color='primary' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
+        <Typography align='center' color='primary'>&copy; Powered by Nerdware Tech</Typography>
+        
+        </Grid>
+        </Grid>
+        </div>
+        </div>
       </div>
       </MuiThemeProvider>
     );
