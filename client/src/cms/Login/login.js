@@ -124,6 +124,7 @@ class TextFields extends React.Component {
    if(res){
     console.log(res);
     console.log(res.token);
+    sessionStorage.setItem('token',res.token);
      if(res.type==="emp"){
       console.log('Employee Login Successful');
       this.props.history.push('/cms/emp');
