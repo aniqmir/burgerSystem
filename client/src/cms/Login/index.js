@@ -1,6 +1,8 @@
 import Login from './login';
 import React, { Component } from 'react';
 import AdminDrawer from '../admin/Drawer';
+import EmpDrawer from '../employee/Drawer';
+
 
 import Button from 'material-ui/Button';
 import Dialog, {
@@ -22,9 +24,10 @@ class App extends Component {
 
         */
        open:false,
-        onDisplay:<Login updateAdmin={this.updateAdminDisplay}  handleOpen={this.handleClickOpen}/>
+        onDisplay:<Login updateAdmin={this.updateAdminDisplay} updateEmployee={this.updateEmployeeDisplay}  handleOpen={this.handleClickOpen}/>
       }
       this.updateAdminDisplay.bind(this);
+      this.updateEmployeeDisplay.bind(this);
       this.logoutFunction.bind(this);
       this.handleClickOpen.bind(this);
       this.handleClose.bind(this);
@@ -48,13 +51,22 @@ class App extends Component {
       onDisplay:<AdminDrawer token={token} logoutScreen={this.logoutFunction}/>
     })
   }
+  updateEmployeeDisplay = (token) => {
+    console.log(token);
+    console.log("Employee Display Function");
+    //now send token to the required component
+    this.setState({
+      IsLoggedEmployee:true,
+      onDisplay:<EmpDrawer token={token} logoutScreen={this.logoutFunction}/>
+    })
+  }
 
   
 
   logoutFunction = () => {
     console.log('logging out')
     this.setState({
-      onDisplay: <Login  updateAdmin={this.updateAdminDisplay}  handleOpen={this.handleClickOpen}/>
+      onDisplay: <Login  updateAdmin={this.updateAdminDisplay} updateEmployee={this.updateEmployeeDisplay}  handleOpen={this.handleClickOpen}/>
     })
   }
 

@@ -96,11 +96,22 @@ class TextFields extends React.Component {
 
   handleClick = () => {
     console.log(this.state)
+
+    if(this.state.type=='admin'){
     var details = {
      'name': this.state.userName,
      'password': this.state.Password,
      'type':this.state.type
  };
+}
+else
+{
+  var details = {
+    'email': this.state.userName,
+    'password': this.state.Password,
+    'type':this.state.type
+};
+}
  
 
  var formBody = [];
@@ -126,12 +137,13 @@ class TextFields extends React.Component {
     console.log(res.token);
      if(res.type==="emp"){
       console.log('Employee Login Successful');
-      this.props.history.push('/cms/emp');
+      {this.props.updateEmployee(res.token)}
+      //this.props.history.push('/cms/emp');
      }
      else if(res.type==='admin'){
       console.log('Admin Login Successful');
       {this.props.updateAdmin(res.token)}
-      this.props.history.push('/cms/admin');
+      //this.props.history.push('/cms/admin');
       
      }
      else{
