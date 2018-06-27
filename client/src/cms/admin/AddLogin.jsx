@@ -35,43 +35,32 @@ const styles = theme => ({
   },
 });
 
-const dropdowntypes = [
-  {
-    value: 'admin',
-    label: 'Admin',
-  },
-  {
-    value: 'head',
-    label: 'Head',
-  },
-  {
-    value: 'shop',
-    label: 'Shop',
-  },
-];
-
-function validate(fname,lname,email,password) {
+function validate(fname,password,lname) {
   return {
-   fname : fname.length === 0,
-   lname:lname.lenght === 0,
-   email : email.lenght === 0,
-   password : password.length === 0
+    fname: fname.length === 0,
+    password: password.length === 0,
+    lname: lname.length === 0,
   };
 }
 class TextFields extends React.Component {
-
-  state = {
-    fname: '',
-    password: '',
-    cnic: '',
-    type:'admin',
-    t:this.props.token,
-    lname:'',
-    phone:'',
-    date:new Date(),
-    email:'',
-  }
-
+ 
+  constructor(props){
+    
+    const cachetoken = sessionStorage.getItem('token');
+    super(props)
+    this.state={
+      fname: '',
+      lname: '',
+      sdate: new Date(),
+      password: '',
+      type:'admin',
+      t:cachetoken,
+      isDisabledshop:true,
+      mobile:'',
+      email:'',
+    } 
+   }
+  
 
 handleSubmit = (evt) => {
   if (!this.canBeSubmitted()) {
@@ -81,7 +70,7 @@ handleSubmit = (evt) => {
   const {qrId} = this.state;
 }
 canBeSubmitted() {
-  const errors = validate(this.state.username,this.state.password,this.state.cnic);
+  const errors = validate(this.state.fname,this.state.password,this.state.lname);
   const isDisabled = Object.keys(errors).some(x => errors[x]);
   return !isDisabled;
 }
@@ -93,16 +82,18 @@ canBeSubmitted() {
   };
 
   //change function
-  changefName = e => {
+  changefirstname = e => {
     this.setState({
       fname: e.target.value
     });
   };
-  changelName = e => {
+
+  
+  changelastname = e => {
     this.setState({
       lname: e.target.value
     });
-  };
+  }
 
   changepassword = e => {
     this.setState({
@@ -110,44 +101,20 @@ canBeSubmitted() {
     });
   }
 
-  changecnics = e => {
-    this.setState({
-      cnic: e.target.value
-    });
-  }
-
-  changecity = e => {
-    this.setState({
-      city: e.target.value
-    });
-  }
-
-  changezip = e => {
-    this.setState({
-      zip: e.target.value
-    });
-  }
-  changephone = e => {
-    this.setState({
-      phone: e.target.value
-    });
-  }
   changeemail = e => {
     this.setState({
       email: e.target.value
     });
   }
+
   changemobile = e => {
     this.setState({
       mobile: e.target.value
     });
   }
 
-  changenationality = e => {
-    this.setState({
-      nationality: e.target.value
-    });
-  }
+ 
+
   changeType = e => {
     this.setState({
       type: e.target.value,
@@ -165,52 +132,20 @@ canBeSubmitted() {
     console.log(this.state.isDisabledshop);
   }
 
-  changeShopID = e => {
-    this.setState({
-      shopID: e.target.value
-    })
-  }
-
-  changeShopAddress = e => {
-    this.setState({
-      shopaddress: e.target.value
-    })
-  }
-
-  changestate = e => {
-    this.setState({
-      countryState: e.target.value
-    })
-  }
-
-  changecountry = e => {
-    this.setState({
-      country: e.target.value
-    })
-  }
-
-  changeaddres = e => {
-    this.setState({
-      address: e.target.value
-    })
-  }
 
   handleClick = () => {
-    console.log(this.props.token);
-    //api call to store data in database here
-      console.log(this.state)
+
+    console.log(this.state.t);
+    console.log(this.state.sdate);
+  
       var details = {
-       'fname': this.state.fname,
-       'lname':this.state.lname,
-       'email': this.state.email,
-       'password':this.state.password,
-        'sdate':this.state.date,
-        'token':this.state.t,
-        
-        'phone':this.state.phone,
-       
+        'token': this.state.t,
+        'fname': this.state.fname,
+        'lname': this.state.lname,
+        'password':this.state.password,
+        'phone':this.state.mobile,
         'email':this.state.email,
-        
+        'sdate':this.state.sdate,
    };
    
    var formBody = [];
@@ -230,12 +165,9 @@ canBeSubmitted() {
    })
    .then(res=>res.json())
    .then(res=>{
-  
-     console.log("we are in this function");
      if(res){
       console.log(res);
       this.props.handleopen();
-       console.log("After function");
      }
      else {
        this.props.handleError();
@@ -247,13 +179,10 @@ canBeSubmitted() {
     this.setState({
       fname:'',
       lname:'',
-      password:'',
-      phone:'',
-      isDisabled:true,
-      date:'',
-      mobile:'',
       email:'',
-     
+      mobile:'',
+    password:'',
+      
     })
   }
 
@@ -272,12 +201,12 @@ canBeSubmitted() {
       <form className={classes.container} noValidate autoComplete="off"> 
       <CardContent>
       <TextField
-          id="fname"
-          label="First Name"
+          id="firstname"
+          label="FirstName"
           value={this.state.fname}
           placeholder="Enter First Name"
           className={classes.textField}
-          onChange={e => this.changefName(e)}
+          onChange={e => this.changefirstname(e)}
           margin="normal"
           refs='name'
         />
@@ -287,25 +216,12 @@ canBeSubmitted() {
           value={this.state.lname}
           placeholder="Enter Last Name"
           className={classes.textField}
-          onChange={e => this.changelName(e)}
+          onChange={e => this.changelastname(e)}
           margin="normal"
           refs='name'
         />
-        
-        <TextField
-          id="password"
-          label="Password"
-          value={this.state.password}
-          placeholder="Enter Password"
-          onChange={e => this.changepassword(e)}
-          className={classes.textField}
-          margin="normal"
-        />
         </CardContent>
-        <CardContent>
-       
-        </CardContent>
-        
+      
         <CardContent>
         <TextField
           id="email"
@@ -316,17 +232,33 @@ canBeSubmitted() {
           className={classes.textField}
           margin="normal"
         />
-       
+        </CardContent>
+
+        <CardContent>
         <TextField
-          id="Phone"
-          label="Phone"
-          value={this.state.phone}
-          placeholder="Enter Phone"
-          onChange={e => this.changephone(e)}
+          id="mobile"
+          label="mobile"
+          value={this.state.mobile}
+          placeholder="Enter Mobile"
+          onChange={e => this.changemobile(e)}
           className={classes.textField}
           margin="normal"
         />
+        </CardContent>
+
+
        
+     
+        <CardContent>
+        <TextField
+          id="password"
+          label="Password"
+          value={this.state.address}
+          placeholder="Enter Password"
+          onChange={e => this.changepassword(e)}
+          className={classes.textField}
+          margin="normal"
+        />
 
         
         <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClick} disabled={isDisabled}>

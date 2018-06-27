@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
@@ -28,6 +27,16 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme ({
+typography: {
+// Use the system font instead of the default Roboto font.
+fontFamily: [
+  'Bangers'
+].join(','),
+}, })
 
 const styles = {
   root: {
@@ -51,11 +60,11 @@ const styles = {
     width:'100%',
     backgroundColor:'#E0E0E0'
   },
-  text:{
-    color:'inherit',
-    paddingTop:'15px',
-    textShadow: ' 0 0 20px #0000FF'
-  },
+ // text:{
+   // color:'inherit',
+   // paddingTop:'15px',
+    //textShadow: ' 0 0 20px #0000FF'
+  //},
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -144,6 +153,7 @@ class FullScreenDialog extends React.Component {
       ingredients2:[],
       chicken:false,
       cheese:false,
+      open:false,
 
     })
   }
@@ -165,6 +175,7 @@ class FullScreenDialog extends React.Component {
     const { classes } = this.props;
     return (
       <div>
+        <MuiThemeProvider theme={theme}>
         <Button size='small'variant='raised' onClick={this.handleClickOpen} color='secondary'>Build</Button>
         <Dialog
           fullWidth={true}
@@ -191,7 +202,7 @@ class FullScreenDialog extends React.Component {
           <Typography className={classes.text} gutterBottom variant="display2" component="h2">
            Texas Jack
           </Typography>
-          <Typography className={classes.text} gutterBottom variant="p">
+          <Typography  gutterBottom variant="p">
            Lorem Ipsum what can you do, let us go. Yes very good. Nice.
           </Typography>
           <Paper className={classes.paper} elevation={8}>
@@ -267,6 +278,7 @@ class FullScreenDialog extends React.Component {
           </Grid>
            </Grid>
         </Dialog>
+        </MuiThemeProvider>
       </div>
     );
   }

@@ -131,7 +131,7 @@ class TextFields extends React.Component {
      else if(res.type==='admin'){
       console.log('Admin Login Successful');
       {this.props.updateAdmin(res.token)}
-      this.props.history.push('/cms/admin');
+      //this.props.history.push('/cms/admin');
       
      }
      else{

@@ -23,6 +23,7 @@ const styles = {
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
+    opacity:0.9
   },
   divPad: {
     paddingTop:'10%',
@@ -30,6 +31,9 @@ const styles = {
     //paddingRight: '5%',
     paddingBottom:'5%',
     display: 'flex'
+  },
+  cardcontent:{
+    opacity:0.5
   },
   progress: {
     marginTop:'5px',
@@ -78,7 +82,8 @@ class SimpleMediaCard extends React.Component {
           image={this.props.image}
           title="Burger"
         />
-        <CardContent className={classes.cardcontent}> 
+        <div className={classes.cardcontent}>
+        <CardContent> 
           <Typography gutterBottom variant="headline" component="h2" color="secondary">
             {this.props.name}
           </Typography>
@@ -86,6 +91,7 @@ class SimpleMediaCard extends React.Component {
           {this.props.details}
           </Typography>
         </CardContent>
+        </div>
         {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>

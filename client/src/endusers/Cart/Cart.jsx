@@ -10,6 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
+import { colors } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -61,6 +62,13 @@ const styles = {
   counterWidth:{
     width:50,
     margin:'auto'
+  },
+  divBackground:{
+    backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
+    minHeight: '100vh',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingTop:"10%"
   }
 };
 
@@ -70,9 +78,15 @@ class FullScreenDialog extends React.Component {
       cartitem1:{ name:'Big Mac',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:true,
-                  loading:false,
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
-                  buildDetails: 'Yes'
+                  buildDetails: 'Yes',
+                  price : 900
+                },
+      burger6:  {  name:'Texas Jack',
+                details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
+                status:false,
+                image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+                price:500
                 },
   },
     details:[],
@@ -80,14 +94,7 @@ class FullScreenDialog extends React.Component {
    
 
   proceedToCheckout = () => {
-    this.props.history.push({
-      pathname: '/checkout',
-      state: {
-        id: 7,
-        color: 'green',
-      }
-     
-    })
+    this.props.history.push({pathname: '/checkout'});
     }
 
   handleChange = name => event => {
@@ -103,14 +110,6 @@ class FullScreenDialog extends React.Component {
 
   };
 
-  cartItemValues=(detailChild)=>{
-    let newDetails=[];
-    newDetails = this.state.details;
-    newDetails.push(detailChild);
-    this.setState({
-      details:newDetails
-    });
-  }
 
   //updating cart new function
 
@@ -126,11 +125,17 @@ class FullScreenDialog extends React.Component {
   }
 
 
+  loadItems=()=>{
+    let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
+    console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
+    this.setState({
+      items1:tempSessionCart
+    })
+  }
 
   //function to get values
-  componentDidMount ()  {
-  console.log(this.state.a);
-  this.updateCart("a","b");
+  componentDidMount(){
+    this.loadItems();
   }
 
 
@@ -138,8 +143,7 @@ class FullScreenDialog extends React.Component {
 
     const { classes } = this.props;
     return (
-      <div>
-
+      <div className={classes.divBackground}>
           <Paper  elevation={2}>
               <Grid container spacing={12}>
 
@@ -153,9 +157,21 @@ class FullScreenDialog extends React.Component {
                 Please verify the order details and proceed to checkout.
                 </Typography>
                 <List className={classes.root}>
-                <Paper className={classes.paper} elevation={8}>
-                <CartItems  cartTest={this.updateCart} updateDetails={this.cartItemValues}/>
-                </Paper>  
+                  {/* Traversing Items here  */}
+                  {Object.values(this.state.items).map((type,index) => {  
+                    return (
+                        <Paper className={classes.paper} elevation={8}>
+                                <CartItems name={type.name}
+                                      details={type.details} 
+                                      status={type.status} 
+                                      image={type.image}        
+                                      price={type.price}             
+                                      buildDetails={type.buildDetails}
+                                      />
+                        </Paper>
+                            );
+                          })
+                    }
                 </List>
                 </CardContent>
                 <CardActions>
