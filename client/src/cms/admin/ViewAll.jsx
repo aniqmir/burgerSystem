@@ -63,6 +63,7 @@ class CustomizedTable extends React.Component {
   this.removeProduct = (email) =>
   {
       console.log(email);
+      
     
   }
 
