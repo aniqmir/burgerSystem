@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel, CarouselCaption, CarouselControl, CarouselInner, CarouselItem, CarouselIndicators, CarouselIndicator, View, Mask, Container } from 'mdbreact';
-
+import './landingPage.css';
 
 
 class CarouselPage extends Component {
@@ -52,7 +52,7 @@ class CarouselPage extends Component {
           <CarouselInner>
             <CarouselItem itemId="1">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide" />
+                <img className="d-block w-100 bg" src="http://www.readersdigest.ca/wp-content/uploads/2015/11/gourmet-burger.jpg" alt="First slide" />
                 <Mask overlay="black-light"></Mask>
               </View>
               <CarouselCaption>
@@ -62,7 +62,7 @@ class CarouselPage extends Component {
             </CarouselItem>
             <CarouselItem itemId="2">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(99).jpg" alt="Second slide" />
+                <img className="d-block w-100 bg" src="https://brooksburger.com/images/bg5.jpg" alt="Second slide" />
                 <Mask overlay="black-strong"></Mask>
               </View>
               <CarouselCaption>
@@ -72,7 +72,7 @@ class CarouselPage extends Component {
             </CarouselItem>
             <CarouselItem itemId="3">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(17).jpg" alt="Third slide" />
+                <img className="d-block w-100 bg" src="https://cdn.shopify.com/s/files/1/2265/8367/products/Bison_Burgers_530x@2x.jpg?v=1506033346" alt="Third slide" />
                 <Mask overlay="black-slight"></Mask>
               </View>
               <CarouselCaption>
@@ -82,7 +82,7 @@ class CarouselPage extends Component {
             </CarouselItem>
             <CarouselItem itemId="4">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20%28143%29.jpg" alt="Mattonit's item" />
+                <img className="d-block w-100 bg" src="http://www.craftlakewood.com/images/slideshow/craft-slide.jpg" alt="Mattonit's item" />
                 <Mask overlay="black-light"></Mask>
               </View>
               <CarouselCaption>

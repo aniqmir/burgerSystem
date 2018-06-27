@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
@@ -20,10 +19,7 @@ const styles = theme => ({
   textField: {
     width: '100%',
   },
-  appBar: {
-    display:'block',
-    position:'relative'
-  },
+  
   typeobar: {
     marginTop:100
   },
@@ -180,13 +176,7 @@ class TextFields extends React.Component {
 
     return (
       <div>
-           <AppBar className={classes.appBar}>
-      <Toolbar>
-        <Typography variant="title" color="inherit" noWrap>
-          Powered By NerdWare
-        </Typography>
-      </Toolbar>
-    </AppBar>
+           
     <Typography variant="display1" color="inherit" align="center" className={classes.typeobar}>
           Login to the System
         </Typography>

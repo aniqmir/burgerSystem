@@ -20,24 +20,27 @@ const styles = theme => ({
 });
 
 
-function PaperSheet(props) {
-  const { classes } = props;
-  return (
-    <div>
-      <Card>
-        <CardMedia
-        className={classes.media}
-         image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg">
-         <CardContent >
-         <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
-            <strong>  BUILD WHAT YOU WANT TO EAT </strong>
-            </Typography>
-         <Search/>
-         </CardContent>
-        </CardMedia>
-      </Card>
-    </div>
-  );
+class PaperSheet extends React.Component {
+  render(){
+    const { classes } = this.props;
+    return (
+      <div>
+        <Card>
+          <CardMedia
+          className={classes.media}
+           image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg">
+           <CardContent >
+           <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
+              <strong>  BUILD WHAT YOU WANT TO EAT </strong>
+              </Typography>
+           <Search data={this.props.data}/>
+           </CardContent>
+          </CardMedia>
+        </Card>
+      </div>
+    );
+  }
+ 
 }
 
 PaperSheet.propTypes = {
