@@ -52,9 +52,12 @@ const dropdowntypes = [
     label: 'Can not be build' ,
   },
 ];
-function validate(userName) {
+function validate(name,desc,type,price) {
   return {
-    userName: userName.length === 0,
+    name: name.length === 0,
+    desc: desc.length === 0,
+    type: type.length === 0,
+    price: price.length === 0,
   };
 }
 class TextFields extends React.Component {
@@ -72,9 +75,6 @@ date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(
     date: date,
     t:this.props.token,
   }
- // this.onFormSubmit = this.onFormSubmit.bind(this)
- // this.onChange = this.onChange.bind(this)
- // this.fileUpload = this.fileUpload.bind(this)
 }
   
 
@@ -199,7 +199,8 @@ canBeSubmitted() {
   
   render() {
     const { classes } = this.props;
-    const errors = validate(this.state.name);
+    const errors = validate(this.state.name,this.state.desc,this.state.type,
+      this.state.price);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
 
     return (
