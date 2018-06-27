@@ -22,7 +22,7 @@ class App extends Component {
 
         */
        open:false,
-        onDisplay:<Login updateAdmin={this.updateAdminDisplay}  handleOpen={this.handleClickOpen}/>
+        onDisplay:<Login updateAdmin={this.updateAdminDisplay} history={this.props.history} handleOpen={this.handleClickOpen}/>
       }
       this.updateAdminDisplay.bind(this);
       this.logoutFunction.bind(this);
