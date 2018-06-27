@@ -42,7 +42,7 @@ const styles = theme => ({
           </Typography>
         </Toolbar>
       </AppBar>
-      <Login/>
+      <Login history={this.props.history}/>
       </MuiThemeProvider>
         </div>
       );
