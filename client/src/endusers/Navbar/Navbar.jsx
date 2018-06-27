@@ -8,7 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import Cart from '../Cart/Cart';
+import Cart from '@material-ui/icons/AddShoppingCart';
+import FastFood from '@material-ui/icons/Apps';
+import Face from '@material-ui/icons/Face';
 import {
   Link
   }   from 'react-router-dom';
@@ -30,11 +32,18 @@ const theme = createMuiTheme ({
         error:red,
         contrastThreshold: 3,
         tonalOffset: 0.2,
- } })
+ },
+ typography: {
+  // Use the system font instead of the default Roboto font.
+  fontFamily: [
+    'Bangers'
+  ].join(','),
+} })
 
 const styles = {
   root: {
     flexGrow: 1,
+    opacity:1
   },
   flex: {
     flex: 1,
@@ -43,6 +52,7 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+  
 };
 
 
@@ -74,14 +84,15 @@ render() {
           <AppBar color="primary" position="sticky">
             <Toolbar >
               <Typography variant="title" color="primary" className={classes.flex}>
-                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Burger</Button>
+                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Big John's</Button>
               </Typography>
-              <Button color="inherit" onClick={this.operationHome.bind(this)}>Items</Button>
-             <Link to ='/cart'> <Button color="inherit"onClick={this.operationCart.bind(this)}>Cart</Button></Link> 
-             <Button color="inherit" onClick={this.operationSignIn.bind(this)}>Sign In</Button>
+              <Button color="inherit" onClick={this.operationHome.bind(this)}><FastFood/>&nbsp;Items</Button>
+             <Button color="inherit" onClick={this.operationSignIn.bind(this)}><Face/>&nbsp;Sign In</Button>
+             <Button color="inherit"onClick={this.operationCart.bind(this)}><Cart/></Button>
             </Toolbar>
           </AppBar>
         </div>
+     
         </MuiThemeProvider>
       );
 }
