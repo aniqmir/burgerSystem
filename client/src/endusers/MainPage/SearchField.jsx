@@ -12,6 +12,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Slide from '@material-ui/core/Slide';
+import SearchDialog from '../SearchDialog/Dialog'
 
 const styles = theme => ({
   container: {
@@ -76,41 +78,81 @@ const styles = theme => ({
   },
 });
 
-function CustomizedInputs(props) {
-    const { classes } = props;
+
+
+
+class CustomizedInputs extends React.Component {
+ 
+    constructor(props){
+      super(props)
+      this.state={
+        value:'',
+        data:this.props.data,
+        found:false,
+        button:true
+        }
+      }
+
+    handleChange = (e) => {
+      this.setState({
+        value:e.target.value
+      }) 
+      console.log(this.state.value)
+
+      {Object.values(this.state.data).map((type,index) => {  
+        console.log(this.state.value)
+        this.state.value.toString() === type.name.toString() ? (
+          (this.setState({
+            found:true,
+            button:false
+          }
+        ))
+        )
+        : (
+          this.setState({
+            found:false,
+          })
+          
+        )
+        })
+      }
+    }
     
-    return (
-      
-      <Paper
-      className={classes.paperroot}
-      >
-      <Grid container spacing={12}>
-      <Grid item md={10} sm={6} xs={12}>
-      <TextField
-      //label="Search"
-      id="search"
-      placeholder="Search..."
-      InputProps={{
-        disableUnderline: true,
-        classes: {
-          root: classes.bootstrapRoot,
-          input: classes.bootstrapInput,
-        },
-      }}
-      InputLabelProps={{
-        shrink: true,
-        className: classes.bootstrapFormLabel,
-      }}
+            
 
-      fullWidth
-    />
-    </Grid>
-    <Grid item md={2} sm={6} xs={12}>
-    <Button size="large"><Search/></Button>
-    </Grid>
-    </Grid>
-    </Paper>
-    );
-}
-
+    render() {
+      const { classes } = this.props;
+      return (
+        <Paper className={classes.paperroot}>
+        <Grid container spacing={12}>
+        <Grid item md={10} sm={6} xs={12}>
+        <TextField
+        //label="Search"
+        id="search"
+        placeholder="Search..."
+        value={this.state.value}
+        InputProps={{
+          disableUnderline: true,
+          classes: {
+            root: classes.bootstrapRoot,
+            input: classes.bootstrapInput,
+          },
+        }}
+        onChange={e=>this.handleChange(e)}
+        InputLabelProps={{
+          shrink: true,
+          className: classes.bootstrapFormLabel,
+        }}
+  
+        fullWidth
+      />
+      </Grid>
+      <Grid item md={2} sm={6} xs={12}>
+      <Button onClick={this.handleChange}><Search/></Button> {/*<SearchDialog button={this.state.button}/>*/}
+      </Grid>
+      </Grid>
+      </Paper>
+      );
+  }
+};
 export default withStyles(styles)(CustomizedInputs);

@@ -7,6 +7,7 @@ import red from '@material-ui/core/colors/red';
 import brown from '@material-ui/core/colors/brown';
 import Home from './Home';
 import Grid from '@material-ui/core/Grid';
+import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import Grow from '@material-ui/core/Grow';
 import SearchImage from './SearchImage';
@@ -18,10 +19,7 @@ import Cart from '../Cart/Cart';
     Link
     }   from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
-
-
-
-
+import Footer from '../Footer/Footer';
 
 
 const theme = createMuiTheme ({
@@ -63,18 +61,6 @@ const styles = theme => ({
     marginLeft: '10px',
     marginTop: '3px'
   },
-  footer: {
-    position: 'relative',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    minHeight:'100px',
-    backgroundColor: 'black',
-    color: 'white',
- },
- footerPadding: {
-   paddingTop:'3%'
- },
 
   parallax: {
       backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
@@ -96,15 +82,15 @@ class SimpleTabs extends React.Component {
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:true,
                   image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
-                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
                   buildDetails: 'Yes',
                   price:500
                 },
               
        burger2:{  name:'Texas Jack',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                  status:false,
+                  status:true,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
+                  buildDetails:'No',
                   price:500
                },
       burger3:{  name:'Texas Jack',
@@ -223,7 +209,9 @@ class SimpleTabs extends React.Component {
    
     return (
      <MuiThemeProvider theme={theme}>
-     <SearchImage/>
+    
+     <SearchImage data={this.state.data}/>
+     
     {/*
     <Route path='/cart' render={(props) => <Cart {...props} checkout={this.state.checkoutDetails}/>}/>
      <Link to='/cart'>Cart</Link>
@@ -237,7 +225,7 @@ class SimpleTabs extends React.Component {
           {Object.values(this.state.data).map((type,index) => {  
             //() => this.setStatus(type.status,type.loading)    
             return (
-              <Grow in={true} mountOnEnter unmountOnExit justify='center'>
+              <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
               <Grid item md={3} sm={6} xs={12}  key={index}>
               <Home name={type.name}
                     details={type.details} 
@@ -257,27 +245,8 @@ class SimpleTabs extends React.Component {
         }
         </Grid> 
       </div>
-        <div className={classes.footer}>
-        <div className={classes.footerPadding}>
-        <Grid container spacing={0} justify='center'>
-        <Grid item  md={1} sm={3} xs={6}>
-          <Typography color='primary' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='primary' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='primary' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='primary' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12}>
-        <Typography align='center' color='primary'>&copy; Powered by Nerdware Tech</Typography>
-        
-        </Grid>
-        </Grid>
-        </div>
+        <div>
+            <Footer/>
         </div>
       </div>
       </MuiThemeProvider>

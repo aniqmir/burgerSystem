@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
@@ -20,10 +19,7 @@ const styles = theme => ({
   textField: {
     width: '100%',
   },
-  appBar: {
-    display:'block',
-    position:'relative'
-  },
+  
   typeobar: {
     marginTop:100
   },
@@ -135,6 +131,7 @@ else
    if(res){
     console.log(res);
     console.log(res.token);
+    sessionStorage.setItem('token',res.token);
      if(res.type==="emp"){
       console.log('Employee Login Successful');
       {this.props.updateEmployee(res.token)}
@@ -143,7 +140,7 @@ else
      else if(res.type==='admin'){
       console.log('Admin Login Successful');
       {this.props.updateAdmin(res.token)}
-      //this.props.history.push('/cms/admin');
+      //this.props.history.push('/admin');
       
      }
      else{
@@ -192,13 +189,7 @@ else
 
     return (
       <div>
-           <AppBar className={classes.appBar}>
-      <Toolbar>
-        <Typography variant="title" color="inherit" noWrap>
-          Powered By NerdWare
-        </Typography>
-      </Toolbar>
-    </AppBar>
+           
     <Typography variant="display1" color="inherit" align="center" className={classes.typeobar}>
           Login to the System
         </Typography>

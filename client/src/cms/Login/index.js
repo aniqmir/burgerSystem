@@ -24,7 +24,7 @@ class App extends Component {
 
         */
        open:false,
-        onDisplay:<Login updateAdmin={this.updateAdminDisplay} updateEmployee={this.updateEmployeeDisplay}  handleOpen={this.handleClickOpen}/>
+        onDisplay:<Login updateAdmin={this.updateAdminDisplay} history={this.props.history} updateEmployee={this.updateEmployeeDisplay}  handleOpen={this.handleClickOpen}/>
       }
       this.updateAdminDisplay.bind(this);
       this.updateEmployeeDisplay.bind(this);
