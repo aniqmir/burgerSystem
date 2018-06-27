@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import MenuItem from 'material-ui/Menu/MenuItem';
@@ -8,6 +8,8 @@ import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Icon from 'material-ui/Icon';
 import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import axios, { post } from 'axios';
 const styles = theme => ({
@@ -18,6 +20,12 @@ const styles = theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    marginTop: '-35px', 
+  },
+  Addheader:{
+   display: 'flex',
+   marginTop: '30px',
+   marginLeft: '20px',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -30,47 +38,43 @@ const styles = theme => ({
   card: {
     marginLeft:100,
     marginRight:100,
-    marginTop:10,
+    marginTop:25,
     //maxWidth: 350,
   },
 });
-
 const dropdowntypes = [
   {
-    value: 'admin',
-    label: 'Admin',
+    value: true,
+    label: 'Can be Built',
   },
   {
-    value: 'head',
-    label: 'Head',
-  },
-  {
-    value: 'shop',
-    label: 'Shop',
+    value: false,
+    label: 'Can not be build' ,
   },
 ];
-
-function validate(username,password,cnic) {
+function validate(userName) {
   return {
-    
+    userName: userName.length === 0,
   };
 }
 class TextFields extends React.Component {
 constructor(props){
 super(props);
+var today = new Date(),
+date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
   this.state = {
     name:'',
+    desc: '',
+    type: '',
     price:'',
-    imageUrl:'',
+    build: '',
+    //image: '',
+    date: date,
     t:this.props.token,
-    shopID:'',
-    isDisabledshop:true,
-    file:null,
-    
   }
-  this.onFormSubmit = this.onFormSubmit.bind(this)
-  this.onChange = this.onChange.bind(this)
-this.fileUpload = this.fileUpload.bind(this)
+ // this.onFormSubmit = this.onFormSubmit.bind(this)
+ // this.onChange = this.onChange.bind(this)
+ // this.fileUpload = this.fileUpload.bind(this)
 }
   
 
@@ -83,7 +87,7 @@ handleSubmit = (evt) => {
   const {qrId} = this.state;
 }
 canBeSubmitted() {
-  const errors = validate(this.state.username,this.state.password,this.state.cnic);
+  const errors = validate(this.state.name);
   const isDisabled = Object.keys(errors).some(x => errors[x]);
   return !isDisabled;
 }
@@ -92,113 +96,61 @@ canBeSubmitted() {
       [event.target.name]: event.target.value,
     });
     console.log(this.state)
-  };
+  };  
 
   //change function
-  changeuserName = e => {
+  changeName = e => {
     this.setState({
-      username: e.target.value
+      name: e.target.value
     });
   };
 
-  changepassword = e => {
+  changedesc = e => {
     this.setState({
-      password: e.target.value
+      desc: e.target.value
     });
   }
 
-  changecnics = e => {
+  changedate = e => {
     this.setState({
-      cnic: e.target.value
+      date: e.target.value
     });
   }
 
-  changecity = e => {
+  changetype = e => {
     this.setState({
-      city: e.target.value
+      type: e.target.value
     });
   }
 
-  changezip = e => {
+  changeprice = e => {
     this.setState({
-      zip: e.target.value
+      price: e.target.value
     });
   }
-  changephone = e => {
+  
+  changeBuild = e => {
     this.setState({
-      phone: e.target.value
+      build: e.target.value
     });
   }
-  changeemail = e => {
+  changeimage = e => {
     this.setState({
-      email: e.target.value
-    });
-  }
-  changemobile = e => {
-    this.setState({
-      mobile: e.target.value
+      image: e.target.value
     });
   }
 
-  changenationality = e => {
-    this.setState({
-      nationality: e.target.value
-    });
-  }
-  changeType = e => {
-    this.setState({
-      type: e.target.value,
-    });
-    if(e.target.value==='shop'){
-      this.setState({
-        isDisabledshop:false,
-      })
-    }
-    else{
-      this.setState({
-        isDisabledshop:true
-      })
-    }
-    console.log(this.state.isDisabledshop);
-  }
-
-  changeShopID = e => {
-    this.setState({
-      shopID: e.target.value
-    })
-  }
-
-  changeShopAddress = e => {
-    this.setState({
-      shopaddress: e.target.value
-    })
-  }
-
-  changestate = e => {
-    this.setState({
-      countryState: e.target.value
-    })
-  }
-
-  changecountry = e => {
-    this.setState({
-      country: e.target.value
-    })
-  }
-
-  changeaddres = e => {
-    this.setState({
-      address: e.target.value
-    })
-  }
-
+  
   handleClick = () => {
-    console.log(this.props.token);
     //api call to store data in database here
       console.log(this.state)
       var details = {
-       'name': this.state.username,
-       'imageUrl' : this.state.imageUrl,
+       'name': this.state.name,
+       'desc': this.state.desc,
+       'type': this.state.type,
+       'price': this.state.price,
+       'date': this.state.date,
+       'build': this.state.build,
    };
    
    var formBody = [];
@@ -209,7 +161,7 @@ canBeSubmitted() {
    }
    formBody = formBody.join("&");
    
-   fetch('/head/AddEmp', {
+   fetch('/api/admin/addItem', {
      method: 'POST',
      headers: {
        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
@@ -222,7 +174,7 @@ canBeSubmitted() {
      console.log("we are in this function");
      if(res){
       console.log(res);
-      this.props.handleopen();
+      //this.props.handleopen();
        console.log("After function");
      }
      else {
@@ -233,22 +185,13 @@ canBeSubmitted() {
    );
       //form saaf kia hai 
     this.setState({
-      username:'',
-      password:'',
-      cnic:'',
-      type:'',
-      isDisabledshop:true,
-      shopaddress:'',
-      city:'',
-      state:'',
-      zip:'',
-      phone:'',
-      nationality:'',
-      country:'',
-      mobile:'',
-      email:'',
-      address:'',
-      countryState:''
+      name:'',
+      desc: '',
+      date: '',
+      type: '',
+      price:'',
+      build: '',
+      //image: '',     
     })
   }
 
@@ -256,28 +199,84 @@ canBeSubmitted() {
   
   render() {
     const { classes } = this.props;
-    const errors = validate(this.state.username,this.state.password,this.state.cnic);
+    const errors = validate(this.state.name);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
 
     return (
       <div>
-        <Typography variant="display2">Add a new Item</Typography>
+          <AppBar className={classes.appBar}>
+      <Toolbar>
+        <Typography variant="title" color="inherit" noWrap>
+          Powered By NerdWare
+        </Typography>
+      </Toolbar>
+    </AppBar>
+
         <Card className={classes.card}>
+        <Typography variant="display2" gutterBottom className={classes.Addheader}>Add a new Item</Typography>
       <form className={classes.container} noValidate autoComplete="off"> 
-      <CardContent>
+      <CardContent >
       <TextField
           id="name"
           label="Name"
-          value={this.state.username}
+          value={this.state.name}
           placeholder="Enter Item Name"
           className={classes.textField}
-          onChange={e => this.changeuserName(e)}
+          onChange={e => this.changeName(e)}
           margin="normal"
           refs='name'
         />
-
-         
-        
+      <TextField
+          id="desc"
+          label="Discription"
+          value={this.state.desc}
+          placeholder="Enter Details"
+          className={classes.textField}
+          onChange={e => this.changedesc(e)}
+          margin="normal"
+          refs='desc'
+        />
+       <TextField
+          id="type"
+          label="Type"
+          value={this.state.type}
+          placeholder="Enter Item Type"
+          className={classes.textField}
+          onChange={e => this.changetype(e)}
+          margin="normal"
+          refs='type'
+        />
+        <TextField
+          id="price"
+          label="Price"
+          value={this.state.price}
+          placeholder="Enter Item Price"
+          className={classes.textField}
+          onChange={e => this.changeprice(e)}
+          margin="normal"
+          refs='price'
+        />  
+        <TextField
+          id="build"
+          select
+          className={classes.textField}
+          value={this.state.build}
+          onChange={e=>this.changeBuild(e)}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Please Identify if it can be Customized or not?"
+          margin="normal"
+        >
+          {dropdowntypes.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+          </TextField>      
         <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClick} disabled={isDisabled}>
         <AddIcon/>
         </Button>
