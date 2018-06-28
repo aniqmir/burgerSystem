@@ -6,7 +6,7 @@ var Controller= require('../APIController/adminController');
 router.post('/login',Controller.loginandGetToken);
 
 var varifyToken= require('../TokenVerify');
-router.use(varifyToken);
+//router.use(varifyToken);
 var upload = require('../Upload');
 router.post('/addEmployee',Controller.CreateEmployee);
 router.post('/Employeeindex',Controller.fetchallemps);

@@ -64,6 +64,37 @@ class CustomizedTable extends React.Component {
   {
       console.log(email);
       
+      var details = {
+        Email: email,
+      };
+        
+   var formBody = [];
+   for (var property in details) {
+     var encodedKey = encodeURIComponent(property);
+     var encodedValue = encodeURIComponent(details[property]);
+     formBody.push(encodedKey + "=" + encodedValue);
+   }
+   formBody = formBody.join("&");
+   
+   fetch('/api/admin/delEmployee', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+     },
+     body: formBody
+   })
+   .then(res=>res.json())
+   .then(res=>{
+     if(res){
+      console.log(res);
+      this.props.handleopen();
+     }
+     else {
+       this.props.handleError();
+     }
+     ;
+   }
+   );
     
   }
 

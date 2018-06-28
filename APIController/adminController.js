@@ -120,8 +120,11 @@ exports.additem= function(req,res){
     console.log('we are here');
     console.log(req.file);
     console.log(req.body);
-    var itemmodel = new item_instance({item_name:req.body.name,item_desc:req.body.desc,
-        item_added_date:req.body.date,item_type:req.body.type,item_price:req.body.price,
+    var itemmodel = new item_instance({item_name:req.body.name,
+        item_desc:req.body.desc,
+        item_added_date:req.body.date,
+        item_type:req.body.type,
+        item_price:req.body.price,
         build:req.body.build,
         imgPath:req.file.path
     });

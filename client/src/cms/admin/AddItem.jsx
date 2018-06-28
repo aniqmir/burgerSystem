@@ -151,7 +151,9 @@ canBeSubmitted() {
   }
   
   onSubmit = (e) => {
-    const { name,desc,date,type,price,build,selectedFile,token } = this.state;
+
+    console.log(this.state.t);
+    const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     let formData = new FormData();
 
     formData.append('name', name);
@@ -161,8 +163,9 @@ canBeSubmitted() {
     formData.append('price', price);
     formData.append('build', build);
     formData.append('image', selectedFile);
-    formData.append('token', token);
+    formData.append('token', t);
     
+    console.log(this.state.t);
 
     axios.post('/api/admin/addItem', formData)  
     .then(result => {
@@ -178,11 +181,9 @@ canBeSubmitted() {
         this.setState({
           name:'',
           desc: '',
-          date: '',
           type: '',
           price:'',
-          build: '',
-          t: '',
+          build: true,
           selectedFile: '',     
         })   
       });
@@ -192,7 +193,7 @@ canBeSubmitted() {
     const errors = validate(this.state.name,this.state.desc,this.state.type,
       this.state.price);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-      const { name,desc,date,type,price,build,selectedFile,token } = this.state;
+      const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     return (
       <div>
           <AppBar className={classes.appBar}>
