@@ -144,7 +144,8 @@ canBeSubmitted() {
   
   handleClick = () => {
     //api call to store data in database here
-      console.log(this.state)
+      console.log(this.state.t);
+      console.log("dffg");
       var details = {
        'name': this.state.name,
        'desc': this.state.desc,
@@ -192,8 +193,8 @@ canBeSubmitted() {
       date: '',
       type: '',
       price:'',
-      build: '',
-      t: '',
+      build: true,
+   
       //image: '',     
     })
   }
