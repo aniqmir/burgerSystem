@@ -86,42 +86,36 @@ class CustomizedInputs extends React.Component {
     constructor(props){
       super(props)
       this.state={
-        value:'',
+        search:'',
         data:this.props.data,
-        found:false,
-        button:true
+        
         }
       }
 
     handleChange = (e) => {
       this.setState({
-        value:e.target.value
+        search:e.target.value.substr(0,20)
       }) 
-      console.log(this.state.value)
+      console.log(this.props.searchHandleTrue)
+      let arr = this.state.data;
+      let filterdData = Object.values(arr).map(
+        data => {
+          return data.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+          this.props.searchHandleTrue()
+          this.props.searchdata(data)
+        }
+        
+      ) 
 
-      {Object.values(this.state.data).map((type,index) => {  
-        console.log(this.state.value)
-        this.state.value.toString() === type.name.toString() ? (
-          (this.setState({
-            found:true,
-            button:false
-          }
-        ))
-        )
-        : (
-          this.setState({
-            found:false,
-          })
-          
-        )
-        })
-      }
-    }
+      console.log(filterdData);  
+  }
     
+
             
 
     render() {
-      const { classes } = this.props;
+      const { classes,data,filterText } = this.props;
+
       return (
         <Paper className={classes.paperroot}>
         <Grid container spacing={12}>
@@ -130,7 +124,8 @@ class CustomizedInputs extends React.Component {
         //label="Search"
         id="search"
         placeholder="Search..."
-        value={this.state.value}
+        type='search'
+       
         InputProps={{
           disableUnderline: true,
           classes: {
@@ -148,7 +143,7 @@ class CustomizedInputs extends React.Component {
       />
       </Grid>
       <Grid item md={2} sm={6} xs={12}>
-      <Button onClick={this.handleChange}><Search/></Button> {/*<SearchDialog button={this.state.button}/>*/}
+      <Button><Search/></Button>{/*<SearchDialog button={this.state.button}/>*/}
       </Grid>
       </Grid>
       </Paper>

@@ -18,6 +18,7 @@ import AdminDrawer from '../../cms/admin/Drawer';
 import Login from '../../cms/Login/index';
 import Additem from '../../cms/admin/AddItem';
 import Appbar from '../../cms/appbar/appbar';
+import Search from '../Search/Search';
 
 const customHistory = createBrowserHistory();
 
@@ -34,6 +35,7 @@ const CustomRoutes = () => (
             <Route path='/cms'  component={Appbar} />
             <Route path='/signin' component={ClientSignIn}/>
             <Route path='/signup' component={ClientSignUp}/>
+            <Route path='/search' component={Search}/>
         </div>
     </Router>
     )

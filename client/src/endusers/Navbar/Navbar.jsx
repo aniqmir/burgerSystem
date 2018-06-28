@@ -47,11 +47,20 @@ const styles = {
   },
   flex: {
     flex: 1,
+    backgroundImage:`url(${"./logo1.png"})`,
+    backgroundSize:'105px',
+    backgroundRepeat: 'no-repeat',
   },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
+  logo: {
+    backgroundImage:`url(${"./logo1.png"})`,
+    
+   // backgroundSize: '100%',
+    //background:'linear-gradient(-180deg, red, yellow)'
+}
   
 };
 
@@ -76,6 +85,9 @@ operationCart = () => {
 operationSignIn = () => {
   this.props.history.push('/signin');
 }
+operationSearch = () => {
+  this.props.history.push('/search');
+}
 render() {
     const { classes } = this.props;
     return (
@@ -84,11 +96,12 @@ render() {
           <AppBar color="primary" position="sticky">
             <Toolbar >
               <Typography variant="title" color="primary" className={classes.flex}>
-                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}>Big John's</Button>
+                <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}></Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}><FastFood/>&nbsp;Items</Button>
              <Button color="inherit" onClick={this.operationSignIn.bind(this)}><Face/>&nbsp;Sign In</Button>
              <Button color="inherit"onClick={this.operationCart.bind(this)}><Cart/></Button>
+             <Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>
             </Toolbar>
           </AppBar>
         </div>

@@ -33,7 +33,7 @@ class PaperSheet extends React.Component {
            <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
               <strong>  BUILD WHAT YOU WANT TO EAT </strong>
               </Typography>
-           <Search data={this.props.data}/>
+           <Search data={this.props.data} />
            </CardContent>
           </CardMedia>
         </Card>
