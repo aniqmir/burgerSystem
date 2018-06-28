@@ -113,7 +113,7 @@ class ResponsiveDrawer extends React.Component {
  AddNewLoginHandleClick = () => {
 
     this.setState({
-        OnDisplay:<AddNewLogin token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+        OnDisplay:<AddNewLogin  handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("Add item on click");
   }
