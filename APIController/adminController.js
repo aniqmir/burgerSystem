@@ -99,8 +99,10 @@ exports.fetchoneemp= function(req,res){
 //Function to Delete an Employee
 exports.Deleteemp= function(req, res)
  {
+     console.log(req.body.email);
   employee_instance.findOneAndRemove({Email:req.body.email})
   .then(Emp => {
+      console.log(Emp);
       if(!Emp) {
           return res.status(404).send({
               message: "Employee not found with this email  " + req.body.email

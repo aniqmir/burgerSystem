@@ -65,7 +65,8 @@ class CustomizedTable extends React.Component {
       console.log(email);
       
       var details = {
-        Email: email,
+        'Email': email,
+        'token': sessionStorage.getItem('token'),
       };
         
    var formBody = [];
