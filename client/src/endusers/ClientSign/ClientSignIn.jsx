@@ -19,6 +19,10 @@ import {
   import Input from '@material-ui/core/Input';
   import InputLabel from '@material-ui/core/InputLabel';
   import InputAdornment from '@material-ui/core/InputAdornment';
+  import Paper from '@material-ui/core/Paper';
+import Slide from '@material-ui/core/Slide';
+import Footer from '../Footer/Footer';
+
 const styles = {
   card: {
     opacity: '0.8',
@@ -36,7 +40,6 @@ const styles = {
     width: '85%',
   },
   cardcontent:{
-  
     marginTop:'20%',
   },
   buttonLogin: {
@@ -55,26 +58,16 @@ const styles = {
       marginBottom:'2%',
       marginTop:'-10%'
   },
-  footer: {
-    position: 'fixed',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    backgroundColor: 'black',
-    color: 'white',
- },
- footerPadding: {
-  padding:'2%'
- },
   divBackground:{
     backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
     minHeight: '100vh',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingTop:"15%"
+  },
+  footer:{
+    paddingTop:"5%"
   }
-
-
 };
 
  class SimpleMediaCard extends React.Component {
@@ -161,14 +154,20 @@ const styles = {
         return (
             <div className={classes.divBackground}>
             <div className={classes.divMargin}>
+            
                 <Grid container spacing={12}>
                 <Grid item md={8} sm={12} xs={12}>
+                <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout={1000}>
                  <Card raised={true}>
                  <CardMedia className={classes.media}
                 image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg"/>
                 </Card>
+                </Slide>
                 </Grid>
+              
+            
                 <Grid item md={4} sm={12} xs={12} >
+                <Slide direction="left" in={true} mountOnEnter unmountOnExit timeout={1000}>
                 <Card className={classes.card} raised={true}>
                  <CardContent className={classes.cardcontent}>
                 <TextField
@@ -208,45 +207,30 @@ const styles = {
                 <CardActions>
                     <Grid container spacing ={12}>
                     <Grid item md={6} sm={6} xs={6}>
+                    <Slide direction="down" in={true} mountOnEnter unmountOnExit timeout={1400}>
                     <Button size="medium" onClick={this.loginHandle} className={classes.buttonLogin}>
                     Login <Face/>
                     </Button>
+                    </Slide>
                   </Grid>
                   <Grid item md={6} sm={6} xs={6}>
+                  <Slide direction="up" in={true} mountOnEnter unmountOnExit timeout={1400}>
                 <Button size="medium" onClick={this.operationSignUp} className={classes.buttonSignup}>
                     Sign Up <Check/>
                   </Button>
+                  </Slide>
                   </Grid>
                   </Grid>
                 </CardActions>
                  </Card>
+                 </Slide>
                  </Grid>
                  </Grid>
             </div>
-            <div className={classes.footer}>
-        <div className={classes.footerPadding}>
-        <Grid container spacing={0} justify='center'>
-        <Grid item  md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12}>
-        <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
-        
-        </Grid>
-        </Grid>
-        </div>
-        </div>
-            </div>
-            
+                 <div className={classes.footer}>
+                  <Footer/>
+                 </div>
+          </div>  
           );
         }
     }
