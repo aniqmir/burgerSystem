@@ -57,12 +57,13 @@ const dropdowntypes = [
     label: 'Can not be build' ,
   },
 ];
-function validate(name,desc,type,price) {
+function validate(name,desc,type,price,fi) {
   return {
     name: name.length === 0,
     desc: desc.length === 0,
     type: type.length === 0,
     price: price.length === 0,
+    fi: fi.length === 0,
   };
 }
 class TextFields extends React.Component {
@@ -78,7 +79,7 @@ this.state = {
     type: '',
     price:'',
     build: true,
-    selectedFile: '',
+    selectedFile:'',
     t:cachetoken,
   }
 }
@@ -151,7 +152,7 @@ canBeSubmitted() {
   }
   
   onSubmit = (e) => {
-    const { name,desc,date,type,price,build,selectedFile,token } = this.state;
+    const { name,desc,date,type,price,build,selectedFile,t} = this.state;
     let formData = new FormData();
 
     formData.append('name', name);
@@ -161,7 +162,7 @@ canBeSubmitted() {
     formData.append('price', price);
     formData.append('build', build);
     formData.append('image', selectedFile);
-    formData.append('token', token);
+    formData.append('token', t);
     
 
     axios.post('/api/admin/addItem', formData)  
@@ -178,21 +179,19 @@ canBeSubmitted() {
         this.setState({
           name:'',
           desc: '',
-          date: '',
           type: '',
           price:'',
-          build: '',
-          t: '',
-          selectedFile: '',     
+          build: true,
+          selectedFile:'',     
         })   
       });
   }
   render() {
     const { classes } = this.props;
     const errors = validate(this.state.name,this.state.desc,this.state.type,
-      this.state.price);
+      this.state.price,this.state.selectedFile);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-      const { name,desc,date,type,price,build,selectedFile,token } = this.state;
+      const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     return (
       <div>
           <AppBar className={classes.appBar}>
