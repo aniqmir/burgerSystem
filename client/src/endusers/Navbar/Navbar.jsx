@@ -36,7 +36,7 @@ const theme = createMuiTheme ({
  typography: {
   // Use the system font instead of the default Roboto font.
   fontFamily: [
-    'Bangers'
+    2
   ].join(','),
 } })
 

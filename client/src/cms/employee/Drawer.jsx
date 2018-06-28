@@ -10,14 +10,12 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from 'material-ui/Divider';
-
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import AddNewLogin from './AddLogin';
-import ViewAll from './ViewAll';
-import AddItem from './AddItem';
-import ViewItems from './ViewAllItems';
+import Dispatch from './Dispatch';
+import ViewAllOrders from './ViewAll';
+import Orderdrawer from './RightDrawer';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { 
     Router,
@@ -30,6 +28,7 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
+
 
 
 
@@ -86,6 +85,8 @@ const styles = theme => ({
     flexGrow:1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
+    width:'70%',
+    height:'100%',
     position:'relative',
   },
 });
@@ -113,7 +114,7 @@ class ResponsiveDrawer extends React.Component {
  AddNewLoginHandleClick = () => {
 
     this.setState({
-        OnDisplay:<AddNewLogin  handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+        OnDisplay:<Dispatch token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("Add item on click");
   }
@@ -123,24 +124,11 @@ class ResponsiveDrawer extends React.Component {
  ViewAllHandleClick = () => {
 
     this.setState({
-        OnDisplay:<ViewAll token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+        OnDisplay:<ViewAllOrders token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("View All item Click")
   }
-  AddItemHandleClick = () => {
-
-    this.setState({
-        OnDisplay:<AddItem token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
   
-  }
-ViewItemHandleClick = () => {
-
-    this.setState({
-        OnDisplay:<ViewItems token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-  
-  }
 
 
 
@@ -174,26 +162,11 @@ ViewItemHandleClick = () => {
         <List>
         <Typography variant="title" color="inherit" >
         <MuiThemeProvider theme={theme2}>
-           <ListItem><Button onClick={this.AddNewLoginHandleClick.bind(this)} >Add New Employee</Button></ListItem>
+           <ListItem><Button onClick={this.AddNewLoginHandleClick.bind(this)} >Dispatch Order</Button></ListItem>
            <Divider />
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>View All Employees</Button></ListItem>
+            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>View All Orders</Button></ListItem>
             <Divider/>
-            <ListItem><Button onClick={this.AddItemHandleClick.bind(this)}>Add New Items</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewItemHandleClick.bind(this)}>View All Items</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Show Sales</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Statistics</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Cancel Order</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Add Offer</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Offers</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>Promo</Button></ListItem>
-            <Divider/>
+            
             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
             <Divider />
             </MuiThemeProvider>
@@ -250,6 +223,7 @@ ViewItemHandleClick = () => {
           <main className={classes.content}>
             <div className={classes.toolbar} />
             {this.state.OnDisplay}
+            
             {/*User Modal*/}
             <Dialog
           open={this.state.open}
@@ -290,6 +264,7 @@ ViewItemHandleClick = () => {
         </Dialog>
             {/*<Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>*/}
           </main>
+          <Orderdrawer/>
         </div>
       );
     }
