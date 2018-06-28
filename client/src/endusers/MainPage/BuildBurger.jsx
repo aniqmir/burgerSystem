@@ -203,51 +203,21 @@ class FullScreenDialog extends React.Component {
            Texas Jack
           </Typography>
           <Typography  gutterBottom variant="p">
-           Lorem Ipsum what can you do, let us go. Yes very good. Nice.
+           {this.props.buildDetails}
           </Typography>
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
           <Grid container spacing={12}>
             <Grid item md={6}>
             <ListItem >
-           Chicken<Checkbox
+           <Typography>Chicken</Typography><Checkbox
                 checked={this.state.chicken}
                 onChange={this.handleChange('chicken')}
                 value="Chicken"
               />
             </ListItem>
             <ListItem>
-            Cheese <Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
-            <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            </Grid>
-            <Grid item md={6}>
-            <ListItem>
-            Cheese <Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>
-            <ListItem >
-           Chicken<Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            <ListItem>
-            Cheese<Checkbox
+            <Typography>Cheese</Typography> <Checkbox
                 checked={this.state.cheese}
                 onChange={this.handleChange('cheese')}
                 value="Cheese"
@@ -273,6 +243,7 @@ class FullScreenDialog extends React.Component {
          </CardContent>
           <CardActions>
           <Button className={classes.button} variant='outlined' size='medium' onClick={this.ingredientstoMainpage}>Done</Button>
+          <Button className={classes.button} variant='outlined' size='medium' onClick={this.handleClose}>Cancel</Button>
           </CardActions>
           </Card>
           </Grid>

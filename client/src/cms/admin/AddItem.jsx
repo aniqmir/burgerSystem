@@ -44,17 +44,20 @@ const styles = theme => ({
 });
 const dropdowntypes = [
   {
-    value: true,
+    value:true ,
     label: 'Can be Built',
   },
   {
-    value: false,
+    value:false ,
     label: 'Can not be build' ,
   },
 ];
-function validate(userName) {
+function validate(name,desc,type,price) {
   return {
-    userName: userName.length === 0,
+    name: name.length === 0,
+    desc: desc.length === 0,
+    type: type.length === 0,
+    price: price.length === 0,
   };
 }
 class TextFields extends React.Component {
@@ -62,19 +65,17 @@ constructor(props){
 super(props);
 var today = new Date(),
 date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-  this.state = {
+const cachetoken = sessionStorage.getItem('token');  
+this.state = {
     name:'',
     desc: '',
     type: '',
     price:'',
-    build: '',
+    build: true,
     //image: '',
     date: date,
-    t:this.props.token,
+    t:cachetoken,
   }
- // this.onFormSubmit = this.onFormSubmit.bind(this)
- // this.onChange = this.onChange.bind(this)
- // this.fileUpload = this.fileUpload.bind(this)
 }
   
 
@@ -151,6 +152,7 @@ canBeSubmitted() {
        'price': this.state.price,
        'date': this.state.date,
        'build': this.state.build,
+       'token': this.state.t,
    };
    
    var formBody = [];
@@ -174,7 +176,7 @@ canBeSubmitted() {
      console.log("we are in this function");
      if(res){
       console.log(res);
-      //this.props.handleopen();
+      this.props.handleopen();
        console.log("After function");
      }
      else {
@@ -191,6 +193,7 @@ canBeSubmitted() {
       type: '',
       price:'',
       build: '',
+      t: '',
       //image: '',     
     })
   }
@@ -199,7 +202,8 @@ canBeSubmitted() {
   
   render() {
     const { classes } = this.props;
-    const errors = validate(this.state.name);
+    const errors = validate(this.state.name,this.state.desc,this.state.type,
+      this.state.price);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
 
     return (

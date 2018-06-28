@@ -53,7 +53,7 @@ class CarouselPage extends Component {
           <CarouselInner>
             <CarouselItem itemId="1">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="First slide" />
+                <img className="d-block w-100" src="https://d9hyo6bif16lx.cloudfront.net/live/img/production/detail/menu/lunch-dinner_burgers_all-american-burger.jpg" alt="First slide" />
                 <Mask overlay="black-light"></Mask>
               </View>
               <CarouselCaption>
@@ -63,7 +63,7 @@ class CarouselPage extends Component {
             </CarouselItem>
             <CarouselItem itemId="2">
               <View>
-                <img className="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(99).jpg" alt="Second slide" />
+                <img className="d-block w-100" src="http://www.craftlakewood.com/images/slideshow/craft-slide.jpg" alt="Second slide" />
                 <Mask overlay="black-strong"></Mask>
               </View>
               <CarouselCaption>
