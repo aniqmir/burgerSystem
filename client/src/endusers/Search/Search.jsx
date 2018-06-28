@@ -5,12 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 import brown from '@material-ui/core/colors/brown';
-import Home from './Home';
+import Home from '../MainPage/Home';
 import Grid from '@material-ui/core/Grid';
 import Slide from '@material-ui/core/Slide';
 import TextField from '@material-ui/core/TextField';
 import Grow from '@material-ui/core/Grow';
-import SearchImage from './SearchImage';
+import SearchImage from '../MainPage/SearchImage';
 import Cart from '../Cart/Cart';
   import {
     //BrowserRouter as 
@@ -20,6 +20,14 @@ import Cart from '../Cart/Cart';
     }   from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 import Footer from '../Footer/Footer';
+import Search from '@material-ui/icons/Search';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+
+
 
 
 const theme = createMuiTheme ({
@@ -53,9 +61,14 @@ const styles = theme => ({
     marginRight:'3%',
     //margin:'3%'
   },
-
-  textfield: {
-  
+  card: {
+    maxWidth:'100%'
+  },
+  media: {
+    paddingTop:'15%'
+  },
+  typo:{
+     textShadow: ' 0 0 20px #000000',
   },
   btn: {
     marginLeft: '10px',
@@ -71,7 +84,67 @@ const styles = theme => ({
       backgroundRepeat: 'repeat',
       //backgroundSize: '100%',
       //background:'linear-gradient(-180deg, red, yellow)'
-}
+},
+container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  btn:{
+    paddingTop:'1%'
+  },
+  paperroot:{
+      width:"50%",
+      textAlign:'center',
+      margin:'auto',
+  },
+  cssLabel: {
+    '&$cssFocused': {
+      color: 'purple[500]',
+    },
+  },
+  cssFocused: {},
+  cssUnderline: {
+    '&:after': {
+      borderBottomColor: 'purple[500]',
+    },
+  },
+  bootstrapRoot: {
+    'label + &': {
+      margin: 'auto',
+      position:'absolute'
+    },
+  },
+  bootstrapInput: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.common.white,
+    border: '1px solid #ced4da',
+    fontSize: 16,
+    padding: '10px 12px',
+    width: 'calc(100% - 24px)',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+    fontFamily: [
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(','),
+    '&:focus': {
+      borderColor: '#80bdff',
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.25)',
+    },
+  },
+  bootstrapFormLabel: {
+    fontSize: 18,
+  },
 
 })
 
@@ -94,60 +167,60 @@ class SimpleTabs extends React.Component {
                   buildDetails:'No',
                   price:500
                },
-      burger3:{  name:'Texas Jack',
+      burger3:{  name:'Ranchers Special',
               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
               status:false,
               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
               price:500
               },
-            burger4:  {  name:'Texas Jack',
+            burger4:  {  name:'Big Ben',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
             price:500
          },
-         burger5:  {  name:'Texas Jack',
+         burger5:  {  name:'Crispy Crisp',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
          price:500
       },
-      burger6:  {  name:'Texas Jack',
+      burger6:  {  name:'Happy Meal',
       details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
       status:false,
       loading:false,
       image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
       price:500
    },
-           burger7:   {  name:'Texas Jack',
+           burger7:   {  name:'Murtaza Akbar',
                   details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                   status:false,
                   loading:false,
                   image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
                   price:500
                },
-               burger8:  {  name:'Texas Jack',
+               burger8:  {  name:'Glass',
                details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
                status:false,
                loading:false,
                image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
                price:500
             },
-            burger9:  {  name:'Texas Jack',
+            burger9:  {  name:'Anday Wala Burger',
             details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
             status:false,
             loading:false,
             image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
             price:500
          },
-         burger10:  {  name:'Texas Jack',
+         burger10:  {  name:'Hardees Big',
          details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
          status:false,
          loading:false,
          image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
          price:500
       },
-      burger11:  {  name:'Texas Jack',
+      burger11:  {  name:'Zinger',
       details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
       status:false,
       loading:false,
@@ -156,7 +229,7 @@ class SimpleTabs extends React.Component {
    },
         
     },
-
+      search:'',
       status:false,
       checkoutDetails:[]
   };
@@ -165,7 +238,13 @@ class SimpleTabs extends React.Component {
   handleChange = (event, value) => {
     this.setState({ value });
   };
-
+  
+  searchhandleChange = (e) => {
+    this.setState({
+      search:e.target.value
+    })
+    
+}
   checkoutDetailsHandle = (det) => {
     let tempdetails = this.state.checkoutDetails;
     tempdetails.push(det);
@@ -206,26 +285,67 @@ class SimpleTabs extends React.Component {
   render() {
     const { classes } = this.props;
     const { value } = this.state;
-
-   
+    let filteredData = this.state.data;
+    filteredData = Object.values(filteredData).map(
+        (type) => {
+            if(type.name.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0)
+            {return type}
+            else
+            {return this.state.data}
+        }
+    )  
     return (
      <MuiThemeProvider theme={theme}>
     
-     <SearchImage data={this.state.data} />
+    <div>
+        <Card>
+          <CardMedia
+          className={classes.media}
+           image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg">
+           <CardContent >
+           <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
+              <strong>  BUILD WHAT YOU WANT TO EAT </strong>
+              </Typography>
+              <Paper className={classes.paperroot}>
+        <Grid container spacing={12}>
+        <Grid item md={10} sm={6} xs={12}>
+        <TextField
+        //label="Search"
+        id="search"
+        placeholder="Search..."
+        type='search'
+       
+        InputProps={{
+          disableUnderline: true,
+          classes: {
+            root: classes.bootstrapRoot,
+            input: classes.bootstrapInput,
+          },
+        }}
+        onChange={e=>this.searchhandleChange(e)}
+        InputLabelProps={{
+          shrink: true,
+          className: classes.bootstrapFormLabel,
+        }}
+  
+        fullWidth
+      />
+      </Grid>
+      <Grid item md={2} sm={6} xs={12}>
+      <Button ><Search/></Button>{/*<SearchDialog button={this.state.button}/>*/}
+      </Grid>
+      </Grid>
+      </Paper>
+           </CardContent>
+          </CardMedia>
+        </Card>
+      </div>
      
-    {/*
-    <Route path='/cart' render={(props) => <Cart {...props} checkout={this.state.checkoutDetails}/>}/>
-     <Link to='/cart'>Cart</Link>
-    */} 
-     <div className={classes.parallax}>
+  
+      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>
-       {/*<Grid item xs={12}>
-        <Carousel/>
-        </Grid>*/ } 
-
-           {Object.values(this.state.data).map((type,index) => {  
-            //() => this.setStatus(type.status,type.loading)    
+           {Object.values(filteredData).map((type,index) => {  
             return (
               <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
               <Grid item md={3} sm={6} xs={12}  key={index}>

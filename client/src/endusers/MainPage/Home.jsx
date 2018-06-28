@@ -75,7 +75,7 @@ class SimpleMediaCard extends React.Component {
   return (
     <Container>
     <div className={classes.divPad}>
-         <Tooltip  title="5.35$/-" placement="right-start">
+         <Tooltip  title={this.props.price} placement="right-start">
       <Card className={classes.card} raised={true}>  
       <CardMedia
           className={classes.media}
