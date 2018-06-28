@@ -9,7 +9,7 @@ var itemSchema = new Schema(
     item_type: {type: String, required: true, max: 100},
     item_price: {type: String, required: true, max: 100},
     build: {type: Boolean, required: true, max: 100},
-   // imgPath: {type: String, required: true}
+    imgPath: {type: String, required: true}
   }
 );
 

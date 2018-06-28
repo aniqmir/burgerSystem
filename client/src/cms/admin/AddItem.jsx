@@ -11,11 +11,12 @@ import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import axios, { post } from 'axios';
+import axios from 'axios';
 const styles = theme => ({
   button: {
     margin:theme.spacing.unit,
     display:'flex',
+    marginLeft: 600,
   },
   container: {
     display: 'flex',
@@ -41,6 +42,10 @@ const styles = theme => ({
     marginTop:25,
     //maxWidth: 350,
   },
+  input: {
+    display: '',
+    marginTop: 40,
+  } ,
 });
 const dropdowntypes = [
   {
@@ -69,11 +74,11 @@ const cachetoken = sessionStorage.getItem('token');
 this.state = {
     name:'',
     desc: '',
+    date: date,
     type: '',
     price:'',
     build: true,
-    //image: '',
-    date: date,
+    selectedFile: '',
     t:cachetoken,
   }
 }
@@ -135,77 +140,59 @@ canBeSubmitted() {
       build: e.target.value
     });
   }
-  changeimage = e => {
-    this.setState({
-      image: e.target.value
-    });
+  onChangeFile = (e) => {
+    switch (e.target.name) {
+      case 'selectedFile':
+        this.setState({ selectedFile: e.target.files[0] });
+        break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });  
+    }
   }
-
   
-  handleClick = () => {
-    //api call to store data in database here
-      console.log(this.state)
-      var details = {
-       'name': this.state.name,
-       'desc': this.state.desc,
-       'type': this.state.type,
-       'price': this.state.price,
-       'date': this.state.date,
-       'build': this.state.build,
-       'token': this.state.t,
-   };
-   
-   var formBody = [];
-   for (var property in details) {
-     var encodedKey = encodeURIComponent(property);
-     var encodedValue = encodeURIComponent(details[property]);
-     formBody.push(encodedKey + "=" + encodedValue);
-   }
-   formBody = formBody.join("&");
-   
-   fetch('/api/admin/addItem', {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
-     },
-     body: formBody
-   })
-   .then(res=>res.json())
-   .then(res=>{
-  
-     console.log("we are in this function");
-     if(res){
-      console.log(res);
-      this.props.handleopen();
-       console.log("After function");
-     }
-     else {
-       this.props.handleError();
-     }
-     ;
-   }
-   );
-      //form saaf kia hai 
-    this.setState({
-      name:'',
-      desc: '',
-      date: '',
-      type: '',
-      price:'',
-      build: '',
-      t: '',
-      //image: '',     
-    })
-  }
+  onSubmit = (e) => {
+    const { name,desc,date,type,price,build,selectedFile,token } = this.state;
+    let formData = new FormData();
 
+    formData.append('name', name);
+    formData.append('desc', desc);
+    formData.append('date', date);
+    formData.append('type', type);
+    formData.append('price', price);
+    formData.append('build', build);
+    formData.append('image', selectedFile);
+    formData.append('token', token);
     
-  
+
+    axios.post('/api/admin/addItem', formData)  
+    .then(result => {
+        console.log("we are in this function");
+        if(result){
+         console.log(result.data);
+          this.props.handleopen();
+          console.log("After function");
+        }
+        else {
+          this.props.handleError();
+        }
+        this.setState({
+          name:'',
+          desc: '',
+          date: '',
+          type: '',
+          price:'',
+          build: '',
+          t: '',
+          selectedFile: '',     
+        })   
+      });
+  }
   render() {
     const { classes } = this.props;
     const errors = validate(this.state.name,this.state.desc,this.state.type,
       this.state.price);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-
+      const { name,desc,date,type,price,build,selectedFile,token } = this.state;
     return (
       <div>
           <AppBar className={classes.appBar}>
@@ -272,7 +259,7 @@ canBeSubmitted() {
               className: classes.menu,
             },
           }}
-          helperText="Please Identify if it can be Customized or not?"
+          helperText="Please Identify if This item can be Customized or not?"
           margin="normal"
         >
           {dropdowntypes.map(option => (
@@ -280,8 +267,17 @@ canBeSubmitted() {
               {option.label}
             </option>
           ))}
-          </TextField>      
-        <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClick} disabled={isDisabled}>
+          </TextField>     
+      <input
+      accept="image/*"
+      className={classes.input}
+      id="raised-button-file"
+      type="file"
+      name="selectedFile"
+      onChange={this.onChangeFile}
+         />
+        <Button variant="raised" color="primary" className={classes.button} onClick={this.onSubmit} disabled={isDisabled}>
+        ADD
         <AddIcon/>
         </Button>
         </CardContent>

@@ -118,12 +118,12 @@ exports.Deleteemp= function(req, res)
 //Function To Add New Item
 exports.additem= function(req,res){
     console.log('we are here');
-    console.log(req.body.token);
-    console.log(req.body.build);
+    console.log(req.file);
+    console.log(req.body);
     var itemmodel = new item_instance({item_name:req.body.name,item_desc:req.body.desc,
         item_added_date:req.body.date,item_type:req.body.type,item_price:req.body.price,
         build:req.body.build,
-    //    imgPath:req.file.path
+        imgPath:req.file.path
     });
     itemmodel.save(function (err) {
         if (err)

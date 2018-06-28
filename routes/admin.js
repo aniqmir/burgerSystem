@@ -12,6 +12,6 @@ router.post('/addEmployee',Controller.CreateEmployee);
 router.post('/Employeeindex',Controller.fetchallemps);
 router.post('/findEmployee',Controller.fetchoneemp);
 router.post('/delEmployee',Controller.Deleteemp);
-router.post('/addItem',Controller.additem);
-//,upload.single('image') 
+router.post('/addItem',upload.single('image'),Controller.additem);
+ 
 module.exports = router;
