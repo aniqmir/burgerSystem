@@ -34,7 +34,6 @@ const styles = {
     backgroundColor:'#E0E0E0'
   },
   text:{
-    color:'inherit',
     paddingTop:'15px',
   },
   bullet: {
@@ -147,12 +146,20 @@ class FullScreenDialog extends React.Component {
 
     let displayData = () =>{
       if(this.state.items1===null){
-      return (<Typography> yuwao </Typography>);
+      return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
       }
       else{
         return(              
-          Object.values(this.state.items1).map((type,index) => {  
+          <div>
+              <Typography className='text text-black' gutterBottom variant="display2" component="h2">
+                Complete Your Order
+                </Typography>
+                <Typography className='text' gutterBottom variant="display3">
+                Please verify the order details and proceed to checkout.
+                </Typography>
+         { Object.values(this.state.items1).map((type,index) => {  
             return (
+              <div>
                 <Paper className={classes.paper} elevation={8}>
                         <CartItems name={type[0]}
                               details={type[2]} 
@@ -161,9 +168,10 @@ class FullScreenDialog extends React.Component {
                               price={type[1]}             
                               />
                   </Paper>
+                  </div>
                     );
-                  })
-            )
+                  }) }
+            </div>)
       }
     }
 
@@ -173,16 +181,10 @@ class FullScreenDialog extends React.Component {
       <div className={classes.divBackground}>
           <Paper  elevation={2}>
               <Grid container spacing={12}>
-
                 <Grid item md={12} sm={12}>
                 <Card className={classes.cardRight}>
                 <CardContent>
-                <Typography className='text text-black' gutterBottom variant="display2" component="h2">
-                Complete Your Order
-                </Typography>
-                <Typography className='text' gutterBottom variant="p" component="h2">
-                Please verify the order details and proceed to checkout.
-                </Typography>
+                
                 <List className={classes.root}>
                     {displayData()}
                 </List>

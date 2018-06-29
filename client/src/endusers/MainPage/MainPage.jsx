@@ -41,9 +41,6 @@ const styles = theme => ({
     //margin:'3%'
   },
 
-  textfield: {
-  
-  },
   btn: {
     marginLeft: '10px',
     marginTop: '3px'
@@ -63,6 +60,26 @@ const styles = theme => ({
 })
 
 class SimpleTabs extends React.Component {
+  componentDidMount() {
+
+  fetch('/api/admin/allitems', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+    },
+  }).then(res=>res.json())
+  .then(res=>{
+    console.log("we are in this function");
+    if(res){
+      this.setState({
+        data:res,
+      })
+      console.log(res);
+      console.log("After function");
+    };
+  }
+  );
+  }
   state = {
     value: 0,
     data:{ 

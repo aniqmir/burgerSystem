@@ -36,7 +36,7 @@ const theme = createMuiTheme ({
  typography: {
   // Use the system font instead of the default Roboto font.
   fontFamily: [
-    2
+    'Bangers'
   ].join(','),
 } })
 
@@ -101,7 +101,8 @@ render() {
               <Button color="inherit" onClick={this.operationHome.bind(this)}><FastFood/>&nbsp;Items</Button>
              <Button color="inherit" onClick={this.operationSignIn.bind(this)}><Face/>&nbsp;Sign In</Button>
              <Button color="inherit"onClick={this.operationCart.bind(this)}><Cart/></Button>
-             <Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>
+             {/*<Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>*/}  
+            
             </Toolbar>
           </AppBar>
         </div>
