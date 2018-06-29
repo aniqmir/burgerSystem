@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -90,7 +89,7 @@ class FullScreenDialog extends React.Component {
     this.setState({ [name]: event.target.checked, 
                   });
                   var newArr = this.state.ingredients;
-                  newArr.push(name),
+                  newArr.push(name)
     this.setState({
      ingredients:newArr
                   })
