@@ -139,3 +139,15 @@ exports.additem= function(req,res){
         // saved!
     });
 }
+exports.fetchallitems= function(req,res){
+    item_instance.find()
+    .then(itm => {
+        if(itm==null){ res.json({message:'No item Found'})}
+        else
+       return res.json(itm);
+    }).catch(err => {
+        return res.send({
+            message: err.message || "Some error occurred while retrieving all Items."
+        });
+    });
+};
