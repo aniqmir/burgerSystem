@@ -1,5 +1,4 @@
 var express= require('express');
-var app= express();
 var jwt    = require('jsonwebtoken');
 
 //Middleware to connect to database
@@ -128,7 +127,8 @@ exports.additem= function(req,res){
         item_type:req.body.type,
         item_price:req.body.price,
         build:req.body.build,
-        imgPath:req.file.path
+        imgPath:req.file.filename,
+        primaryKey: req.file.filename.substring(0, 4),
     });
     itemmodel.save(function (err) {
         if (err)

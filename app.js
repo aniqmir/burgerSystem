@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
 var app = express();
  
 //use helmet
@@ -16,11 +17,13 @@ var adminRouter= require('./routes/admin');
 var EmpRouter= require('./routes/emps');
 // view engine setup
 
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('uploads'))
 app.set('view engine', 'ejs');
 
 var expressSession = require('express-session');
