@@ -90,8 +90,12 @@ class FullScreenDialog extends React.Component {
                 },
   },
     details:[],
-  };
+    items1:{
+    },
+  }
    
+
+  
 
   proceedToCheckout = () => {
     this.props.history.push({pathname: '/checkout'});
@@ -125,23 +129,46 @@ class FullScreenDialog extends React.Component {
   }
 
 
-  loadItems=()=>{
+  //function to get values
+  componentDidMount(){
     let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
     console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
     this.setState({
       items1:tempSessionCart
     })
-  }
-
-  //function to get values
-  componentDidMount(){
-    this.loadItems();
+    console.log(this.state.items1)
   }
 
 
   render() {
 
     const { classes } = this.props;
+
+
+    let displayData = () =>{
+      if(this.state.items1===null){
+      return (<Typography> yuwao </Typography>);
+      }
+      else{
+        return(              
+          Object.values(this.state.items1).map((type,index) => {  
+            return (
+                <Paper className={classes.paper} elevation={8}>
+                        <CartItems name={type[0]}
+                              details={type[2]} 
+                              status={type[4]} 
+                              image={type[3]}        
+                              price={type[1]}             
+                              />
+                  </Paper>
+                    );
+                  })
+            )
+      }
+    }
+
+
+
     return (
       <div className={classes.divBackground}>
           <Paper  elevation={2}>
@@ -157,21 +184,7 @@ class FullScreenDialog extends React.Component {
                 Please verify the order details and proceed to checkout.
                 </Typography>
                 <List className={classes.root}>
-                  {/* Traversing Items here  */}
-                  {Object.values(this.state.items).map((type,index) => {  
-                    return (
-                        <Paper className={classes.paper} elevation={8}>
-                                <CartItems name={type.name}
-                                      details={type.details} 
-                                      status={type.status} 
-                                      image={type.image}        
-                                      price={type.price}             
-                                      buildDetails={type.buildDetails}
-                                      />
-                        </Paper>
-                            );
-                          })
-                    }
+                    {displayData()}
                 </List>
                 </CardContent>
                 <CardActions>

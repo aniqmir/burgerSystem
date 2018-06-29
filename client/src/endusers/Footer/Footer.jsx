@@ -2,18 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
-import brown from '@material-ui/core/colors/brown';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import {
     Link
   }   from 'react-router-dom';
 
-
-
-
-
-
+  
 const theme = createMuiTheme ({
  typography: {
   // Use the system font instead of the default Roboto font.

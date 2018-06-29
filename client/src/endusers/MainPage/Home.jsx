@@ -55,7 +55,9 @@ class SimpleMediaCard extends React.Component {
     let det = []
     det.push(this.props.name);
     det.push(this.props.price);
-
+    det.push(this.props.details);
+    det.push(this.props.image);
+    det.push(this.props.status);
     console.log('buy')
     this.props.loadingHandle()
     this.props.checkoutDet(det)
@@ -96,7 +98,7 @@ class SimpleMediaCard extends React.Component {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>
             <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler}>Buy</Button>
-            <BuildBurger buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price}/>
+            <BuildBurger details={this.props.details} buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price} image={this.props.image}/>
             {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
