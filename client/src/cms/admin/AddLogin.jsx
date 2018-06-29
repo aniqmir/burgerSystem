@@ -64,7 +64,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.fname,this.state.password,this.state.lname);

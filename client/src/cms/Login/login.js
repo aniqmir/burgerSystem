@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 
 const styles = theme => ({
   button: {
@@ -74,7 +73,6 @@ class TextFields extends React.Component {
       evt.preventDefault();
       return;
     }
-    const { qrId} = this.state;
   }
   canBeSubmitted() {
     const errors = validate(this.state.qrId);
@@ -93,7 +91,7 @@ class TextFields extends React.Component {
   handleClick = () => {
     console.log(this.state)
 
-    if(this.state.type=='admin'){
+    if(this.state.type==='admin'){
     var details = {
      'name': this.state.userName,
      'password': this.state.Password,
@@ -102,11 +100,6 @@ class TextFields extends React.Component {
 }
 else
 {
-  var details = {
-    'email': this.state.userName,
-    'password': this.state.Password,
-    'type':this.state.type
-};
 }
  
 
@@ -134,12 +127,12 @@ else
     sessionStorage.setItem('token',res.token);
      if(res.type==="emp"){
       console.log('Employee Login Successful');
-      {this.props.updateEmployee(res.token)}
+      this.props.updateEmployee(res.token)
       this.props.history.push('/emp');
      }
      else if(res.type==='admin'){
       console.log('Admin Login Successful');
-      {this.props.updateAdmin(res.token)}
+      this.props.updateAdmin(res.token)
       this.props.history.push('/admin');
       
      }

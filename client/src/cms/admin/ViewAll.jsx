@@ -4,8 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import AddIcon from '@material-ui/icons/Add';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -35,19 +33,6 @@ const styles = theme => ({
   },
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-  id += 1;
-  return { id, name, calories, fat, carbs, protein };
-}
-const data = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-{/* */}
 
 class CustomizedTable extends React.Component {
 
@@ -139,12 +124,7 @@ class CustomizedTable extends React.Component {
       data:{},
       t:cachetoken,
     }
-    console.log('Constructor');
     
-
-    var details = {
-      'token':this.state.t
-  };
 };
 
   render() {

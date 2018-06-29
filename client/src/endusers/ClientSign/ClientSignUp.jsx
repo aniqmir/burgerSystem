@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import CardHeader from 'material-ui';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreditCard from '@material-ui/icons/CreditCard';
 import Email from '@material-ui/icons/Email';
@@ -18,8 +15,6 @@ import Phone from '@material-ui/icons/PermPhoneMsg';
 import Label from '@material-ui/icons/Label';
 import Check from '@material-ui/icons/Check';
 import Accessibility from '@material-ui/icons/Accessibility';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Slide from '@material-ui/core/Slide';
 import Footer from '../Footer/Footer'
@@ -205,19 +200,14 @@ fetch('/api/user/signup', {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
   },
   body: formBody
-}).then(res=>res.json())
-.then(res=>{
-  console.log("we are in this function");
-  if(res){
-  // console.log(res);
-   console.log(res);
-    /*if(res.type=="head")*/{
-     console.log('Sign Up Function');
-    }
-    console.log("After function");
-  };
-}
-);
+  })
+  .then(res=>res.json())
+  .then(res=>{
+    if(res){
+    console.log(res);
+    };
+  }
+  );
   this.setState({
     name:'',
     email:'',

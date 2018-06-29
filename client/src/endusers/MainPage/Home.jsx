@@ -71,8 +71,7 @@ class SimpleMediaCard extends React.Component {
  render() {
   const { classes } = this.props;
   let isstatusTrue = this.props.status;
-  let loading = this.props.loading;
-
+ 
   return (
     <Container>
     <div className={classes.divPad}>

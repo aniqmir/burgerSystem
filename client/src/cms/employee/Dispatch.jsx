@@ -4,7 +4,7 @@ import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
@@ -32,20 +32,6 @@ const styles = theme => ({
   },
 });
 
-const dropdowntypes = [
-  {
-    value: 'admin',
-    label: 'Admin',
-  },
-  {
-    value: 'head',
-    label: 'Head',
-  },
-  {
-    value: 'shop',
-    label: 'Shop',
-  },
-];
 
 function validate(fname,lname,email,password) {
   return {
@@ -75,7 +61,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.username,this.state.password,this.state.cnic);
@@ -203,10 +188,7 @@ canBeSubmitted() {
        'password':this.state.password,
         'sdate':this.state.date,
         'token':this.state.t,
-        
-        'phone':this.state.phone,
-       
-        'email':this.state.email,
+        'phone':this.state.phone
         
    };
    
