@@ -9,9 +9,6 @@ import red from '@material-ui/core/colors/red';
 import Cart from '@material-ui/icons/AddShoppingCart';
 import FastFood from '@material-ui/icons/Apps';
 import Face from '@material-ui/icons/Face';
-import {
-  Link
-  }   from 'react-router-dom';
 
 
 

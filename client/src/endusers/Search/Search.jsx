@@ -58,10 +58,6 @@ const styles = theme => ({
   typo:{
      textShadow: ' 0 0 20px #000000',
   },
-  btn: {
-    marginLeft: '10px',
-    marginTop: '3px'
-  },
 
   parallax: {
       //backgroundImage:`url(${"./logo2.png"})`,
@@ -319,8 +315,6 @@ class SimpleTabs extends React.Component {
  
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
-    //let filteredData = this.state.data;
     let filteredData = Object.values(this.state.data).map(
         (type) => {
             if(type.name.toLowerCase().indexOf(this.state.search.toLowerCase()) >= 0)
