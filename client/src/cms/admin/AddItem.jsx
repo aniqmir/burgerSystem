@@ -89,7 +89,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.name);
@@ -190,7 +189,6 @@ canBeSubmitted() {
     const errors = validate(this.state.name,this.state.desc,this.state.type,
       this.state.price,this.state.selectedFile);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-      const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     return (
       <div>
           <AppBar className={classes.appBar}>

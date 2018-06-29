@@ -93,8 +93,6 @@ class CustomizedInputs extends React.Component {
       let filterdData = Object.values(arr).map(
         data => {
           return data.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-          this.props.searchHandleTrue()
-          this.props.searchdata(data)
         }
         
       ) 
@@ -106,7 +104,7 @@ class CustomizedInputs extends React.Component {
             
 
     render() {
-      const { classes,data,filterText } = this.props;
+      const { classes } = this.props;
 
       return (
         <Paper className={classes.paperroot}>
