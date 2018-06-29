@@ -145,7 +145,8 @@ class SimpleTabs extends React.Component {
     },
 
       status:false,
-      checkoutDetails:[]
+      checkoutDetails:[],
+      fetchCheck:false
   };
 
 
@@ -154,13 +155,44 @@ class SimpleTabs extends React.Component {
   };
 
   checkoutDetailsHandle = (det) => {
-    let tempdetails = this.state.checkoutDetails;
-    tempdetails.push(det);
-      this.setState({
-        checkoutDetails: tempdetails
-      })
-      console.log(this.state.checkoutDetails);
-      localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+    let localStorageTemp = JSON.parse(localStorage.getItem('cartItems'));
+    if(localStorageTemp===null && this.state.fetchCheck === false)
+    {
+      
+      let tempdetails = this.state.checkoutDetails;
+      tempdetails.push(det);
+        this.setState({
+          checkoutDetails: tempdetails,
+          fetchCheck:true
+        })
+        console.log(this.state.checkoutDetails);
+        localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+    }
+    else if(localStorageTemp!=null && this.state.fetchCheck=== false){
+      let tempdetails = this.state.checkoutDetails;
+      tempdetails.push(det);
+      Object.values(localStorageTemp).map (
+        (key,index)=>{
+             tempdetails.push(key);
+        }
+      )
+        this.setState({
+          checkoutDetails: tempdetails,
+          fetchCheck:true
+        })
+        console.log(this.state.checkoutDetails);
+        localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+    }
+    else{
+      let tempdetails = this.state.checkoutDetails;
+      tempdetails.push(det);
+        this.setState({
+          checkoutDetails: tempdetails
+        })
+        console.log(this.state.checkoutDetails);
+        localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+    }
+
   }
 
   loadingHandle = () => {

@@ -57,7 +57,7 @@ class SimpleMediaCard extends React.Component {
     det.push(this.props.price);
     det.push(this.props.details);
     det.push(this.props.image);
-
+    det.push(this.props.status);
     console.log('buy')
     this.props.loadingHandle()
     this.props.checkoutDet(det)

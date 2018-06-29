@@ -10,7 +10,6 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import Divider from 'material-ui/Divider';
-
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -52,6 +51,12 @@ const theme2 = createMuiTheme({
           width:200,
         },
       },
+    },
+    typography: {
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        'Poppins'
+      ].join(','),
     },
   });
 
