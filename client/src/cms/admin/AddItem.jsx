@@ -12,6 +12,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import axios from 'axios';
+
 const styles = theme => ({
   button: {
     margin:theme.spacing.unit,
@@ -57,13 +58,13 @@ const dropdowntypes = [
     label: 'Can not be build' ,
   },
 ];
-function validate(name,desc,type,price,fi) {
+function validate(name,desc,type,price,selectedFile) {
   return {
     name: name.length === 0,
     desc: desc.length === 0,
     type: type.length === 0,
     price: price.length === 0,
-    fi: fi.length === 0,
+    selectedFile: selectedFile.length===0,
   };
 }
 class TextFields extends React.Component {
@@ -271,6 +272,7 @@ canBeSubmitted() {
       <input
       accept="image/*"
       className={classes.input}
+      //value= {this.state.selectedFile}
       id="raised-button-file"
       type="file"
       name="selectedFile"

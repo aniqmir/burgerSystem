@@ -10,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
-import { colors } from '@material-ui/core';
 
 const styles = {
   root: {
@@ -73,21 +72,6 @@ const styles = {
 
 class FullScreenDialog extends React.Component {
   state = {
-    items:{ 
-      cartitem1:{ name:'Big Mac',
-                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                  status:true,
-                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
-                  buildDetails: 'Yes',
-                  price : 900
-                },
-      burger6:  {  name:'Texas Jack',
-                details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                status:false,
-                image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-                price:500
-                },
-  },
     details:[],
     items1:{
     },
@@ -146,7 +130,11 @@ class FullScreenDialog extends React.Component {
 
     let displayData = () =>{
       if(this.state.items1===null){
+<<<<<<< HEAD
       return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
+=======
+      return (<Typography> Please Add some items in the cart. </Typography>);
+>>>>>>> 1e57fe5fc2d0955bc131bf807a17e99bac800f1e
       }
       else{
         return(              

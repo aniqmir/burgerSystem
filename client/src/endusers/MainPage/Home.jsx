@@ -19,11 +19,15 @@ import IconButton from '@material-ui/core/IconButton';
 const styles = {
   card: {
     maxWidth: 350,
+    opacity: '0.8',
+    filter: 'alpha(opacity=60)', 
+    
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    opacity:0.9
+    opacity: '0.8',
+    filter: 'alpha(opacity=60)', 
   },
   divPad: {
     paddingTop:'10%',

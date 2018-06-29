@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var itemSchema = new Schema(
   {
+    primaryKey: {type: String, required: true},
     item_name: {type: String, required: true, max: 100},
     item_desc: {type: String, required: true, max: 100},
     item_added_date: {type: Date},
