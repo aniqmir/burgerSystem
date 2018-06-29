@@ -8,13 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import BuildBurger from './BuildBurger';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Cancel from '@material-ui/icons/Cancel';
 import Tooltip from '@material-ui/core/Tooltip';
 import {Container} from 'mdbreact';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import IconButton from '@material-ui/core/IconButton';
-
 
 const styles = {
   card: {

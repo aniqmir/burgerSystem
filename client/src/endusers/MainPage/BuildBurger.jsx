@@ -96,8 +96,8 @@ class FullScreenDialog extends React.Component {
     
     this.setState({ [name]: event.target.checked, 
                   });
-                  var newArr = this.state.ingredients;
-                  newArr.push(name),
+    var newArr = this.state.ingredients;
+                  newArr.push(name)
     this.setState({
      ingredients:newArr,
                   })
