@@ -9,11 +9,7 @@ import {
     Link
   }   from 'react-router-dom';
 
-
-
-
-
-
+  
 const theme = createMuiTheme ({
  typography: {
   // Use the system font instead of the default Roboto font.

@@ -146,6 +146,8 @@ class FullScreenDialog extends React.Component {
     let itemDetail=[]
     itemDetail.push(this.props.name);
     itemDetail.push(this.props.price);
+    itemDetail.push(this.props.details);
+    itemDetail.push(this.props.image);
     itemDetail.push(ing);
     this.props.ingUpdate(itemDetail);
     this.setState({

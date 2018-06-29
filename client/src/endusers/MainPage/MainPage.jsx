@@ -1,24 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import brown from '@material-ui/core/colors/brown';
 import Home from './Home';
 import Grid from '@material-ui/core/Grid';
-import Slide from '@material-ui/core/Slide';
-import TextField from '@material-ui/core/TextField';
 import Grow from '@material-ui/core/Grow';
 import SearchImage from './SearchImage';
-import Cart from '../Cart/Cart';
-  import {
-    //BrowserRouter as 
-    Router,
-    Route,
-    Link
-    }   from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory';
 import Footer from '../Footer/Footer';
 
 
@@ -65,9 +52,9 @@ const styles = theme => ({
   parallax: {
       //backgroundImage:`url(${"./logo2.png"})`,
       backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
-      minHeight: '100vh',
+      minHeight: '100%',
       backgroundAttachment: 'fixed',
-      backgroundPosition: 'relative',
+       backgroundPosition: 'relative',
       backgroundRepeat: 'repeat',
       //backgroundSize: '100%',
       //background:'linear-gradient(-180deg, red, yellow)'
@@ -248,9 +235,9 @@ class SimpleTabs extends React.Component {
         
         </Grid> 
       </div>
-        <div>
+        
             <Footer/>
-        </div>
+        
       </div>
       </MuiThemeProvider>
     );
