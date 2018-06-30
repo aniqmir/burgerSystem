@@ -114,6 +114,8 @@ canBeSubmitted() {
   };
 
   changedesc = e => {
+    
+    if(!(this.state.desc.length>100))
     this.setState({
       desc: e.target.value
     });

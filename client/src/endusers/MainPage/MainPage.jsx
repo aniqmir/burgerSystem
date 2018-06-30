@@ -70,11 +70,12 @@ class SimpleTabs extends React.Component {
   }).then(res=>res.json())
   .then(res=>{
     console.log("we are in this function");
+    console.log(res);
     if(res){
       this.setState({
         data:res,
       })
-      console.log(res);
+      console.log(this.state.data)
       console.log("After function");
     };
   }
@@ -265,15 +266,12 @@ class SimpleTabs extends React.Component {
             return (
               <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
               <Grid item md={3} sm={6} xs={12}  key={index}>
-              <Home name={type.name}
-                    details={type.details} 
-                    status={type.status} 
-                    image={type.image}        
-                    price={type.price}             
+              <Home name={type.item_name}
+                    details={type.item_desc} 
+                    status={type.build} 
+                    image={type.imgPath}        
+                    price={type.item_price}             
                     buildDetails={type.buildDetails}
-                    loading={this.state.loading}
-                    loadingHandle={this.loadingHandle}
-                    cancelHandler={this.cancelHandle}
                     checkoutDet={this.checkoutDetailsHandle}
                     />
               </Grid>    

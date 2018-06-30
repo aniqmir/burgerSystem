@@ -18,16 +18,12 @@ import IconButton from '@material-ui/core/IconButton';
 
 const styles = {
   card: {
-    maxWidth: 350,
-    opacity: '0.8',
-    filter: 'alpha(opacity=60)', 
-    
+   maxWidth:'100%',
+   minWidth:'100%',
   },
   media: {
     height: 0,
     paddingTop: '56.25%', // 16:9
-    opacity: '0.8',
-    filter: 'alpha(opacity=60)', 
   },
   divPad: {
     paddingTop:'10%',
@@ -37,7 +33,7 @@ const styles = {
     display: 'flex'
   },
   cardcontent:{
-    opacity:0.5
+   
   },
   progress: {
     marginTop:'5px',
@@ -47,6 +43,7 @@ const styles = {
   margin: {
   },
   button: {
+    
     margin: '1px',
   },
 };
@@ -54,7 +51,7 @@ const styles = {
 
 class SimpleMediaCard extends React.Component {
 
-  
+
   buyClickHandler = () => {
     let det = []
     det.push(this.props.name);
@@ -63,21 +60,19 @@ class SimpleMediaCard extends React.Component {
     det.push(this.props.image);
     det.push(this.props.status);
     console.log('buy')
-    this.props.loadingHandle()
     this.props.checkoutDet(det)
   }
 
 
   cancelHandler = () => {
     console.log('cancel')
-    this.props.cancelHandler()
    
   }
  render() {
   const { classes } = this.props;
   let isstatusTrue = this.props.status;
   let loading = this.props.loading;
-
+  
   return (
     <Container>
     <div className={classes.divPad}>
@@ -88,16 +83,16 @@ class SimpleMediaCard extends React.Component {
           image={this.props.image}
           title="Burger"
         />
-        <div className={classes.cardcontent}>
-        <CardContent> 
+
+        <CardContent className={classes.cardcontent} > 
           <Typography gutterBottom variant="headline" component="h2" color="secondary">
             {this.props.name}
           </Typography>
-          <Typography component="p" color='secondary'>
+          <Typography component="caption" color='secondary'>
           {this.props.details}
           </Typography>
         </CardContent>
-        </div>
+        
         {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>
