@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
@@ -89,7 +88,7 @@ class FullScreenDialog extends React.Component {
     this.setState({ [name]: event.target.checked, 
                   });
                   var newArr = this.state.ingredients;
-                  newArr.push(name),
+                  newArr.push(name)
     this.setState({
      ingredients:newArr
                   })
@@ -130,7 +129,11 @@ class FullScreenDialog extends React.Component {
 
     let displayData = () =>{
       if(this.state.items1===null){
+<<<<<<< HEAD
       return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
+=======
+      return (<Typography> Please Add some items in the cart. </Typography>);
+>>>>>>> 28a09c046fe8bb3dd950d5202f43320f26be6bd1
       }
       else{
         return(              

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomRoutes from './endusers/Routes/Routes';
 
-import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
   typography: {

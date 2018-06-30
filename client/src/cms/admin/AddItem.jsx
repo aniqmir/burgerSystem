@@ -1,13 +1,10 @@
  import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, {  CardContent } from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
@@ -92,7 +89,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.name);
@@ -195,7 +191,6 @@ canBeSubmitted() {
     const errors = validate(this.state.name,this.state.desc,this.state.type,
       this.state.price,this.state.selectedFile);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-      const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     return (
       <div>
           <AppBar className={classes.appBar}>

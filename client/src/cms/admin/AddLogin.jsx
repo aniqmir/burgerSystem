@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
 
 const styles = theme => ({
@@ -67,7 +64,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.fname,this.state.password,this.state.lname);

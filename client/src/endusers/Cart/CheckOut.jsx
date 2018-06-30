@@ -66,7 +66,6 @@ class CheckOut extends React.Component {
    
   
   render() {
-    const { classes } = this.props;
     return (
       <div>
         {this.props.state}

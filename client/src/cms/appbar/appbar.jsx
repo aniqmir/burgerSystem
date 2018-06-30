@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
 import AppBar from 'material-ui/AppBar';
 import Typography from 'material-ui/Typography';
 import Toolbar from 'material-ui/Toolbar';

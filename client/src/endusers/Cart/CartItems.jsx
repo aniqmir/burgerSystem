@@ -85,7 +85,7 @@ class CartItems extends React.Component {
     
     decrement = () =>{
         console.log(this.state.quantity);
-        if(this.state.quantity!=0){
+        if(this.state.quantity!==0){
             this.setState({
                 quantity:this.state.quantity-1
             });
