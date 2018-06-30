@@ -189,17 +189,16 @@ class SimpleTabs extends React.Component {
     else if(localStorageTemp!=null && this.state.fetchCheck=== false){
       let tempdetails = this.state.checkoutDetails;
       tempdetails.push(det);
-      Object.values(localStorageTemp).map (
-        (key,index)=>{
-             tempdetails.push(key);
-        }
-      )
-        this.setState({
-          checkoutDetails: tempdetails,
-          fetchCheck:true
-        })
-        console.log(this.state.checkoutDetails);
-        localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+
+      // Pure ES06 magic in the next line
+      
+      tempdetails.push(...localStorageTemp);
+      this.setState({
+        checkoutDetails: tempdetails,
+        fetchCheck:true
+      })
+      console.log(this.state.checkoutDetails);
+      localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
     }
     else{
       let tempdetails = this.state.checkoutDetails;
