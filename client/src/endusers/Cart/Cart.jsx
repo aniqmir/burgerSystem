@@ -80,21 +80,23 @@ class FullScreenDialog extends React.Component {
     }
 
   handleChange = name => event => {
-    
     this.setState({ [name]: event.target.checked});
     var newArr = this.state.ingredients;
     newArr.push(name)
     this.setState({
        ingredients:newArr
     })
-    console.log(this.state.ingredients)
-
+    console.log(this.state.ingredients);
   };
 
 
   //updating cart new function
   updateCart=(itemID, quantity)=>{
-    console.log(_.find(this.state.items1,o=> o===itemID));
+    let  temp;
+    Object.values(this.state.items1).map((type,index) => {
+      type[5]===itemID ? temp=type: temp=null;
+    });
+    console.log("Item : ",temp);
     console.log("Quantity : ",quantity);
   }
 
@@ -111,10 +113,7 @@ class FullScreenDialog extends React.Component {
 
 
   render() {
-
     const { classes } = this.props;
-
-
     let displayData = () =>{
       if(this.state.items1===null){
       return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
