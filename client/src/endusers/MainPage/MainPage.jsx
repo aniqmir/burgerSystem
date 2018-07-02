@@ -263,7 +263,7 @@ class SimpleTabs extends React.Component {
             //() => this.setStatus(type.status,type.loading)    
             return (
               <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
-              <Grid item md={3} sm={6} xs={12}  key={index}>
+              <Grid item lg={3} md={4} sm={6} xs={12}  key={index}>
               <Home name={type.item_name}
                     details={type.item_desc} 
                     status={type.build} 

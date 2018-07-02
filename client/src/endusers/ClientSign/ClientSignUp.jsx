@@ -18,6 +18,9 @@ import Accessibility from '@material-ui/icons/Accessibility';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Slide from '@material-ui/core/Slide';
 import Footer from '../Footer/Footer'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = {
   card: {
@@ -117,6 +120,8 @@ transboxLeft : {
             contact:'',
             creditCard:'',
             bankName:'',
+            open:false,
+            msg:'User Added',
             
         }
     }
@@ -125,6 +130,13 @@ transboxLeft : {
        console.log('signup handle')
    }
   
+   handleClose = () => {
+    this.setState({
+      open:false,
+      msg:'User Added'
+    })
+  };
+
    changeName = e => {
     this.setState({
       name: e.target.value
@@ -185,6 +197,7 @@ enterDetails = () => {
 };
 
 
+
 var formBody = [];
 for (var property in details) {
   var encodedKey = encodeURIComponent(property);
@@ -204,6 +217,20 @@ fetch('/api/user/signup', {
   .then(res=>res.json())
   .then(res=>{
     if(res){
+    if(res.success===false)
+    {
+        this.setState({
+          open:true,
+          msg:res.msg,
+        })
+    }
+    else {
+      this.setState({
+        open:true,
+        msg:res.msg
+      })
+      this.props.history.push('./signin')
+    }
     console.log(res);
     };
   }
@@ -392,6 +419,33 @@ fetch('/api/user/signup', {
                 <div className={classes.footer}>
                    <Footer/>
                 </div>
+                <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.msg}</span>}
+          action={[
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+              UNDO
+            </Button>,
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
            </div>
           );
         }

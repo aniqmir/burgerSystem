@@ -129,11 +129,7 @@ class FullScreenDialog extends React.Component {
 
     let displayData = () =>{
       if(this.state.items1===null){
-<<<<<<< HEAD
       return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
-=======
-      return (<Typography> Please Add some items in the cart. </Typography>);
->>>>>>> 28a09c046fe8bb3dd950d5202f43320f26be6bd1
       }
       else{
         return(              
