@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
-
+import _ from 'lodash';
 const styles = {
   root: {
     width: '100%',
@@ -93,9 +93,8 @@ class FullScreenDialog extends React.Component {
 
 
   //updating cart new function
-
   updateCart=(itemID, quantity)=>{
-    
+    console.log(_.find(this.state.items1,o=> o===itemID));
   }
 
 
@@ -106,6 +105,7 @@ class FullScreenDialog extends React.Component {
     this.setState({
       items1:tempSessionCart
     });
+    console.log(this.state.items1);
   }
 
 
@@ -135,7 +135,8 @@ class FullScreenDialog extends React.Component {
                               details={type[2]} 
                               status={type[4]} 
                               image={type[3]}        
-                              price={type[1]}             
+                              price={type[1]}
+                              itemId={type[5]}             
                               />
                   </Paper>
                   </div>
