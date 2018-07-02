@@ -95,6 +95,7 @@ class FullScreenDialog extends React.Component {
   //updating cart new function
   updateCart=(itemID, quantity)=>{
     console.log(_.find(this.state.items1,o=> o===itemID));
+    console.log("Quantity : ",quantity);
   }
 
 
@@ -136,7 +137,8 @@ class FullScreenDialog extends React.Component {
                               status={type[4]} 
                               image={type[3]}        
                               price={type[1]}
-                              itemId={type[5]}             
+                              itemId={type[5]}
+                              updateCart={this.updateCart}         
                               />
                   </Paper>
                   </div>
