@@ -75,23 +75,18 @@ class FullScreenDialog extends React.Component {
     items1:{
     },
   }
-   
-
-  
-
   proceedToCheckout = () => {
     this.props.history.push({pathname: '/checkout'});
     }
 
   handleChange = name => event => {
     
-    this.setState({ [name]: event.target.checked, 
-                  });
-                  var newArr = this.state.ingredients;
-                  newArr.push(name)
+    this.setState({ [name]: event.target.checked});
+    var newArr = this.state.ingredients;
+    newArr.push(name)
     this.setState({
-     ingredients:newArr
-                  })
+       ingredients:newArr
+    })
     console.log(this.state.ingredients)
 
   };
@@ -100,14 +95,7 @@ class FullScreenDialog extends React.Component {
   //updating cart new function
 
   updateCart=(itemID, quantity)=>{
-    for (let i = 0; i<this.state.items.length;i++){
-      console.log("from cart",i);
-      let item=this.state.items[i];
-      for(let j=0;j<item.length;j++){
-        console.log(item[j]);
-      }
-
-    }
+    
   }
 
 
@@ -117,8 +105,7 @@ class FullScreenDialog extends React.Component {
     console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
     this.setState({
       items1:tempSessionCart
-    })
-    console.log(this.state.items1)
+    });
   }
 
 
@@ -181,8 +168,7 @@ class FullScreenDialog extends React.Component {
              <Button color="inherit" onClick={this.proceedToCheckout}>
                 Proceed to checkout
               </Button>
-           </Paper> {/* end of Main Paper */}
-        
+           </Paper>
       </div>
     );
   }
