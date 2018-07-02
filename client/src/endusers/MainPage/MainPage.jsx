@@ -191,8 +191,8 @@ class SimpleTabs extends React.Component {
       tempdetails.push(det);
 
       // Pure ES06 magic in the next line
-      
       tempdetails.push(...localStorageTemp);
+
       this.setState({
         checkoutDetails: tempdetails,
         fetchCheck:true
