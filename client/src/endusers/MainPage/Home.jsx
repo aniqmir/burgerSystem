@@ -11,10 +11,12 @@ import BuildBurger from './BuildBurger';
 import Tooltip from '@material-ui/core/Tooltip';
 import {Container} from 'mdbreact';
 
+
 const styles = {
   card: {
-   maxWidth:'100%',
-   minWidth:'100%',
+   width:'100%',
+   height:'80%',
+   overflow:'hidden'
   },
   media: {
     height: 0,
@@ -25,23 +27,20 @@ const styles = {
     //paddingLeft: '5%',
     //paddingRight: '5%',
     paddingBottom:'5%',
-    display: 'flex'
+    display: 'flex',
+    
   },
-  cardcontent:{
-   
-  },
-  progress: {
-    marginTop:'5px',
-    marginBottom:'5px',
-    marginLeft:'20%'
-  },
-  margin: {
+  cardcontent: {
+    width:'100%',
+    height:'100px',
+    overflowY:'scroll',
+    overflowX:'hidden'
   },
   button: {
-    
     margin: '1px',
   },
 };
+
 
 
 class SimpleMediaCard extends React.Component {
@@ -63,12 +62,15 @@ class SimpleMediaCard extends React.Component {
     console.log('cancel')
    
   }
+
+
  render() {
   const { classes } = this.props;
   let isstatusTrue = this.props.status;
- 
+  
+
   return (
-    <Container>
+    <Container >
     <div className={classes.divPad}>
          <Tooltip  title={this.props.price} placement="right-start">
       <Card className={classes.card} raised={true}>  
@@ -78,10 +80,12 @@ class SimpleMediaCard extends React.Component {
           title="Burger"
         />
 
-        <CardContent className={classes.cardcontent} > 
-          <Typography gutterBottom variant="headline" component="h2" color="secondary">
+        <CardContent> 
+          <Typography variant="headline" component="h2" color="secondary">
             {this.props.name}
           </Typography>
+          </CardContent>
+        <CardContent className={classes.cardcontent}>
           <Typography component="caption" color='secondary'>
           {this.props.details}
           </Typography>
@@ -112,6 +116,7 @@ class SimpleMediaCard extends React.Component {
       </Card>
       </Tooltip>
     </div>
+    
     </Container>
   );
 

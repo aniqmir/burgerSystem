@@ -14,7 +14,7 @@ const styles = theme => ({
     paddingTop:'15%'
   },
   typo:{
-     textShadow: ' 0 0 20px #000000',
+    textShadow: '10px 10px 20px #A81D1D',
   }
 });
 
@@ -30,7 +30,7 @@ class PaperSheet extends React.Component {
            image="https://static.olocdn.net/menu/applebees/c667aa8060427981c4a8d79502fda788.jpg">
            <CardContent >
            <Typography align='center'  color='primary' gutterBottom='true' variant='display1' className={classes.typo} >
-              <strong>  BUILD WHAT YOU WANT TO EAT </strong>
+              <strong> BUILD WHAT YOU WANT TO EAT </strong>
               </Typography>
            <Search data={this.props.data} />
            </CardContent>
