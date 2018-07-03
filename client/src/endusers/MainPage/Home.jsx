@@ -53,7 +53,8 @@ class SimpleMediaCard extends React.Component {
     det.push(this.props.details);
     det.push(this.props.image);
     det.push(this.props.status);
-    console.log('buy')
+    det.push(this.props.itemId);
+    det.push(1);
     this.props.checkoutDet(det)
   }
 
@@ -99,14 +100,7 @@ class SimpleMediaCard extends React.Component {
             {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
-         
-        /*: loading ? (
-          <CardActions className={classes.cardactions}>
-            <Typography component="p" color='secondary'>Your Order is getting Ready</Typography>
-            <Button size ="small" variant="flat" color="secondary" onClick={this.cancelHandler}><Cancel/></Button>
-            <CircularProgress color="secondary" className={classes.progress} size={50} />
-          </CardActions>
-        )*/
+
         :  (
            <CardActions className={classes.cardactions}>
              (<Button size="small" variant="raised"  color="secondary" onClick={this.buyClickHandler}>Buy</Button>)

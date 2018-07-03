@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
-
+import _ from 'lodash';
 const styles = {
   root: {
     width: '100%',
@@ -70,65 +70,59 @@ const styles = {
 };
 
 class FullScreenDialog extends React.Component {
-  state = {
-    details:[],
-    items1:{
-    },
-  }
-   
-
-  
+    state = {
+      items1:{},
+      totalPrice:0
+    }
 
   
 
   handleChange = name => event => {
-    
-    this.setState({ [name]: event.target.checked, 
-                  });
-                  var newArr = this.state.ingredients;
-                  newArr.push(name)
+    this.setState({ [name]: event.target.checked});
+    var newArr = this.state.ingredients;
+    newArr.push(name)
     this.setState({
-     ingredients:newArr
-                  })
-    console.log(this.state.ingredients)
-
+       ingredients:newArr
+    })
+    console.log(this.state.ingredients);
   };
 
 
   //updating cart new function
-
   updateCart=(itemID, quantity)=>{
-    for (let i = 0; i<this.state.items.length;i++){
-      console.log("from cart",i);
-      let item=this.state.items[i];
-      for(let j=0;j<item.length;j++){
-        console.log(item[j]);
-      }
-
-    }
+    Object.values(this.state.items1).map((type,index) => {
+      if(type[5]===itemID){
+        type[6]=quantity;
+       }
+    });
+    this.calculateTotal();
   }
 
+  componentWillMount(){
+    let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
+    this.setState({
+      items1:tempSessionCart
+    });
+  }
 
   //function to get values
   componentDidMount(){
-    let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
-    console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
-    this.setState({
-      items1:tempSessionCart
-    })
-    console.log(this.state.items1)
+    this.calculateTotal()
   }
 
-  proceedToCheckout = () => {
-    this.props.history.push('./checkout');
-    }
-  
+  //Function to calculate total values
+  calculateTotal=()=>{
+    let total = 0;
+    Object.values(this.state.items1).map((type,index) => {
+            total+=type[6] * parseInt(type[1]);
+      });
+    this.setState({
+      totalPrice:total
+    });
+  }
 
   render() {
-
     const { classes } = this.props;
-
-
     let displayData = () =>{
       if(this.state.items1===null){
       return (<Typography variant="display2" color="error"> Please Select Some Items First </Typography>);
@@ -139,9 +133,6 @@ class FullScreenDialog extends React.Component {
               <Typography className='text text-black' gutterBottom variant="display2" component="h2">
                 Complete Your Order
                 </Typography>
-                <Typography className='text' gutterBottom variant="display3">
-                Please verify the order details and proceed to checkout.
-                </Typography>
          { Object.values(this.state.items1).map((type,index) => {  
             return (
               <div>
@@ -150,7 +141,9 @@ class FullScreenDialog extends React.Component {
                               details={type[2]} 
                               status={type[4]} 
                               image={type[3]}        
-                              price={type[1]}             
+                              price={type[1]}
+                              itemId={type[5]}
+                              updateCart={this.updateCart}         
                               />
                   </Paper>
                   </div>
@@ -173,6 +166,7 @@ class FullScreenDialog extends React.Component {
                 <List className={classes.root}>
                     {displayData()}
                 </List>
+                <h1>Your Total is : {this.state.totalPrice}</h1>
                 </CardContent>
                 <CardActions>
                 </CardActions>
@@ -180,9 +174,10 @@ class FullScreenDialog extends React.Component {
                 </Grid>
 
              </Grid>
-             <Button onClick={this.proceedToCheckout}>Proceed to Checkout</Button>
-           </Paper> {/* end of Main Paper */}
-        
+             <Button color="inherit" onClick={this.proceedToCheckout}>
+                Proceed to checkout
+              </Button>
+           </Paper>
       </div>
     );
   }

@@ -79,16 +79,16 @@ class CartItems extends React.Component {
             this.setState({
                 quantity:this.state.quantity+1
             });
-          
+          this.props.updateCart(this.props.itemId, this.state.quantity+1);
         }
-    }
-    
-    decrement = () =>{
-        console.log(this.state.quantity);
+      }
+      
+      decrement = () =>{
         if(this.state.quantity!==0){
-            this.setState({
-                quantity:this.state.quantity-1
-            });
+          this.setState({
+            quantity:this.state.quantity-1
+          });
+          this.props.updateCart(this.props.itemId, this.state.quantity-1);
         }
     }
 
