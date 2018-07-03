@@ -30,7 +30,8 @@ exports.UserSignUP= function(req, res)
           if (err) {
             return res.json({success: false, msg: 'This email has already been registered.'});
           }
-          req.session.user=newUser._id;
+          req.session.userid=newUser._id;
+          req.session.username=newUser._name;
           res.json({success: true, msg: 'Successful created new user.'});
           
         });
@@ -51,8 +52,8 @@ bcrypt.compare(req.body.password, user.password, function(err, isMatch) {
   if (err) { return res.json(err); }
   // Password did not match
   if (!isMatch) { return res.json({msg:'invalid Password'}) }
-  if(req.session.user==null){req.session.user=user._id;}
-  res.json({msg:'Login Complete',useris:req.session.user});
+  if(req.session.userid==null && req.session.username==null ){req.session.userid=user._id;  req.session.username=user.name;}
+  res.json({msg:'Login Complete',userid:req.session.userid,username:user.name});
 });
 });
 };

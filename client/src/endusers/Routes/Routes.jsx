@@ -22,7 +22,7 @@ import Search from '../Search/Search';
 const customHistory = createBrowserHistory();
 
 const CustomRoutes = () => (
-    <Router history={customHistory}>
+    <Router history={customHistory} >
         <div>
             <Navbar history={customHistory} />
             <Route exact path='/' component={LandingPage}/>
@@ -32,7 +32,7 @@ const CustomRoutes = () => (
             <Route path='/admin'  component={AdminDrawer}/>
             <Route path='/additem'  component={Additem}/>
             <Route path='/cms'  component={Appbar} />
-            <Route path='/signin' component={ClientSignIn}/>
+            <Route path='/signin' component={ClientSignIn} name={'Sign In'}/>
             <Route path='/signup' component={ClientSignUp}/>
             <Route path='/search' component={Search}/>
         </div>

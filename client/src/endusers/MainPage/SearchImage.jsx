@@ -11,6 +11,8 @@ const styles = theme => ({
     maxWidth:'100%'
   },
   media: {
+    opacity: '0.9',
+    filter: 'alpha(opacity=50)',
     paddingTop:'15%'
   },
   typo:{

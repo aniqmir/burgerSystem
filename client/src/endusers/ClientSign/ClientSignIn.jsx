@@ -16,6 +16,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import Slide from '@material-ui/core/Slide';
 import Footer from '../Footer/Footer';
 
+
 const styles = {
   card: {
     opacity: '0.8',
@@ -62,6 +63,7 @@ const styles = {
     paddingTop:"5%"
   }
 };
+ 
 
  class SimpleMediaCard extends React.Component {
 
@@ -70,6 +72,9 @@ const styles = {
         this.state = {
             email:'',
             password:'',
+            name:this.props.name,
+            id:'',
+            
         }
     }
 
@@ -105,14 +110,30 @@ const styles = {
   }).then(res=>res.json())
   .then(res=>{
     console.log("we are in this function");
-    if(res){
-     console.log(res);
-    };
+    console.log(res);
+    if(res.msg==='Login Complete'){
+      this.setState({
+        name:res.username,
+        id:res.userid,
+      })
+      let loginDetails = [];
+      loginDetails.push(this.state.name);
+      loginDetails.push(this.state.id);
+      sessionStorage.setItem('LoginDetails',JSON.stringify(loginDetails));
+      this.props.history.push('./home')
+      window.location.reload();
+     console.log(loginDetails);
+     
+    }
+    else{
+        console.log('Error')
+    }
   }
   );
     this.setState({
         email:'',
-        password:''
+        password:'',
+       // name:this.props.name
     })
    }
 
@@ -137,8 +158,10 @@ const styles = {
     });
 };
 
+
     render() {
         const { classes } = this.props;
+        
         return (
             <div className={classes.divBackground}>
             <div className={classes.divMargin}>

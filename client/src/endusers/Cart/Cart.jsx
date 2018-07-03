@@ -79,9 +79,7 @@ class FullScreenDialog extends React.Component {
 
   
 
-  proceedToCheckout = () => {
-    this.props.history.push({pathname: '/checkout'});
-    }
+  
 
   handleChange = name => event => {
     
@@ -121,6 +119,10 @@ class FullScreenDialog extends React.Component {
     console.log(this.state.items1)
   }
 
+  proceedToCheckout = () => {
+    this.props.history.push('./checkout');
+    }
+  
 
   render() {
 
@@ -178,9 +180,7 @@ class FullScreenDialog extends React.Component {
                 </Grid>
 
              </Grid>
-             <Button color="inherit" onClick={this.proceedToCheckout}>
-                Proceed to checkout
-              </Button>
+             <Button onClick={this.proceedToCheckout}>Proceed to Checkout</Button>
            </Paper> {/* end of Main Paper */}
         
       </div>

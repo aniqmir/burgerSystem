@@ -176,7 +176,7 @@ class FullScreenDialog extends React.Component {
           TransitionComponent={Transition}
         >
         <Grid container spacing={12}>
-          <Grid item md={4} sm={6}>
+          <Grid item md={4} sm={12} xs={12}>
         <Card className={classes.cardLeft}>
         <CardMedia
           className={classes.media}
@@ -186,7 +186,7 @@ class FullScreenDialog extends React.Component {
           </Card>
           </Grid>
 
-          <Grid item md={8} sm={6}>
+          <Grid item md={8} sm={12} xs={12}>
           <Card className={classes.cardRight}>
           <CardContent>
           <Typography className={classes.text} gutterBottom variant="display2" component="h2">
@@ -198,7 +198,7 @@ class FullScreenDialog extends React.Component {
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
           <Grid container spacing={12}>
-            <Grid item md={6}>
+            <Grid item md={6} sm={12} xs={12}>
             <ListItem >
            <Typography>Chicken</Typography><Checkbox
                 checked={this.state.chicken}

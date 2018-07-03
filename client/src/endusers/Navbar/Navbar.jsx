@@ -9,7 +9,7 @@ import red from '@material-ui/core/colors/red';
 import Cart from '@material-ui/icons/AddShoppingCart';
 import FastFood from '@material-ui/icons/Apps';
 import Face from '@material-ui/icons/Face';
-
+//import {Link} from 'react-router-dom';
 
 
 const theme = createMuiTheme ({
@@ -83,6 +83,61 @@ operationSignIn = () => {
 operationSearch = () => {
   this.props.history.push('/search');
 }
+
+operationLogout = () => {
+  console.log('logout')
+  sessionStorage.setItem("LoginDetails",null);
+  this.setState({
+    username:'Sign In',
+    check:false,
+    logout:''
+  })
+}
+
+state = {
+  username : 'Sign In',
+  check : false,
+  logout:''
+}
+
+componentDidMount() {
+ let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
+ console.log(loginDetails);
+ if(loginDetails != null) {
+ this.setState({
+      username : loginDetails[0],
+      check:true,
+      logout:'Log Out'
+ })
+}
+ else {
+   this.setState({
+     username:'Sign IN',
+     check:false,
+     logout:''
+   })
+ }
+}
+
+componentWillUnmount() {
+  let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
+  console.log(loginDetails);
+  if(loginDetails != null) {
+  this.setState({
+       username : loginDetails[0],
+       check:true,
+       logout:'Log Out'
+  })
+ }
+  else {
+    this.setState({
+      username:'Sign IN',
+      check:false,
+      logout:''
+    })
+  }
+ }
+
 render() {
     const { classes } = this.props;
     return (
@@ -94,8 +149,11 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}></Button>
               </Typography>
               <Button color="inherit" onClick={this.operationHome.bind(this)}><FastFood/>&nbsp;Items</Button>
-             <Button color="inherit" onClick={this.operationSignIn.bind(this)}><Face/>&nbsp;Sign In</Button>
+            <Button color="inherit" onClick={this.operationSignIn.bind(this)} disabled={this.state.check}><Face/>&nbsp; {this.state.username}</Button>
+           {/*<Link to={ {pathname:'signin', state:{func:true}}}><Face/>&nbsp; {this.state.username}</Link>*/} 
+             <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
              <Button color="inherit"onClick={this.operationCart.bind(this)}><Cart/></Button>
+             
              {/*<Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>*/}  
             
             </Toolbar>
