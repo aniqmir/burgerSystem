@@ -72,9 +72,8 @@ class SimpleTabs extends React.Component {
     if(res){
       this.setState({
         data:res,
-      })
-      console.log("Data Returned from API :",this.state.data)
-    };
+      });
+    }
   }
   );
   }
