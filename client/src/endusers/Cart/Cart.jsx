@@ -70,12 +70,11 @@ const styles = {
 };
 
 class FullScreenDialog extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      items1:{}
+    state = {
+      items1:{},
+      totalPrice:0
     }
-  }
+
   proceedToCheckout = () => {
     this.props.history.push({pathname: '/checkout'});
     }
@@ -93,28 +92,35 @@ class FullScreenDialog extends React.Component {
 
   //updating cart new function
   updateCart=(itemID, quantity)=>{
-    let  temp;
     Object.values(this.state.items1).map((type,index) => {
       if(type[5]===itemID){
         type[6]=quantity;
-        temp=type;
-      }
+       }
     });
-    console.log("Item : ",temp);
+    this.calculateTotal();
   }
 
-
-  //function to get values
-  componentDidMount(){
+  componentWillMount(){
     let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
     this.setState({
       items1:tempSessionCart
     });
   }
 
+  //function to get values
+  componentDidMount(){
+    this.calculateTotal()
+  }
+
   //Function to calculate total values
   calculateTotal=()=>{
-    return "Okay";
+    let total = 0;
+    Object.values(this.state.items1).map((type,index) => {
+            total+=type[6] * parseInt(type[1]);
+      });
+    this.setState({
+      totalPrice:total
+    });
   }
 
   render() {
@@ -162,7 +168,7 @@ class FullScreenDialog extends React.Component {
                 <List className={classes.root}>
                     {displayData()}
                 </List>
-                <h1>Your Total is : {this.calculateTotal()}</h1>
+                <h1>Your Total is : {this.state.totalPrice}</h1>
                 </CardContent>
                 <CardActions>
                 </CardActions>
