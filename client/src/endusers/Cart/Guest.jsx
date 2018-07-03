@@ -2,19 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
 import Label from '@material-ui/icons/Label';
-import Check from '@material-ui/icons/Check';
-import Face from '@material-ui/icons/Face';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import Slide from '@material-ui/core/Slide';
-import Footer from '../Footer/Footer';
 import { CardHeader, Typography } from 'material-ui';
 import {Link} from 'react-router-dom';
 
@@ -174,7 +168,7 @@ const styles = {
 
   componentWillMount() {
     let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
-    const classes = this.props;
+    const { classes } = this.props;
 
     if(loginDetails===null){
         this.setState({
@@ -234,7 +228,11 @@ const styles = {
           }}     
         />
         </CardContent>
-        <CardContent><Link to='/signin'>Already a member?</Link></CardContent>
+        <CardContent>
+          <Link to='/signin'>Already a member?</Link>
+          <Button>Confirm Order</Button>
+          </CardContent>
+        
         </Card>
         </Grid>
         <Grid item md={6}>
@@ -286,6 +284,22 @@ const styles = {
                 <Grid item md={12}>
                     <Card>
                     <Typography variant='display1' color='primary'>Logged in As {loginDetails[0].toUpperCase()}</Typography>
+                    <TextField
+                      id="Address"
+                      label="Address"
+                      placeholder="Enter  another Address(Optional)"
+                      className={classes.textField}
+                      value={this.state.address}
+                      margin="normal"
+                      onChange={e => this.changeAddress(e)}
+                      InputProps={{
+                        startAdornment: (
+                           <InputAdornment position="start">
+                               <Label />
+                            </InputAdornment>
+                          ),
+                        }}     
+                      />
                     <Button>Confirm Order</Button>
                     </Card>
                 </Grid>

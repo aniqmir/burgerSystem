@@ -120,8 +120,16 @@ const styles = {
       loginDetails.push(this.state.name);
       loginDetails.push(this.state.id);
       sessionStorage.setItem('LoginDetails',JSON.stringify(loginDetails));
-      this.props.history.push('./home')
+      let check = JSON.parse(localStorage.getItem('cartItems'))
+      if(check===null)
+      {this.props.history.push('/home');
       window.location.reload();
+      }
+      else if(check!=null){
+        this.props.history.push('/checkout');
+        window.location.reload();
+      }
+      
      console.log(loginDetails);
      
     }
@@ -135,11 +143,6 @@ const styles = {
         password:'',
        // name:this.props.name
     })
-   }
-
-
-   signUpHandle = () => {
-       console.log('signup handle')
    }
 
    operationSignUp = () => {

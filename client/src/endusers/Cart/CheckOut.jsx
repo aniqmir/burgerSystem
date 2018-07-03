@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Table from './CheckoutTable';
 import Guest from './Guest';
 import Grid from '@material-ui/core/Grid';
-
+import Footer from '../Footer/Footer';
 const styles = {
   root: {
     width: '100%',
@@ -62,7 +62,9 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingTop:"10%"
-  }
+  },
+ 
+  
 };
 
 
@@ -88,6 +90,7 @@ class CheckOut extends React.Component {
         <Guest/>
         </Grid>
         </Grid>
+         <Footer/>
       </div>
     );
   }

@@ -7,7 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 import SearchImage from './SearchImage';
 import Footer from '../Footer/Footer';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme ({
     palette: {
@@ -82,13 +85,23 @@ class SimpleTabs extends React.Component {
     data:{},
     status:false,
     checkoutDetails:[],
-    fetchCheck:false
+    fetchCheck:false,
+    open:false,
   };
 
 
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      this.setState({ open: false })
+    }
+
+    this.setState({ open: false });
+  };
+
 
   checkoutDetailsHandle = (det) => {
     let localStorageTemp = JSON.parse(localStorage.getItem('cartItems'));
@@ -99,7 +112,8 @@ class SimpleTabs extends React.Component {
       tempdetails.push(det);
         this.setState({
           checkoutDetails: tempdetails,
-          fetchCheck:true
+          fetchCheck:true,
+          open:true
         })
         console.log(this.state.checkoutDetails);
         localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
@@ -113,7 +127,8 @@ class SimpleTabs extends React.Component {
 
       this.setState({
         checkoutDetails: tempdetails,
-        fetchCheck:true
+        fetchCheck:true,
+        open:true
       })
       console.log(this.state.checkoutDetails);
       localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
@@ -122,7 +137,8 @@ class SimpleTabs extends React.Component {
       let tempdetails = this.state.checkoutDetails;
       tempdetails.push(det);
         this.setState({
-          checkoutDetails: tempdetails
+          checkoutDetails: tempdetails,
+          open:true
         })
         console.log(this.state.checkoutDetails);
         localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
@@ -190,6 +206,7 @@ class SimpleTabs extends React.Component {
                     price={type.item_price}             
                     buildDetails={type.buildDetails}
                     checkoutDet={this.checkoutDetailsHandle}
+                    ingredients={type.ingredients}
                     />
               </Grid>    
               </Grow>
@@ -201,7 +218,33 @@ class SimpleTabs extends React.Component {
       </div>
         
             <Footer/>
-        
+            <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">Added to CART</span>}
+          action={[
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+              UNDO
+            </Button>,
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
       </MuiThemeProvider>
     );

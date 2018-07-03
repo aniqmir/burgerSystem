@@ -44,7 +44,7 @@ const styles = {
 
 
 class SimpleMediaCard extends React.Component {
- 
+
 
   buyClickHandler = () => {
     let det = []
@@ -97,7 +97,7 @@ class SimpleMediaCard extends React.Component {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>
             <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler} >Buy</Button>
-            <BuildBurger   details={this.props.details} buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price} image={this.props.image}/>
+            <BuildBurger   details={this.props.details} buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price} image={this.props.image} ingredients={this.props.ingredients}/>
             {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
