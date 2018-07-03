@@ -70,10 +70,11 @@ const styles = {
 };
 
 class FullScreenDialog extends React.Component {
-  state = {
-    details:[],
-    items1:{
-    },
+  constructor(props){
+    super(props);
+    this.state = {
+      items1:{}
+    }
   }
   proceedToCheckout = () => {
     this.props.history.push({pathname: '/checkout'});
@@ -94,23 +95,27 @@ class FullScreenDialog extends React.Component {
   updateCart=(itemID, quantity)=>{
     let  temp;
     Object.values(this.state.items1).map((type,index) => {
-      type[5]===itemID ? temp=type: temp=null;
+      if(type[5]===itemID){
+        type[6]=quantity;
+        temp=type;
+      }
     });
     console.log("Item : ",temp);
-    console.log("Quantity : ",quantity);
   }
 
 
   //function to get values
   componentDidMount(){
     let tempSessionCart = JSON.parse(localStorage.getItem('cartItems'));
-    console.log("Items from load items function : ",JSON.parse(localStorage.getItem('cartItems')));
     this.setState({
       items1:tempSessionCart
     });
-    console.log(this.state.items1);
   }
 
+  //Function to calculate total values
+  calculateTotal=()=>{
+    return "Okay";
+  }
 
   render() {
     const { classes } = this.props;
@@ -123,9 +128,6 @@ class FullScreenDialog extends React.Component {
           <div>
               <Typography className='text text-black' gutterBottom variant="display2" component="h2">
                 Complete Your Order
-                </Typography>
-                <Typography className='text' gutterBottom variant="display3">
-                Please verify the order details and proceed to checkout.
                 </Typography>
          { Object.values(this.state.items1).map((type,index) => {  
             return (
@@ -160,6 +162,7 @@ class FullScreenDialog extends React.Component {
                 <List className={classes.root}>
                     {displayData()}
                 </List>
+                <h1>Your Total is : {this.calculateTotal()}</h1>
                 </CardContent>
                 <CardActions>
                 </CardActions>

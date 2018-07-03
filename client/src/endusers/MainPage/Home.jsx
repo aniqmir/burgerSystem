@@ -54,6 +54,7 @@ class SimpleMediaCard extends React.Component {
     det.push(this.props.image);
     det.push(this.props.status);
     det.push(this.props.itemId);
+    det.push(1);
     this.props.checkoutDet(det)
   }
 
