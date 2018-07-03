@@ -44,7 +44,7 @@ const styles = {
 
 
 class SimpleMediaCard extends React.Component {
-
+ 
 
   buyClickHandler = () => {
     let det = []
@@ -56,6 +56,7 @@ class SimpleMediaCard extends React.Component {
     det.push(this.props.itemId);
     det.push(1);
     this.props.checkoutDet(det)
+  
   }
 
 
@@ -95,15 +96,15 @@ class SimpleMediaCard extends React.Component {
         {
           isstatusTrue ? (
             <CardActions className={classes.cardactions}>
-            <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler}>Buy</Button>
-            <BuildBurger details={this.props.details} buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price} image={this.props.image}/>
+            <Button size="small" variant="raised" color="secondary" onClick={this.buyClickHandler} >Buy</Button>
+            <BuildBurger   details={this.props.details} buildDetails={this.props.buildDetails} ingUpdate={this.props.checkoutDet} name={this.props.name} price={this.props.price} image={this.props.image}/>
             {/*<IconButton  variant='outlined' size='small' color='secondary' className={classes.button}><AddShoppingCartIcon /></IconButton>*/}
             </CardActions>
           )
 
         :  (
            <CardActions className={classes.cardactions}>
-             (<Button size="small" variant="raised"  color="secondary" onClick={this.buyClickHandler}>Buy</Button>)
+             (<Button size="small" variant="raised"  color="secondary" onClick={this.buyClickHandler} >Buy</Button>)
             </CardActions> 
         )  
         } 

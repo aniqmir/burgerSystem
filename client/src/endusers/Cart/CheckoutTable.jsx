@@ -20,8 +20,8 @@ const CustomTableCell = withStyles(theme => ({
 
 const styles = theme => ({
   root: {
-    width: '75%',
-    marginLeft:'10%'
+    width: '100%',
+    marginBottom:'5%'
   },
 });
 
@@ -61,7 +61,7 @@ class CustomizedTable extends React.Component {
                 <CustomTableCell >
                   {type[1]}
                 </CustomTableCell>
-                <CustomTableCell>{type[1]}</CustomTableCell>
+                <CustomTableCell>{type[6]}</CustomTableCell>
               </TableRow>
             );
           })}

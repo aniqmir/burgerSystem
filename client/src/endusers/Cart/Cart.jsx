@@ -120,6 +120,9 @@ class FullScreenDialog extends React.Component {
       totalPrice:total
     });
   }
+  proceedToCheckout = () => {
+    this.props.history.push('/checkout')
+  }
 
   render() {
     const { classes } = this.props;

@@ -92,6 +92,7 @@ operationLogout = () => {
     check:false,
     logout:''
   })
+  window.location.reload();
 }
 
 state = {

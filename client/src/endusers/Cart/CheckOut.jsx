@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from './CheckoutTable';
+import Guest from './Guest';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
   root: {
@@ -78,7 +80,14 @@ class CheckOut extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.divBackground}>
+      <Grid container spacing={12}>
+      <Grid item md={12}>
         <Table/>
+        </Grid>
+        <Grid item md={12}>
+        <Guest/>
+        </Grid>
+        </Grid>
       </div>
     );
   }
