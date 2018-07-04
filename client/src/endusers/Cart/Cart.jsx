@@ -108,14 +108,16 @@ class FullScreenDialog extends React.Component {
 
   //function to get values
   componentDidMount(){
-    this.calculateTotal()
+    if(!(JSON.parse(localStorage.getItem('cartItems'))===null)){
+      this.calculateTotal()
+    }
   }
 
   //Function to calculate total values
   calculateTotal=()=>{
     let total = 0;
     Object.values(this.state.items1).map((type,index) => {
-            total+=type[6] * parseInt(type[1]);
+            total+=type[6] * parseInt(type[1],10);
       });
     this.setState({
       totalPrice:total
