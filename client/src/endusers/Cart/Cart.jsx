@@ -113,7 +113,7 @@ class FullScreenDialog extends React.Component {
       items1:tempSessionCart
     });
   }
-
+  
   //function to get values
   componentDidMount(){
     if(!(JSON.parse(localStorage.getItem('cartItems'))===null)){
@@ -160,7 +160,8 @@ class FullScreenDialog extends React.Component {
                               image={type[3]}        
                               price={type[1]}
                               itemId={type[5]}
-                              updateCart={this.updateCart}         
+                              updateCart={this.updateCart}
+                              quantity={type[6]}
                               />
                   </Paper>
                   </div>
