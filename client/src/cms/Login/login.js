@@ -100,6 +100,11 @@ class TextFields extends React.Component {
 }
 else
 {
+  var details = {
+    'email': this.state.userName,
+    'password': this.state.Password,
+    'type':this.state.type
+};
 }
  
 

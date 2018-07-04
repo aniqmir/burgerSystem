@@ -9,25 +9,19 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import Divider from 'material-ui/Divider';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
-import Dispatch from './Dispatch';
-import ViewAllOrders from './ViewAll';
-import Orderdrawer from './RightDrawer';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { 
     Router
     }   from 'react-router-dom';
 
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-
+import Dialog from './Dialog';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import ViewOrder from './ViewOrder';
+import Divider from '@material-ui/core/Divider'
 const customHistory = createBrowserHistory();
 const drawerWidth = 240;
 
@@ -37,7 +31,7 @@ const theme2 = createMuiTheme({
         // Name of the styleSheet
         root: {
           // Name of the rule
-          background: '#3F51B5',
+          background: 'black',
           borderRadius: 3,
           border: 5,
           color: 'white',
@@ -53,13 +47,7 @@ const theme2 = createMuiTheme({
 
 const styles = theme => ({
   root: {
-    height: 'auto',
-    zIndex: 1,
-    overflow: 'auto',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-    flexGrow:1,
+  
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -71,7 +59,7 @@ const styles = theme => ({
   },
   toolbar:theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,
+    width: '30%',
     height:'100%',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
@@ -81,10 +69,14 @@ const styles = theme => ({
     flexGrow:1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    width:'70%',
+    width:'100%',
     height:'100%',
     position:'relative',
   },
+  center:{
+    margin:'auto',
+    align:'center',
+  }
 });
 
 
@@ -95,9 +87,25 @@ class ResponsiveDrawer extends React.Component {
       this.state = {
       mobileOpen: false,
       t:this.props.token,
-     
-      open:false,
-      openError:false,
+      OnDisplay: <div>WELCOME</div>,
+      processingTime:0,
+
+      data:{
+          order1:{
+              id:'1234',
+              name:'burger 1',
+              price:'2000',
+              address:'Islamabad',
+              time:new Date(),
+          },
+          order2:{
+            id:'1235',
+            name:'burger 2',
+            price:'2000',
+            address:'Islamabad',
+            time:new Date(),
+        },
+      },
     };
 
 
@@ -107,69 +115,68 @@ class ResponsiveDrawer extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
- AddNewLoginHandleClick = () => {
 
-    this.setState({
-        OnDisplay:<Dispatch token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-    console.log("Add item on click");
-  }
-
-
-  
  ViewAllHandleClick = () => {
-
     this.setState({
-        OnDisplay:<ViewAllOrders token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+       // OnDisplay:<ViewAllOrders token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen} data={this.state.data}/>
     })
     console.log("View All item Click")
   }
-  
 
 
+  ViewOrder = (orders) => {
+    console.log(orders)
+    this.setState({
+      OnDisplay:<ViewOrder/>
+    })
+  }
 
-
-
-  handleClickDialogOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClickDialogClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleClickerrorDialogOpen = () => {
-    this.setState({ erroropen: true });
-  };
-
-  handleClickerrorDialogClose = () => {
-    this.setState({ erroropen: false });
-  };
-
-
+  time15 = () => {
+    this.setState({
+      processingTime:15,
+    })
+    console.log(this.state.processingTime)
+  }
+  time30 = () => {
+    this.setState({
+      processingTime:30,
+    })
+    console.log(this.state.processingTime)
+  }
+  time45 = () => {
+    this.setState({
+      processingTime:45,
+    })
+    console.log(this.state.processingTime)
+  }
+  time60 = () => {
+    this.setState({
+      processingTime:60,
+    })
+    console.log(this.state.processingTime)
+  }
 
   render() {
     const { classes, theme } = this.props;
 
     const drawer = (
-      <div>
-        <div className={classes.toolbar}/>
-        <Router history={customHistory}>
-        <List>
-        <Typography variant="title" color="inherit" >
-        <MuiThemeProvider theme={theme2}>
-           <ListItem><Button onClick={this.AddNewLoginHandleClick.bind(this)} >Dispatch Order</Button></ListItem>
-           <Divider />
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>View All Orders</Button></ListItem>
-            <Divider/>
-            
-            <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
-            <Divider />
-            </MuiThemeProvider>
-            </Typography>
-        </List>
-        </Router>
+      <MuiThemeProvider theme={theme2}>
+        <div className={classes.toolbar}>
+          <List >
+          <ListItem>ORDERS</ListItem>
+         {
+           Object.values(this.state.data).map((orders,i)=>{
+             console.log(orders)
+            return(
+              <div >
+                <Dialog  id={orders.id}  name={orders.name} price={orders.price} address={orders.address} time15={this.time15} time30={this.time30} time45={this.time45} time60={this.time60}/>
+                <Divider/>
+                </div>
+           )})
+         }
+        </List> 
       </div>
+      </MuiThemeProvider>
     );
 
     return (
@@ -216,51 +223,6 @@ class ResponsiveDrawer extends React.Component {
               {drawer}
             </Drawer>
           </Hidden>
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            {this.state.OnDisplay}
-            
-            {/*User Modal*/}
-            <Dialog
-          open={this.state.open}
-          onClose={this.handleClickDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              User Added
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClickDialogClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-
-         <Dialog
-          open={this.state.erroropen}
-          onClose={this.handleClickerrorDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              User not added, Try again.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClickDialogClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-            {/*<Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>*/}
-          </main>
-          <Orderdrawer/>
         </div>
       );
     }
