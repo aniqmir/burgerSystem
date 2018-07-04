@@ -89,9 +89,17 @@ class FullScreenDialog extends React.Component {
   };
 
 
+  refactorCartItems = () =>{
+    let temp = _.uniqWith(this.state.items1,_.isEqual);
+    this.setState({
+      items1:temp
+    });
+  }
+
   //updating cart new function
   updateCart=(itemID, quantity)=>{
     Object.values(this.state.items1).map((type,index) => {
+      let tempObj = type
       if(type[5]===itemID){
         type[6]=quantity;
        }
@@ -111,6 +119,7 @@ class FullScreenDialog extends React.Component {
     if(!(JSON.parse(localStorage.getItem('cartItems'))===null)){
       this.calculateTotal()
     }
+    this.refactorCartItems();
   }
 
   //Function to calculate total values
