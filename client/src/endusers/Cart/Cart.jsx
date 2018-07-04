@@ -133,7 +133,8 @@ class FullScreenDialog extends React.Component {
     });
   }
   proceedToCheckout = () => {
-    this.props.history.push('/checkout')
+    localStorage.setItem('cartItems',JSON.stringify(this.state.items1));
+    this.props.history.push('/checkout');
   }
 
   render() {

@@ -35,8 +35,7 @@ class CustomizedTable extends React.Component {
         console.log(tempSessionCart)
         this.setState({
             data:tempSessionCart
-        })
-        console.log(this.state.data);
+        });
     }
     render() {
         const { classes } = this.props;
