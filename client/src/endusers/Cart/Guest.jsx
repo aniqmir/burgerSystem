@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
 import Label from '@material-ui/icons/Label';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { CardHeader, Typography } from 'material-ui';
+import { Typography } from 'material-ui';
 import {Link} from 'react-router-dom';
 
 
@@ -310,8 +310,6 @@ const styles = {
   
 
     render() {
-        const { classes } = this.props;
-        
         return (
             <div>
                 {this.state.display}

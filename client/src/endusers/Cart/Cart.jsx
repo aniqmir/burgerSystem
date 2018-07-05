@@ -99,7 +99,6 @@ class FullScreenDialog extends React.Component {
   //updating cart new function
   updateCart=(itemID, quantity)=>{
     Object.values(this.state.items1).map((type,index) => {
-      let tempObj = type
       if(type[5]===itemID){
         type[6]=quantity;
        }
