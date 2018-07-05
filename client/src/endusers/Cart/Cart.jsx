@@ -9,7 +9,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
-import _ from 'lodash';
 
 const styles = {
   root: {

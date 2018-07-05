@@ -10,20 +10,13 @@ import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
-import createBrowserHistory from 'history/createBrowserHistory';
-import { 
-    Router
-    }   from 'react-router-dom';
-
 import Dialog from './Dialog';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Dialog2 from './Dialog2';
 import ViewOrder from './ViewOrder';
 import Divider from '@material-ui/core/Divider'
-const customHistory = createBrowserHistory();
-const drawerWidth = 240;
+import Grid from '@material-ui/core/Grid';
+
 
 const theme2 = createMuiTheme({
     overrides: {
@@ -59,7 +52,7 @@ const styles = theme => ({
   },
   toolbar:theme.mixins.toolbar,
   drawerPaper: {
-    width: '30%',
+    width: '100%',
     height:'100%',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
@@ -89,7 +82,7 @@ class ResponsiveDrawer extends React.Component {
       t:this.props.token,
       OnDisplay: <div>WELCOME</div>,
       processingTime:0,
-
+      
       data:{
           order1:{
               id:'1234',
@@ -97,6 +90,7 @@ class ResponsiveDrawer extends React.Component {
               price:'2000',
               address:'Islamabad',
               time:new Date(),
+              details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',    
           },
           order2:{
             id:'1235',
@@ -104,8 +98,25 @@ class ResponsiveDrawer extends React.Component {
             price:'2000',
             address:'Islamabad',
             time:new Date(),
+            details: 'Lorem Ipsum is simply dummy text of the printing and type setting industryLorem Ipsum is simply dummy text of the printing and typesetting industry',    
         },
       },
+      data2:{
+        order1:{
+            id:'1234',
+            name:'burger 1',
+            price:'2000',
+            address:'Islamabad',
+            details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry',    
+        },
+        order2:{
+          id:'1235',
+          name:'burger 2',
+          price:'2000',
+          address:'Islamabad',
+          details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',    
+      },
+    },
     };
 
 
@@ -133,29 +144,73 @@ class ResponsiveDrawer extends React.Component {
 
   time15 = () => {
     this.setState({
-      processingTime:15,
+      processingTime:(15*60),
+      data2:{
+        order2:{
+          id:'1235',
+          name:'burger 2',
+          price:'2000',
+          address:'Islamabad',
+          details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        } 
+      }
     })
     console.log(this.state.processingTime)
   }
   time30 = () => {
     this.setState({
-      processingTime:30,
+      processingTime:(30*60),
     })
     console.log(this.state.processingTime)
   }
   time45 = () => {
     this.setState({
-      processingTime:45,
+      processingTime:(45*60),
     })
     console.log(this.state.processingTime)
   }
   time60 = () => {
     this.setState({
-      processingTime:60,
+      processingTime:(60*60)
     })
     console.log(this.state.processingTime)
   }
 
+
+  dispatch = () => {
+    this.setState({
+      processingTime:0
+    })
+  }
+  componentDidMount() {
+    var details = {
+      'token':this.state.t
+    }
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+    fetch('/api/user/emp/showOrders', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+      },
+    }).then(res=>res.json())
+    .then(res=>{
+      if(res){
+        console.log(res)
+        this.setState({
+          data:res,
+        });
+      }
+    }
+    );
+  }
+
+ 
   render() {
     const { classes, theme } = this.props;
 
@@ -163,13 +218,13 @@ class ResponsiveDrawer extends React.Component {
       <MuiThemeProvider theme={theme2}>
         <div className={classes.toolbar}>
           <List >
-          <ListItem>ORDERS</ListItem>
+          <ListItem><strong><h1>New ORDERS</h1></strong></ListItem>
          {
            Object.values(this.state.data).map((orders,i)=>{
-             console.log(orders)
+             
             return(
               <div >
-                <Dialog  id={orders.id}  name={orders.name} price={orders.price} address={orders.address} time15={this.time15} time30={this.time30} time45={this.time45} time60={this.time60}/>
+                <Dialog  id={orders.id}  details={orders.details}  name={orders.name} price={orders.price} address={orders.address} time15={this.time15} time30={this.time30} time45={this.time45} time60={this.time60}/>
                 <Divider/>
                 </div>
            )})
@@ -178,7 +233,34 @@ class ResponsiveDrawer extends React.Component {
       </div>
       </MuiThemeProvider>
     );
+    let drawer2 = <div>Welcome</div>
+    if(this.state.processingTime===0){
+      drawer2 = (
+        <ListItem><strong><h1>No orders in Process</h1></strong></ListItem>
+      )
+    }
+    else{
+        drawer2 = (
+        <MuiThemeProvider theme={theme2}>
+          <div className={classes.toolbar}>
+            <List>
+            <ListItem><strong><h1>Processing ORDERS</h1></strong></ListItem>
+           {
+             Object.values(this.state.data2).map((orders,i)=>{
+              return(
+                <div>
+                  <Dialog2  id={orders.id}  processingTime={this.state.processingTime} details={orders.details} name={orders.name} price={orders.price} address={orders.address} dispatch={this.dispatch}/>
+                  <Divider/>
+                </div>
+             )})
+           }
+          </List> 
+        </div>
+        </MuiThemeProvider>
+      );
 
+    }
+    
     return (
         <div className={classes.root}>
           <AppBar className={classes.appBar}>
@@ -213,6 +295,8 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
           <Hidden smDown implementation="css">
+            <Grid container spacing={12}>
+              <Grid item md={6}>
             <Drawer
               variant="permanent"
               open
@@ -222,6 +306,19 @@ class ResponsiveDrawer extends React.Component {
             >
               {drawer}
             </Drawer>
+            </Grid>
+            <Grid item md={6}>
+            <Drawer
+              variant="permanent"
+              open
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              {drawer2}
+            </Drawer>
+            </Grid>
+            </Grid>
           </Hidden>
         </div>
       );

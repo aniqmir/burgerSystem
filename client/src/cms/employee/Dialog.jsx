@@ -7,19 +7,36 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { ListItem } from 'material-ui/List';
 import { Typography } from 'material-ui';
+import Grid from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+  button: {
+    height:'50vh',
+    backgroundColor:'orange'
+  },
+  input: {
+    display: 'none',
+  },
+  text: {
+    margin:'20%',
+    borderStyle: 'dotted',
+    borderWidth: '5px',
+  }
+});
 
 class AlertDialog extends React.Component {
   state = {
     open:false,
   };
   
-  
   time15 = () => {
-    this.props.time15();
+    this.props.time15(25);
     this.setState({
       open:false,
     })
-    console.log(this.props.processingTime)
   }
   time30 = () => {
     this.props.time30();
@@ -49,46 +66,81 @@ class AlertDialog extends React.Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
-        <ListItem button  onClick={this.handleClickOpen}><Typography variant='headline'>#{this.props.id},Name:{this.props.name},Price:{this.props.price}</Typography></ListItem>
+        <ListItem button  onClick={this.handleClickOpen}><Typography variant='headline'><strong>#{this.props.id}<br/>Name:{this.props.name} <br/> Price:{this.props.price}</strong></Typography></ListItem>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
           fullScreen
-        >
-          <DialogTitle id="alert-dialog-title">{"ORDER NO:"}{this.props.id}</DialogTitle>
+        > 
+        <Grid container spacing={12}>
+          <Grid item md={6}>
+          <div className={classes.text}>
+          <DialogTitle id="alert-dialog-title"><Typography gutterBottom={true} variant='display1'><strong> {"ORDER NO:#"}{this.props.id}</strong> </Typography>
+          </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-            Name:{this.props.name}
+           <Typography gutterBottom={true} variant='display2'><strong>  Name:{this.props.name}</strong>  </Typography>
             </DialogContentText>
             <DialogContentText id="alert-dialog-description">
-            Price:{this.props.price}
+            <Typography gutterBottom={true} variant='display2'><strong>  Price:{this.props.price}</strong>  </Typography>
             </DialogContentText>
             <DialogContentText id="alert-dialog-description">
-            Address:{this.props.address}
+            <Typography gutterBottom={true} variant='p'> <strong>  Address:{this.props.address} </strong>  </Typography>
+            </DialogContentText>
+            <DialogContentText id="alert-dialog-description">
+            <Typography gutterBottom={true} variant='p'>   Details:{this.props.details} </Typography>
             </DialogContentText>
           </DialogContent>
+          </div>
+          <Button onClick={this.handleClose} fullWidth>Cancel</Button>
+          </Grid>
+          <Grid item md={6}>
           <DialogActions>
-            <Button onClick={this.time15} color="primary">
+          <Grid container spacing = {12}>
+          <Grid item md={6}>
+            <Button  className={classes.button} fullWidth onClick={this.time15} >
               15 Minutes
             </Button>
-            <Button onClick={this.time30} color="primary" autoFocus>
+            <Divider/>
+            <Divider/>
+            </Grid>
+            <Grid item md={6}>
+            <Button  className={classes.button} fullWidth onClick={this.time30}  autoFocus>
               30 Minutes
             </Button>
-            <Button onClick={this.time45} color="primary">
+            <Divider/>
+            <Divider/>
+            </Grid>
+            <Grid item md={6}>
+            <Button  className={classes.button} fullWidth onClick={this.time45} >
               45 Minutes
             </Button>
-            <Button onClick={this.time60} color="primary" autoFocus>
+            <Divider/>
+            <Divider/>
+            </Grid>
+            <Grid item md={6}>
+            <Button className={classes.button}  fullWidth onClick={this.time60}  autoFocus>
               60 Minutes
             </Button>
+            <Divider/>
+            <Divider/>
+            </Grid>
+            </Grid>
           </DialogActions>
+         
+          </Grid>
+          </Grid>
         </Dialog>
+        
       </div>
     );
   }
 }
 
-export default AlertDialog;
+export default withStyles(styles)(AlertDialog);

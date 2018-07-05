@@ -90,9 +90,9 @@ class TextFields extends React.Component {
 
   handleClick = () => {
     console.log(this.state)
-
+    var details = {}
     if(this.state.type==='admin'){
-    var details = {
+    details = {
      'name': this.state.userName,
      'password': this.state.Password,
      'type':this.state.type
@@ -100,7 +100,7 @@ class TextFields extends React.Component {
 }
 else
 {
-  var details = {
+   details = {
     'email': this.state.userName,
     'password': this.state.Password,
     'type':this.state.type

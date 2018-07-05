@@ -80,6 +80,7 @@ class SimpleTabs extends React.Component {
   }
   );
   }
+  
   state = {
     value: 0,
     data:{},
