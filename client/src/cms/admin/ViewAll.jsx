@@ -126,7 +126,6 @@ class CustomizedTable extends React.Component {
     }
     
 };
-
   render() {
     const { classes } = this.props;
     return (
@@ -146,10 +145,7 @@ class CustomizedTable extends React.Component {
               </TableRow>
           </TableHead>
           <TableBody>
-            {/*data replaced with json pacakage from api*/}
-            {
-               Object.values(this.state.data).map((type) => {
-                 
+            {Object.values(this.state.data).map((type) => {  
                  return (
                   <TableRow className={classes.row} key={type.Emp_cnic}>
                     <CustomTableCell>{type.Emp_fname}</CustomTableCell>
@@ -168,10 +164,7 @@ class CustomizedTable extends React.Component {
     );
   }
 }
-
-
 CustomizedTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 export default withStyles(styles)(CustomizedTable);
