@@ -9,7 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CartItems from './CartItems';
-
+import _ from 'lodash';
 const styles = {
   root: {
     width: '100%',
@@ -88,6 +88,13 @@ class FullScreenDialog extends React.Component {
   };
 
 
+  refactorCartItems = () =>{
+    let temp = _.uniqWith(this.state.items1,_.isEqual);
+    this.setState({
+      items1:temp
+    });
+  }
+
   //updating cart new function
   updateCart=(itemID, quantity)=>{
     Object.values(this.state.items1).map((type,index) => {
@@ -104,24 +111,29 @@ class FullScreenDialog extends React.Component {
       items1:tempSessionCart
     });
   }
-
+  
   //function to get values
   componentDidMount(){
-    this.calculateTotal()
+    if(!(JSON.parse(localStorage.getItem('cartItems'))===null)){
+      this.calculateTotal()
+    }
+    this.refactorCartItems();
   }
 
   //Function to calculate total values
   calculateTotal=()=>{
     let total = 0;
     Object.values(this.state.items1).map((type,index) => {
-            total+=type[6] * parseInt(type[1]);
+            total+=type[6] * parseInt(type[1],10);
       });
     this.setState({
       totalPrice:total
     });
   }
   proceedToCheckout = () => {
-    this.props.history.push('/checkout')
+    localStorage.setItem('cartItems',JSON.stringify(this.state.items1));
+    localStorage.setItem('total',this.state.totalPrice);
+    this.props.history.push('/checkout');
   }
 
   render() {
@@ -146,7 +158,8 @@ class FullScreenDialog extends React.Component {
                               image={type[3]}        
                               price={type[1]}
                               itemId={type[5]}
-                              updateCart={this.updateCart}         
+                              updateCart={this.updateCart}
+                              quantity={type[6]}
                               />
                   </Paper>
                   </div>

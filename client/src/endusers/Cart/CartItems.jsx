@@ -66,7 +66,7 @@ class CartItems extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            quantity:1,
+            quantity:this.props.quantity,
             price:this.props.price,
             itemName: this.props.name,
             image: this.props.image,
