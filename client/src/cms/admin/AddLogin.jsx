@@ -192,7 +192,6 @@ canBeSubmitted() {
     return (
       <div>
         <Typography variant="display2">Add a new Employee</Typography>
-        <Button>View All Employees</Button>
         <Card className={classes.card}>
       <form className={classes.container} noValidate autoComplete="off"> 
       <CardContent>
