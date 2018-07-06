@@ -311,29 +311,29 @@ canBeSubmitted() {
           <Grid container spacing={12}>
             <Grid item md={3}>
               <TextField
-              id="ingredient # 1"
-              placeholder="ingredient # 1"
+              id="ingredient # 5"
+              placeholder="ingredient # 5"
               margin="normal"
               />
             </Grid>
             <Grid item md={3}>
               <TextField
-                id="ingredient # 2"
-                placeholder="ingredient # 2"
+                id="ingredient # 6"
+                placeholder="ingredient # 6"
                 margin="normal"
               />
             </Grid>
             <Grid item md={3}>
               <TextField 
-                id="ingredient # 3"
-                placeholder="ingredient # 3"
+                id="ingredient # 7"
+                placeholder="ingredient # 7"
                 margin="normal"              
               />
             </Grid>
             <Grid item md={3}>
               <TextField 
-                id="ingredient # 4"
-                placeholder="ingredient # 4"
+                id="ingredient # 8"
+                placeholder="ingredient # 8"
                 margin="normal"              
               />
             </Grid>
