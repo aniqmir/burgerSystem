@@ -9,6 +9,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import axios from 'axios';
+import { Grid } from 'material-ui';
 
 const styles = theme => ({
   button: {
@@ -275,6 +276,69 @@ canBeSubmitted() {
       name="selectedFile"
       onChange={this.onChangeFile}
          />
+         
+
+          <Grid container spacing={12}>
+            <Grid item md={3}>
+              <TextField
+              id="ingredient # 1"
+              placeholder="ingredient # 1"
+              margin="normal"
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField
+                id="ingredient # 2"
+                placeholder="ingredient # 2"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 3"
+                placeholder="ingredient # 3"
+                margin="normal"              
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 4"
+                placeholder="ingredient # 4"
+                margin="normal"              
+              />
+            </Grid>
+          </Grid>
+          <Grid container spacing={12}>
+            <Grid item md={3}>
+              <TextField
+              id="ingredient # 1"
+              placeholder="ingredient # 1"
+              margin="normal"
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField
+                id="ingredient # 2"
+                placeholder="ingredient # 2"
+                margin="normal"
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 3"
+                placeholder="ingredient # 3"
+                margin="normal"              
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 4"
+                placeholder="ingredient # 4"
+                margin="normal"              
+              />
+            </Grid>
+          </Grid>
+
         <Button variant="raised" color="primary" className={classes.button} onClick={this.onSubmit} disabled={isDisabled}>
         ADD
         <AddIcon/>

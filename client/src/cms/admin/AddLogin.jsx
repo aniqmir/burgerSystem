@@ -240,10 +240,6 @@ canBeSubmitted() {
           margin="normal"
         />
         </CardContent>
-
-
-       
-     
         <CardContent>
         <TextField
           id="password"
