@@ -79,6 +79,7 @@ class SimpleTabs extends React.Component {
   }).then(res=>res.json())
   .then(res=>{
     if(res){
+      console.log(res)
       this.setState({
         data:res,
       });

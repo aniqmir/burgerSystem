@@ -9,6 +9,7 @@ import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import axios from 'axios';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+import { Grid } from 'material-ui';
 
 const theme = createMuiTheme({
   typography: {
@@ -19,7 +20,7 @@ const theme = createMuiTheme({
   },
 });
 
-import { Grid } from 'material-ui';
+
 
 const styles = theme => ({
   button: {
@@ -90,6 +91,14 @@ this.state = {
     selectedFile:'',
     t:cachetoken,
     checkBuild:true,
+    ingredient1:'',
+    ingredient2:'',
+    ingredient3:'',
+    ingredient4:'',
+    ingredient5:'',
+    ingredient6:'',
+    ingredient7:'',
+    ingredient8:'',
   }
 }
   
@@ -148,20 +157,67 @@ canBeSubmitted() {
   
   changeBuild = e => {
     this.setState({
-      build: e.target.value
+      build: e.target.value,
+      checkBuild:!this.state.checkBuild
     });
-    this.checkBuildStatus();
+    
   }
 
-  checkBuildStatus=()=>{
-    if(this.state.build===true){
-      this.setState({
-        checkBuild:false,
-      });
-      console.log('check build status',this.state.checkBuild);
-      this.forceUpdate();
-    }
+  changeIngredient1 = e => {
+    this.setState({
+      ingredient1: e.target.value
+    });
   }
+
+  
+  changeIngredient2 = e => {
+    this.setState({
+      ingredient2: e.target.value
+    });
+  }
+
+  
+  changeIngredient3 = e => {
+    this.setState({
+      ingredient3: e.target.value
+    });
+  }
+
+  
+  changeIngredient4 = e => {
+    this.setState({
+      ingredient4: e.target.value
+    });
+  }
+
+  
+  changeIngredient5 = e => {
+    this.setState({
+      ingredient5: e.target.value
+    });
+  }
+
+  changeIngredient6 = e => {
+    this.setState({
+      ingredient6: e.target.value
+    });
+  }
+
+  
+  changeIngredient7 = e => {
+    this.setState({
+      ingredient7: e.target.value
+    });
+  }
+
+  
+  changeIngredient8 = e => {
+    this.setState({
+      ingredient8: e.target.value
+    });
+  }
+
+
   onChangeFile = (e) => {
     switch (e.target.name) {
       case 'selectedFile':
@@ -174,6 +230,15 @@ canBeSubmitted() {
   
   onSubmit = (e) => {
     const { name,desc,date,type,price,build,selectedFile,t} = this.state;
+    let tempIngredients = []
+    tempIngredients.push(this.state.ingredient1);
+    tempIngredients.push(this.state.ingredient2);
+    tempIngredients.push(this.state.ingredient3);
+    tempIngredients.push(this.state.ingredient4);
+    tempIngredients.push(this.state.ingredient5);
+    tempIngredients.push(this.state.ingredient6);
+    tempIngredients.push(this.state.ingredient7);
+    tempIngredients.push(this.state.ingredient8);
     let formData = new FormData();
 
     formData.append('name', name);
@@ -184,6 +249,7 @@ canBeSubmitted() {
     formData.append('build', build);
     formData.append('image', selectedFile);
     formData.append('token', t);
+    formData.append('buildIngredients',tempIngredients);
     
     console.log(this.state.t);
 
@@ -204,7 +270,15 @@ canBeSubmitted() {
           type: '',
           price:'',
           build: false,
-          selectedFile:'',     
+          selectedFile:'',
+          ingredient1:'',
+          ingredient2:'',
+          ingredient3:'',
+          ingredient4:'',
+          ingredient5:'',     
+          ingredient6:'',
+          ingredient7:'',
+          ingredient8:'',
         })   
       });
   }
@@ -307,6 +381,9 @@ canBeSubmitted() {
               placeholder="ingredient # 1"
               margin="normal"
               disabled={this.state.checkBuild}
+              value={this.state.ingredient1}
+              onChange={e=>this.changeIngredient1(e)}
+
               />
             </Grid>
             <Grid item md={3}>
@@ -315,6 +392,8 @@ canBeSubmitted() {
                 placeholder="ingredient # 2"
                 margin="normal"
                 disabled={this.state.checkBuild}
+                value={this.state.ingredient2}
+              onChange={e=>this.changeIngredient2(e)}
               />
             </Grid>
             <Grid item md={3}>
@@ -323,6 +402,9 @@ canBeSubmitted() {
                 placeholder="ingredient # 3"
                 margin="normal"
                 disabled={this.state.checkBuild}
+                  value={this.state.ingredient3}
+                  onChange={e=>this.changeIngredient3(e)}
+                
               />
             </Grid>
             <Grid item md={3}>
@@ -331,6 +413,8 @@ canBeSubmitted() {
                 placeholder="ingredient # 4"
                 margin="normal"              
                 disabled={this.state.checkBuild}
+                value={this.state.ingredient4}
+              onChange={e=>this.changeIngredient4(e)}
               />
             </Grid>
           </Grid>
@@ -341,6 +425,8 @@ canBeSubmitted() {
               placeholder="ingredient # 5"
               margin="normal"
               disabled={this.state.checkBuild}
+              value={this.state.ingredient5}
+              onChange={e=>this.changeIngredient5(e)}
               />
             </Grid>
             <Grid item md={3}>
@@ -349,6 +435,8 @@ canBeSubmitted() {
                 placeholder="ingredient # 6"
                 margin="normal"
                 disabled={this.state.checkBuild}
+                value={this.state.ingredient6}
+              onChange={e=>this.changeIngredient6(e)}
               />
             </Grid>
             <Grid item md={3}>
@@ -357,6 +445,8 @@ canBeSubmitted() {
                 placeholder="ingredient # 7"
                 margin="normal"              
                 disabled={this.state.checkBuild}
+                value={this.state.ingredient7}
+              onChange={e=>this.changeIngredient7(e)}
               />
             </Grid>
             <Grid item md={3}>
@@ -365,6 +455,8 @@ canBeSubmitted() {
                 placeholder="ingredient # 8"
                 margin="normal"              
                 disabled={this.state.checkBuild}
+                value={this.state.ingredient8}
+              onChange={e=>this.changeIngredient8(e)}
               />
             </Grid>
           </Grid>
