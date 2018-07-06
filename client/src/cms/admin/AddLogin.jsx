@@ -248,7 +248,7 @@ canBeSubmitted() {
         <TextField
           id="password"
           label="Password"
-          value={this.state.address}
+          value={this.state.password}
           placeholder="Enter Password"
           onChange={e => this.changepassword(e)}
           className={classes.textField}
