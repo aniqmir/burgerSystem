@@ -128,6 +128,7 @@ exports.additem= function(req,res){
         item_price:req.body.price,
         build:req.body.build,
         imgPath:req.file.filename,
+        ingredients: req.body.buildIngredients,
         primaryKey: req.file.filename.substring(0, 4),
     });
     itemmodel.save(function (err) {
