@@ -202,7 +202,6 @@ canBeSubmitted() {
       <MuiThemeProvider theme={theme}>
       <div>
         <Typography variant="display2">Add a new Employee</Typography>
-        <Button>View All Employees</Button>
         <Card className={classes.card}>
       <form className={classes.container} noValidate autoComplete="off"> 
       <CardContent>
@@ -251,15 +250,11 @@ canBeSubmitted() {
           margin="normal"
         />
         </CardContent>
-
-
-       
-     
         <CardContent>
         <TextField
           id="password"
           label="Password"
-          value={this.state.address}
+          value={this.state.password}
           placeholder="Enter Password"
           onChange={e => this.changepassword(e)}
           className={classes.textField}

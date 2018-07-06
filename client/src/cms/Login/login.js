@@ -5,7 +5,6 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
-
 const styles = theme => ({
   button: {
     display:'flex',
@@ -187,10 +186,9 @@ else
 
     return (
       <div>
-           
-    <Typography variant="display1" color="inherit" align="center" className={classes.typeobar}>
-          Login to the System
-        </Typography>
+        <div className='text-center mt-5'>
+          <img src={'./logo1.png'} />
+        </div>
     <Card className={classes.card}>
      
     <form className={classes.container} noValidate autoComplete="off"> 
