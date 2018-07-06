@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
 
 
 const styles = {
@@ -65,7 +66,7 @@ class CartItems extends React.Component {
     constructor(props){
         super(props);
         this.state={
-            quantity:1,
+            quantity:this.props.quantity,
             price:this.props.price,
             itemName: this.props.name,
             image: this.props.image,
@@ -78,16 +79,16 @@ class CartItems extends React.Component {
             this.setState({
                 quantity:this.state.quantity+1
             });
-          
+          this.props.updateCart(this.props.itemId, this.state.quantity+1);
         }
-    }
-    
-    decrement = () =>{
-        console.log(this.state.quantity);
-        if(this.state.quantity!=0){
-            this.setState({
-                quantity:this.state.quantity-1
-            });
+      }
+      
+      decrement = () =>{
+        if(this.state.quantity!==0){
+          this.setState({
+            quantity:this.state.quantity-1
+          });
+          this.props.updateCart(this.props.itemId, this.state.quantity-1);
         }
     }
 
@@ -101,10 +102,10 @@ class CartItems extends React.Component {
               <img src={this.state.image}  className='img img-responsive img-thumbnail' alt="" srcset=""/>
               </Grid>
               <Grid item md={3}className={classes.center}>
-                <h4><strong>{this.state.itemName}</strong></h4>
+                <Typography><h4><strong>{this.state.itemName}</strong></h4></Typography>
               </Grid>
               <Grid item md={4} className={classes.center}>
-                {this.state.description}
+                <Typography>{this.state.description}</Typography>
               </Grid>
               <Grid item md={2} className={classes.center}>
              
@@ -117,7 +118,7 @@ class CartItems extends React.Component {
                 <Button className={classes.counterWidth} size='small' onClick={this.decrement} >-</Button>
               </Grid>
               <Grid item md={1} className={classes.center}>
-               {this.state.quantity} X $ {this.state.price}
+               <Typography variant="headline">{this.state.quantity} X $ {this.state.price}</Typography>
               </Grid>
             </Grid>
             </ListItem>

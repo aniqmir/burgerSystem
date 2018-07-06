@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -9,31 +8,14 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import Hidden from 'material-ui/Hidden';
 import MenuIcon from '@material-ui/icons/Menu';
-import Divider from 'material-ui/Divider';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Dispatch from './Dispatch';
-import ViewAllOrders from './ViewAll';
-import Orderdrawer from './RightDrawer';
-import createBrowserHistory from 'history/createBrowserHistory';
-import { 
-    Router,
-    Route
-    }   from 'react-router-dom';
+import List, { ListItem } from 'material-ui/List';
+import Dialog from './Dialog';
+import Dialog2 from './Dialog2';
+import ViewOrder from './ViewOrder';
+import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid';
 
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog';
-
-
-
-
-const customHistory = createBrowserHistory();
-const drawerWidth = 240;
 
 const theme2 = createMuiTheme({
     overrides: {
@@ -41,7 +23,7 @@ const theme2 = createMuiTheme({
         // Name of the styleSheet
         root: {
           // Name of the rule
-          background: '#3F51B5',
+          background: 'black',
           borderRadius: 3,
           border: 5,
           color: 'white',
@@ -52,18 +34,18 @@ const theme2 = createMuiTheme({
         },
       },
     },
+    typography: {
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        'Poppins'
+      ].join(','),
+    },
   });
 
 
 const styles = theme => ({
   root: {
-    height: 'auto',
-    zIndex: 1,
-    overflow: 'auto',
-    position: 'relative',
-    display: 'flex',
-    width: '100%',
-    flexGrow:1,
+  
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -75,7 +57,7 @@ const styles = theme => ({
   },
   toolbar:theme.mixins.toolbar,
   drawerPaper: {
-    width: drawerWidth,
+    width: '100%',
     height:'100%',
     [theme.breakpoints.up('md')]: {
       position: 'relative',
@@ -85,10 +67,14 @@ const styles = theme => ({
     flexGrow:1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    width:'70%',
+    width:'100%',
     height:'100%',
     position:'relative',
   },
+  center:{
+    margin:'auto',
+    align:'center',
+  }
 });
 
 
@@ -99,9 +85,43 @@ class ResponsiveDrawer extends React.Component {
       this.state = {
       mobileOpen: false,
       t:this.props.token,
-     
-      open:false,
-      openError:false,
+      OnDisplay: <div>WELCOME</div>,
+      processingTime:0,
+      
+      data:{
+          order1:{
+              id:'1234',
+              name:'burger 1',
+              price:'2000',
+              address:'Islamabad',
+              time:new Date(),
+              details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',    
+          },
+          order2:{
+            id:'1235',
+            name:'burger 2',
+            price:'2000',
+            address:'Islamabad',
+            time:new Date(),
+            details: 'Lorem Ipsum is simply dummy text of the printing and type setting industryLorem Ipsum is simply dummy text of the printing and typesetting industry',    
+        },
+      },
+      data2:{
+        order1:{
+            id:'1234',
+            name:'burger 1',
+            price:'2000',
+            address:'Islamabad',
+            details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industryLorem Ipsum is simply dummy text of the printing and typesetting industry',    
+        },
+        order2:{
+          id:'1235',
+          name:'burger 2',
+          price:'2000',
+          address:'Islamabad',
+          details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',    
+      },
+    },
     };
 
 
@@ -111,71 +131,141 @@ class ResponsiveDrawer extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
- AddNewLoginHandleClick = () => {
 
-    this.setState({
-        OnDisplay:<Dispatch token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-    console.log("Add item on click");
-  }
-
-
-  
  ViewAllHandleClick = () => {
-
     this.setState({
-        OnDisplay:<ViewAllOrders token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+       // OnDisplay:<ViewAllOrders token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen} data={this.state.data}/>
     })
     console.log("View All item Click")
   }
-  
 
 
+  ViewOrder = (orders) => {
+    console.log(orders)
+    this.setState({
+      OnDisplay:<ViewOrder/>
+    })
+  }
+
+  time15 = () => {
+    this.setState({
+      processingTime:(15*60),
+      data2:{
+        order2:{
+          id:'1235',
+          name:'burger 2',
+          price:'2000',
+          address:'Islamabad',
+          details: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+        } 
+      }
+    })
+    console.log(this.state.processingTime)
+  }
+  time30 = () => {
+    this.setState({
+      processingTime:(30*60),
+    })
+    console.log(this.state.processingTime)
+  }
+  time45 = () => {
+    this.setState({
+      processingTime:(45*60),
+    })
+    console.log(this.state.processingTime)
+  }
+  time60 = () => {
+    this.setState({
+      processingTime:(60*60)
+    })
+    console.log(this.state.processingTime)
+  }
 
 
+  dispatch = () => {
+    this.setState({
+      processingTime:0
+    })
+  }
+  componentDidMount() {
+    var details = {
+      'token':this.state.t
+    }
+  var formBody = [];
+  for (var property in details) {
+    var encodedKey = encodeURIComponent(property);
+    var encodedValue = encodeURIComponent(details[property]);
+    formBody.push(encodedKey + "=" + encodedValue);
+  }
+  formBody = formBody.join("&");
+    fetch('/api/user/emp/showOrders', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+      },
+    }).then(res=>res.json())
+    .then(res=>{
+      if(res){
+        console.log(res)
+        this.setState({
+          data:res,
+        });
+      }
+    }
+    );
+  }
 
-  handleClickDialogOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleClickDialogClose = () => {
-    this.setState({ open: false });
-  };
-
-  handleClickerrorDialogOpen = () => {
-    this.setState({ erroropen: true });
-  };
-
-  handleClickerrorDialogClose = () => {
-    this.setState({ erroropen: false });
-  };
-
-
-
+ 
   render() {
     const { classes, theme } = this.props;
 
     const drawer = (
-      <div>
-        <div className={classes.toolbar}/>
-        <Router history={customHistory}>
-        <List>
-        <Typography variant="title" color="inherit" >
-        <MuiThemeProvider theme={theme2}>
-           <ListItem><Button onClick={this.AddNewLoginHandleClick.bind(this)} >Dispatch Order</Button></ListItem>
-           <Divider />
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>View All Orders</Button></ListItem>
-            <Divider/>
-            
-            <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
-            <Divider />
-            </MuiThemeProvider>
-            </Typography>
-        </List>
-        </Router>
+      <MuiThemeProvider theme={theme2}>
+        <div className={classes.toolbar}>
+          <List >
+          <ListItem><strong><h1>New ORDERS</h1></strong></ListItem>
+         {
+           Object.values(this.state.data).map((orders,i)=>{
+             
+            return(
+              <div >
+                <Dialog  id={orders.id}  details={orders.details}  name={orders.name} price={orders.price} address={orders.address} time15={this.time15} time30={this.time30} time45={this.time45} time60={this.time60}/>
+                <Divider/>
+                </div>
+           )})
+         }
+        </List> 
       </div>
+      </MuiThemeProvider>
     );
+    let drawer2 = <div>Welcome</div>
+    if(this.state.processingTime===0){
+      drawer2 = (
+        <ListItem><strong><h1>No orders in Process</h1></strong></ListItem>
+      )
+    }
+    else{
+        drawer2 = (
+        <MuiThemeProvider theme={theme2}>
+          <div className={classes.toolbar}>
+            <List>
+            <ListItem><strong><h1>Processing ORDERS</h1></strong></ListItem>
+           {
+             Object.values(this.state.data2).map((orders,i)=>{
+              return(
+                <div>
+                  <Dialog2  id={orders.id}  processingTime={this.state.processingTime} details={orders.details} name={orders.name} price={orders.price} address={orders.address} dispatch={this.dispatch}/>
+                  <Divider/>
+                </div>
+             )})
+           }
+          </List> 
+        </div>
+        </MuiThemeProvider>
+      );
 
+    }
+    
     return (
         <div className={classes.root}>
           <AppBar className={classes.appBar}>
@@ -210,6 +300,8 @@ class ResponsiveDrawer extends React.Component {
             </Drawer>
           </Hidden>
           <Hidden smDown implementation="css">
+            <Grid container spacing={12}>
+              <Grid item md={6}>
             <Drawer
               variant="permanent"
               open
@@ -219,52 +311,20 @@ class ResponsiveDrawer extends React.Component {
             >
               {drawer}
             </Drawer>
+            </Grid>
+            <Grid item md={6}>
+            <Drawer
+              variant="permanent"
+              open
+              classes={{
+                paper: classes.drawerPaper,
+              }}
+            >
+              {drawer2}
+            </Drawer>
+            </Grid>
+            </Grid>
           </Hidden>
-          <main className={classes.content}>
-            <div className={classes.toolbar} />
-            {this.state.OnDisplay}
-            
-            {/*User Modal*/}
-            <Dialog
-          open={this.state.open}
-          onClose={this.handleClickDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              User Added
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClickDialogClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-
-         <Dialog
-          open={this.state.erroropen}
-          onClose={this.handleClickerrorDialogClose}
-          aria-labelledby="alert-dialog-title"
-          aria-describedby="alert-dialog-description"
-        >
-          <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              User not added, Try again.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClickDialogClose} color="primary">
-              Close
-            </Button>
-          </DialogActions>
-        </Dialog>
-            {/*<Typography noWrap>{'You think water moves fast? You should see ice.'}</Typography>*/}
-          </main>
-          <Orderdrawer/>
         </div>
       );
     }

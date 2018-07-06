@@ -7,7 +7,13 @@ import Grid from '@material-ui/core/Grid';
 import Grow from '@material-ui/core/Grow';
 import SearchImage from './SearchImage';
 import Footer from '../Footer/Footer';
-
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import amber from '@material-ui/core/colors/amber';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Cart from '@material-ui/icons/AddShoppingCart';
+import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme ({
     palette: {
@@ -41,9 +47,6 @@ const styles = theme => ({
     //margin:'3%'
   },
 
-  textfield: {
-  
-  },
   btn: {
     marginLeft: '10px',
     marginTop: '3px'
@@ -58,101 +61,54 @@ const styles = theme => ({
       backgroundRepeat: 'repeat',
       //backgroundSize: '100%',
       //background:'linear-gradient(-180deg, red, yellow)'
-}
+},
+snackbar: {
+  backgroundColor: amber[700],
+},
 
 })
 
 class SimpleTabs extends React.Component {
+  componentDidMount() {
+
+  fetch('/api/admin/allitems', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+    },
+  }).then(res=>res.json())
+  .then(res=>{
+    if(res){
+      this.setState({
+        data:res,
+      });
+    }
+  }
+  );
+  }
+  
   state = {
     value: 0,
-    data:{ 
-      burger1: {  name:'Big Mac',
-                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                  status:true,
-                  image:"https://www.hungryhorse.co.uk/media/3117/pit-burger.jpg",
-                  buildDetails: 'Yes',
-                  price:500
-                },
-              
-       burger2:{  name:'Texas Jack',
-                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                  status:true,
-                  image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-                  buildDetails:'No',
-                  price:500
-               },
-      burger3:{  name:'Texas Jack',
-              details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-              status:false,
-              image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-              price:500
-              },
-            burger4:  {  name:'Texas Jack',
-            details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-            status:false,
-            image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-            price:500
-         },
-         burger5:  {  name:'Texas Jack',
-         details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-         status:false,
-         image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-         price:500
-      },
-      burger6:  {  name:'Texas Jack',
-      details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-      status:false,
-      loading:false,
-      image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-      price:500
-   },
-           burger7:   {  name:'Texas Jack',
-                  details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-                  status:false,
-                  loading:false,
-                  image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-                  price:500
-               },
-               burger8:  {  name:'Texas Jack',
-               details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-               status:false,
-               loading:false,
-               image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-               price:500
-            },
-            burger9:  {  name:'Texas Jack',
-            details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-            status:false,
-            loading:false,
-            image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-            price:500
-         },
-         burger10:  {  name:'Texas Jack',
-         details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-         status:false,
-         loading:false,
-         image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-         price:500
-      },
-      burger11:  {  name:'Texas Jack',
-      details:'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.',
-      status:false,
-      loading:false,
-      image:"https://truffle-assets.imgix.net/0d26ee59-813-lucyjuicycrunchburger-land1.jpg",
-      price:500
-   },
-        
-    },
-
-      status:false,
-      checkoutDetails:[],
-      fetchCheck:false
+    data:{},
+    status:false,
+    checkoutDetails:[],
+    fetchCheck:false,
+    open:false,
   };
 
 
   handleChange = (event, value) => {
     this.setState({ value });
   };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      this.setState({ open: false })
+    }
+
+    this.setState({ open: false });
+  };
+
 
   checkoutDetailsHandle = (det) => {
     let localStorageTemp = JSON.parse(localStorage.getItem('cartItems'));
@@ -163,7 +119,8 @@ class SimpleTabs extends React.Component {
       tempdetails.push(det);
         this.setState({
           checkoutDetails: tempdetails,
-          fetchCheck:true
+          fetchCheck:true,
+          open:true
         })
         console.log(this.state.checkoutDetails);
         localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
@@ -171,27 +128,29 @@ class SimpleTabs extends React.Component {
     else if(localStorageTemp!=null && this.state.fetchCheck=== false){
       let tempdetails = this.state.checkoutDetails;
       tempdetails.push(det);
-      Object.values(localStorageTemp).map (
-        (key,index)=>{
-             tempdetails.push(key);
-        }
-      )
-        this.setState({
-          checkoutDetails: tempdetails,
-          fetchCheck:true
-        })
-        console.log(this.state.checkoutDetails);
-        localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
+
+      // Pure ES06 magic in the next line
+      tempdetails.push(...localStorageTemp);
+
+      this.setState({
+        checkoutDetails: tempdetails,
+        fetchCheck:true,
+        open:true
+      })
+      console.log(this.state.checkoutDetails);
+      localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
     }
     else{
       let tempdetails = this.state.checkoutDetails;
       tempdetails.push(det);
         this.setState({
-          checkoutDetails: tempdetails
+          checkoutDetails: tempdetails,
+          open:true
         })
         console.log(this.state.checkoutDetails);
         localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
     }
+    window.location.reload();
 
   }
 
@@ -224,8 +183,6 @@ class SimpleTabs extends React.Component {
  
   render() {
     const { classes } = this.props;
-    const { value } = this.state;
-
    
     return (
      <MuiThemeProvider theme={theme}>
@@ -247,17 +204,17 @@ class SimpleTabs extends React.Component {
             //() => this.setStatus(type.status,type.loading)    
             return (
               <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
-              <Grid item md={3} sm={6} xs={12}  key={index}>
-              <Home name={type.name}
-                    details={type.details} 
-                    status={type.status} 
-                    image={type.image}        
-                    price={type.price}             
+              <Grid item lg={3} md={4} sm={6} xs={12}  key={index}>
+              <Home 
+                    itemId={type.primaryKey}
+                    name={type.item_name}
+                    details={type.item_desc} 
+                    status={type.build} 
+                    image={type.imgPath}        
+                    price={type.item_price}             
                     buildDetails={type.buildDetails}
-                    loading={this.state.loading}
-                    loadingHandle={this.loadingHandle}
-                    cancelHandler={this.cancelHandle}
                     checkoutDet={this.checkoutDetailsHandle}
+                    ingredients={type.ingredients}
                     />
               </Grid>    
               </Grow>
@@ -269,7 +226,28 @@ class SimpleTabs extends React.Component {
       </div>
         
             <Footer/>
-        
+            <MuiThemeProvider theme={theme}>
+            <Snackbar
+           
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+        >
+        <SnackbarContent
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }} 
+            className={classes.snackbar}          
+            message={<span  id="message-id"><h4><Cart/> &nbsp; &nbsp;Added to CART</h4></span>}
+            >
+          </SnackbarContent>
+        </Snackbar>
+        </MuiThemeProvider>
       </div>
       </MuiThemeProvider>
     );

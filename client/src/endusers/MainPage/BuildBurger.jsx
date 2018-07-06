@@ -89,15 +89,17 @@ class FullScreenDialog extends React.Component {
     cheese:false,
     extradetails:'',
     ingredients: [],
-    ingredients2:[]
+    ingredients2:[],
+    ing:this.props.ingredients,
+    abc:{}
   };
    
   handleChange = name => event => {
     
     this.setState({ [name]: event.target.checked, 
                   });
-                  var newArr = this.state.ingredients;
-                  newArr.push(name),
+    var newArr = this.state.ingredients;
+                  newArr.push(name)
     this.setState({
      ingredients:newArr,
                   })
@@ -176,7 +178,7 @@ class FullScreenDialog extends React.Component {
           TransitionComponent={Transition}
         >
         <Grid container spacing={12}>
-          <Grid item md={4} sm={6}>
+          <Grid item md={4} sm={12} xs={12}>
         <Card className={classes.cardLeft}>
         <CardMedia
           className={classes.media}
@@ -186,11 +188,11 @@ class FullScreenDialog extends React.Component {
           </Card>
           </Grid>
 
-          <Grid item md={8} sm={6}>
+          <Grid item md={8} sm={12} xs={12}>
           <Card className={classes.cardRight}>
           <CardContent>
           <Typography className={classes.text} gutterBottom variant="display2" component="h2">
-           Texas Jack
+           {this.props.name}
           </Typography>
           <Typography  gutterBottom variant="p">
            {this.props.buildDetails}
@@ -198,21 +200,27 @@ class FullScreenDialog extends React.Component {
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
           <Grid container spacing={12}>
-            <Grid item md={6}>
-            <ListItem >
-           <Typography>Chicken</Typography><Checkbox
-                checked={this.state.chicken}
-                onChange={this.handleChange('chicken')}
-                value="Chicken"
-              />
-            </ListItem>
-            <ListItem>
+            <Grid item md={6} sm={12} xs={12}>
+              {
+                Object.values(this.state.abc).map((type,key)=>{
+                return (
+                  <ListItem>
+                  <Typography>{type.name}</Typography><Checkbox
+                  checked={this.state.chicken}
+                  onChange={this.handleChange('chicken')}
+                  value="Chicken"
+                />
+                </ListItem>
+                )
+              })}
+            
+            {/*<ListItem>
             <Typography>Cheese</Typography> <Checkbox
                 checked={this.state.cheese}
                 onChange={this.handleChange('cheese')}
                 value="Cheese"
               />
-            </ListItem>
+            </ListItem>*/}
             </Grid>
             </Grid>
           </List>

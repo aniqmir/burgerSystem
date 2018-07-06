@@ -1,18 +1,26 @@
  import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
-import MenuItem from 'material-ui/Menu/MenuItem';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
-import Icon from 'material-ui/Icon';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, {  CardContent } from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+        'Poppins'
+    ].join(','),
+  },
+});
+
+import { Grid } from 'material-ui';
 
 const styles = theme => ({
   button: {
@@ -42,7 +50,6 @@ const styles = theme => ({
     marginLeft:100,
     marginRight:100,
     marginTop:25,
-    //maxWidth: 350,
   },
   input: {
     display: '',
@@ -80,9 +87,10 @@ this.state = {
     date: date,
     type: '',
     price:'',
-    build: true,
+    build: false,
     selectedFile:'',
     t:cachetoken,
+    checkBuild:true,
   }
 }
   
@@ -93,7 +101,6 @@ handleSubmit = (evt) => {
     evt.preventDefault();
     return;
   }
-  const {qrId} = this.state;
 }
 canBeSubmitted() {
   const errors = validate(this.state.name);
@@ -115,6 +122,8 @@ canBeSubmitted() {
   };
 
   changedesc = e => {
+    
+    if(!(this.state.desc.length>100))
     this.setState({
       desc: e.target.value
     });
@@ -142,6 +151,17 @@ canBeSubmitted() {
     this.setState({
       build: e.target.value
     });
+    this.checkBuildStatus();
+  }
+
+  checkBuildStatus=()=>{
+    if(this.state.build===true){
+      this.setState({
+        checkBuild:false,
+      });
+      console.log('check build status',this.state.checkBuild);
+      this.forceUpdate();
+    }
   }
   onChangeFile = (e) => {
     switch (e.target.name) {
@@ -184,7 +204,7 @@ canBeSubmitted() {
           desc: '',
           type: '',
           price:'',
-          build: true,
+          build: false,
           selectedFile:'',     
         })   
       });
@@ -194,8 +214,8 @@ canBeSubmitted() {
     const errors = validate(this.state.name,this.state.desc,this.state.type,
       this.state.price,this.state.selectedFile);
       const isDisabled = Object.keys(errors).some(x => errors[x]);
-      const { name,desc,date,type,price,build,selectedFile,t } = this.state;
     return (
+      <MuiThemeProvider theme={theme}>
       <div>
           <AppBar className={classes.appBar}>
       <Toolbar>
@@ -280,8 +300,78 @@ canBeSubmitted() {
       type="file"
       name="selectedFile"
       onChange={this.onChangeFile}
-           />
-          
+         />
+         
+
+          <Grid container spacing={12}>
+            <Grid item md={3}>
+              <TextField
+              id="ingredient # 1"
+              placeholder="ingredient # 1"
+              margin="normal"
+              disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField
+                id="ingredient # 2"
+                placeholder="ingredient # 2"
+                margin="normal"
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 3"
+                placeholder="ingredient # 3"
+                margin="normal"
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 4"
+                placeholder="ingredient # 4"
+                margin="normal"              
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+          </Grid>
+          <Grid container spacing={12}>
+            <Grid item md={3}>
+              <TextField
+              id="ingredient # 5"
+              placeholder="ingredient # 5"
+              margin="normal"
+              disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField
+                id="ingredient # 6"
+                placeholder="ingredient # 6"
+                margin="normal"
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 7"
+                placeholder="ingredient # 7"
+                margin="normal"              
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+            <Grid item md={3}>
+              <TextField 
+                id="ingredient # 8"
+                placeholder="ingredient # 8"
+                margin="normal"              
+                disabled={this.state.checkBuild}
+              />
+            </Grid>
+          </Grid>
+
         <Button variant="raised" color="primary" className={classes.button} onClick={this.onSubmit} disabled={isDisabled}>
         ADD
         <AddIcon/>
@@ -290,7 +380,7 @@ canBeSubmitted() {
         </form>
       </Card>
       </div>
-      
+      </MuiThemeProvider>
     );
   }
 }

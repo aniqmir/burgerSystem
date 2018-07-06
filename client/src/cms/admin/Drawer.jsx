@@ -12,15 +12,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Divider from 'material-ui/Divider';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem } from 'material-ui/List';
 import AddNewLogin from './AddLogin';
 import ViewAll from './ViewAll';
 import AddItem from './AddItem';
 import ViewItems from './ViewAllItems';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { 
-    Router,
-    Route
+    Router
     }   from 'react-router-dom';
 
 import Dialog, {
@@ -29,6 +28,10 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
+
+
+
+
 
 
 
@@ -64,7 +67,6 @@ const theme2 = createMuiTheme({
 const styles = theme => ({
   root: {
     height: 'auto',
-    zIndex: 1,
     overflow: 'auto',
     position: 'relative',
     display: 'flex',

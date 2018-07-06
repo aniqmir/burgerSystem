@@ -2,8 +2,6 @@ const multer = require('multer');
 var path = require('path');
 const uuidv4 = require('uuid/v4');
 
- 
- 
  // configure storage
  const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -16,5 +14,4 @@ const uuidv4 = require('uuid/v4');
   });
   // create the multer instance that will be used to upload/save the file
   const upload = multer({storage: storage});
-
   module.exports = upload;

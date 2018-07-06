@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import CardHeader from 'material-ui';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import CreditCard from '@material-ui/icons/CreditCard';
 import Email from '@material-ui/icons/Email';
@@ -18,11 +15,12 @@ import Phone from '@material-ui/icons/PermPhoneMsg';
 import Label from '@material-ui/icons/Label';
 import Check from '@material-ui/icons/Check';
 import Accessibility from '@material-ui/icons/Accessibility';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Slide from '@material-ui/core/Slide';
 import Footer from '../Footer/Footer'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = {
   card: {
@@ -122,6 +120,8 @@ transboxLeft : {
             contact:'',
             creditCard:'',
             bankName:'',
+            open:false,
+            msg:'User Added',
             
         }
     }
@@ -130,6 +130,13 @@ transboxLeft : {
        console.log('signup handle')
    }
   
+   handleClose = () => {
+    this.setState({
+      open:false,
+      msg:'User Added'
+    })
+  };
+
    changeName = e => {
     this.setState({
       name: e.target.value
@@ -190,6 +197,7 @@ enterDetails = () => {
 };
 
 
+
 var formBody = [];
 for (var property in details) {
   var encodedKey = encodeURIComponent(property);
@@ -205,19 +213,28 @@ fetch('/api/user/signup', {
     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
   },
   body: formBody
-}).then(res=>res.json())
-.then(res=>{
-  console.log("we are in this function");
-  if(res){
-  // console.log(res);
-   console.log(res);
-    /*if(res.type=="head")*/{
-     console.log('Sign Up Function');
+  })
+  .then(res=>res.json())
+  .then(res=>{
+    if(res){
+    if(res.success===false)
+    {
+        this.setState({
+          open:true,
+          msg:res.msg,
+        })
     }
-    console.log("After function");
-  };
-}
-);
+    else {
+      this.setState({
+        open:true,
+        msg:res.msg
+      })
+      this.props.history.push('./signin')
+    }
+    console.log(res);
+    };
+  }
+  );
   this.setState({
     name:'',
     email:'',
@@ -402,6 +419,33 @@ fetch('/api/user/signup', {
                 <div className={classes.footer}>
                    <Footer/>
                 </div>
+                <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.open}
+          autoHideDuration={6000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">{this.state.msg}</span>}
+          action={[
+            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
+              UNDO
+            </Button>,
+            <IconButton
+              key="close"
+              aria-label="Close"
+              color="inherit"
+              className={classes.close}
+              onClick={this.handleClose}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
            </div>
           );
         }

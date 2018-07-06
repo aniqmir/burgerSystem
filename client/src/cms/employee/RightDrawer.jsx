@@ -1,21 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from 'material-ui/Button';
 import List from '@material-ui/core/List';
-
-import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-
+import Dialog from './Dialog';
 
 const drawerWidth = 240;
 var orders = [9480];
@@ -56,7 +48,6 @@ const styles = theme => ({
   {
     width:'95%',
     marginLeft:'auto',
-    
     marginBottom:'10px',
     marginRight:'auto',
   }
@@ -68,7 +59,9 @@ class PermanentDrawer extends React.Component {
   constructor(props)
   {
     super(props);
-    this.state={}
+    this.state={
+      open: false,
+    }
     this.url = "https://notificationsounds.com/soundfiles/8eefcfdf5990e441f0fb6f3fad709e21/file-sounds-1100-open-ended.mp3";
     this.audio = new Audio(this.url);
   };
@@ -89,7 +82,13 @@ class PermanentDrawer extends React.Component {
     console.log("Playing Notification Sound Function");
     this.audio.play();
   }
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
   render() {
     const { classes } = this.props;
     const { anchor } = this.state;
@@ -110,15 +109,16 @@ class PermanentDrawer extends React.Component {
       >
       
         <div className={classes.toolbar} />
-        <Button onClick={(e) =>this.newOrder(e)}>New Order </Button>
         <List>
-         {Object.values(orders).map((orders,i)=>{
+         {Object.values(this.props.data).map((orders,i)=>{
+        
             return(<Card className={classes.card}>
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography variant="subheading" color="textSecondary">
-              Order # {orders}
+             <Dialog id={orders.id} name={orders.name} price={orders.price} address={orders.address}/>
             </Typography>
+              
           </CardContent>
           <div className={classes.controls}>
           </div>
@@ -126,11 +126,7 @@ class PermanentDrawer extends React.Component {
         </Card>
         )})
       }
-        
-          
-        </List>
-        
-        
+        </List> 
       </Drawer>
         </div>
       </div>

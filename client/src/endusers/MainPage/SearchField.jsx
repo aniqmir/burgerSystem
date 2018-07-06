@@ -1,19 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
 import Paper from '@material-ui/core/Paper';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Search from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Slide from '@material-ui/core/Slide';
-import SearchDialog from '../SearchDialog/Dialog'
 
 const styles = theme => ({
   container: {
@@ -101,8 +93,6 @@ class CustomizedInputs extends React.Component {
       let filterdData = Object.values(arr).map(
         data => {
           return data.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-          this.props.searchHandleTrue()
-          this.props.searchdata(data)
         }
         
       ) 
@@ -114,7 +104,7 @@ class CustomizedInputs extends React.Component {
             
 
     render() {
-      const { classes,data,filterText } = this.props;
+      const { classes } = this.props;
 
       return (
         <Paper className={classes.paperroot}>

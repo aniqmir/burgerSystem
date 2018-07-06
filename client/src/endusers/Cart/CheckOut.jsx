@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
+import Table from './CheckoutTable';
+import Guest from './Guest';
+import Grid from '@material-ui/core/Grid';
+import Footer from '../Footer/Footer';
 const styles = {
   root: {
     width: '100%',
@@ -52,7 +55,16 @@ const styles = {
   counterWidth:{
     width:50,
     margin:'auto'
-  }
+  },
+  divBackground:{
+    backgroundImage:`url(${"https://www.xmple.com/wallpaper/stripes-orange-black-lines-streaks-1920x1080-c2-000000-ff8c00-l2-117-117-a-30-f-1.svg"})`,
+    minHeight: '100vh',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    paddingTop:"10%"
+  },
+ 
+  
 };
 
 
@@ -64,12 +76,21 @@ class CheckOut extends React.Component {
     counter:0
   };
    
+
   
   render() {
     const { classes } = this.props;
     return (
-      <div>
-        {this.props.state}
+      <div className={classes.divBackground}>
+      <Grid container spacing={12}>
+      <Grid item md={12}>
+        <Table/>
+        </Grid>
+        <Grid item md={12}>
+        <Guest/>
+        </Grid>
+        </Grid>
+         <Footer/>
       </div>
     );
   }
