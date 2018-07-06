@@ -80,6 +80,7 @@ this.state = {
     build: true,
     selectedFile:'',
     t:cachetoken,
+    checkBuild:false,
   }
 }
   
@@ -284,6 +285,7 @@ canBeSubmitted() {
               id="ingredient # 1"
               placeholder="ingredient # 1"
               margin="normal"
+              disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
@@ -291,13 +293,15 @@ canBeSubmitted() {
                 id="ingredient # 2"
                 placeholder="ingredient # 2"
                 margin="normal"
+                disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
               <TextField 
                 id="ingredient # 3"
                 placeholder="ingredient # 3"
-                margin="normal"              
+                margin="normal"
+                disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
@@ -305,6 +309,7 @@ canBeSubmitted() {
                 id="ingredient # 4"
                 placeholder="ingredient # 4"
                 margin="normal"              
+                disabled={this.state.checkBuild}
               />
             </Grid>
           </Grid>
@@ -314,6 +319,7 @@ canBeSubmitted() {
               id="ingredient # 5"
               placeholder="ingredient # 5"
               margin="normal"
+              disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
@@ -321,6 +327,7 @@ canBeSubmitted() {
                 id="ingredient # 6"
                 placeholder="ingredient # 6"
                 margin="normal"
+                disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
@@ -328,6 +335,7 @@ canBeSubmitted() {
                 id="ingredient # 7"
                 placeholder="ingredient # 7"
                 margin="normal"              
+                disabled={this.state.checkBuild}
               />
             </Grid>
             <Grid item md={3}>
@@ -335,6 +343,7 @@ canBeSubmitted() {
                 id="ingredient # 8"
                 placeholder="ingredient # 8"
                 margin="normal"              
+                disabled={this.state.checkBuild}
               />
             </Grid>
           </Grid>
