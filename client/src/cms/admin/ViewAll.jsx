@@ -1,12 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+        'Poppins'
+    ].join(','),
+  },
+});
 const CustomTableCell = withStyles(theme => ({
   head: {
     backgroundColor: '#3F51B5',
@@ -129,6 +137,7 @@ class CustomizedTable extends React.Component {
   render() {
     const { classes } = this.props;
     return (
+      <MuiThemeProvider theme={theme}>
       <Paper className={classes.root}>
       <Typography variant="display2"> All Employees</Typography>
       
@@ -151,9 +160,10 @@ class CustomizedTable extends React.Component {
                     <CustomTableCell>{type.Emp_fname}</CustomTableCell>
                     <CustomTableCell numeric>{type.Email}</CustomTableCell>
                     <CustomTableCell numeric>{type.Emp_phone}</CustomTableCell>
-                    <IconButton className={classes.button} aria-label="Delete" onClick={this.removeProduct.bind(this,type.Email)}>
-                <DeleteIcon />
-                </IconButton>
+                    <CustomTableCell numeric> <IconButton className={classes.button} aria-label="Delete" onClick={this.removeProduct.bind(this,type.Email)}>
+                    <DeleteIcon />
+                    </IconButton>
+                    </CustomTableCell>
                   </TableRow>
                 );
               })
@@ -161,6 +171,7 @@ class CustomizedTable extends React.Component {
           </TableBody>
         </Table>
       </Paper>
+      </MuiThemeProvider>
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -34,6 +33,12 @@ const theme2 = createMuiTheme({
           width:200,
         },
       },
+    },
+    typography: {
+      // Use the system font instead of the default Roboto font.
+      fontFamily: [
+        'Poppins'
+      ].join(','),
     },
   });
 

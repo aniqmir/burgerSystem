@@ -17,8 +17,7 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
     appBar: {
-      display:'block',
-      position:'relative'
+      zIndex: theme.zIndex.drawer + 1,
     },
  
   });

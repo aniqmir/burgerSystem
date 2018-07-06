@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import AddIcon from '@material-ui/icons/Add';
 import Card, { CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    // Use the system font instead of the default Roboto font.
+    fontFamily: [
+        'Poppins'
+    ].join(','),
+  },
+});
 
 const styles = theme => ({
   button: {
@@ -190,6 +199,7 @@ canBeSubmitted() {
       const isDisabled = Object.keys(errors).some(x => errors[x]);
 
     return (
+      <MuiThemeProvider theme={theme}>
       <div>
         <Typography variant="display2">Add a new Employee</Typography>
         <Button>View All Employees</Button>
@@ -264,7 +274,7 @@ canBeSubmitted() {
         </form>
       </Card>
       </div>
-      
+      </MuiThemeProvider>
     );
   }
 }

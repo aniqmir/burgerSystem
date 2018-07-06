@@ -31,6 +31,10 @@ import Dialog, {
 
 
 
+
+
+
+
 const customHistory = createBrowserHistory();
 const drawerWidth = 240;
 
@@ -63,7 +67,6 @@ const theme2 = createMuiTheme({
 const styles = theme => ({
   root: {
     height: 'auto',
-    zIndex: 1,
     overflow: 'auto',
     position: 'relative',
     display: 'flex',

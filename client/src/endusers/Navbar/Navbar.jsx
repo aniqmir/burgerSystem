@@ -9,6 +9,8 @@ import red from '@material-ui/core/colors/red';
 import Cart from '@material-ui/icons/AddShoppingCart';
 import FastFood from '@material-ui/icons/Apps';
 import Face from '@material-ui/icons/Face';
+import Badge from '@material-ui/core/Badge';
+import _ from 'lodash';
 //import {Link} from 'react-router-dom';
 
 
@@ -98,7 +100,30 @@ operationLogout = () => {
 state = {
   username : 'Sign In',
   check : false,
-  logout:''
+  logout:'',
+  badge:0
+}
+componentWillMount(){
+  let cartItem = JSON.parse(localStorage.getItem('cartItems'));
+   cartItem = _.uniqWith(cartItem,_.isEqual);
+  let temp = null;
+  if(cartItem===null){
+    temp=null
+  }
+  else{
+    temp=cartItem.length
+  }
+  if(temp===null){
+    this.setState({
+      badge:0
+    })
+  }
+  else{
+  this.setState({
+    badge:temp,
+})
+  }
+ 
 }
 
 componentDidMount() {
@@ -118,23 +143,25 @@ componentDidMount() {
      logout:''
    })
  }
+ 
 }
 
 componentWillUnmount() {
   let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
+
   console.log(loginDetails);
   if(loginDetails != null) {
   this.setState({
        username : loginDetails[0],
        check:true,
-       logout:'Log Out'
+       logout:'Log Out',
   })
  }
   else {
     this.setState({
       username:'Sign IN',
       check:false,
-      logout:''
+      logout:'',
     })
   }
  }
@@ -153,7 +180,7 @@ render() {
             <Button color="inherit" onClick={this.operationSignIn.bind(this)} disabled={this.state.check}><Face/>&nbsp; {this.state.username}</Button>
            {/*<Link to={ {pathname:'signin', state:{func:true}}}><Face/>&nbsp; {this.state.username}</Link>*/} 
              <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
-             <Button color="inherit"onClick={this.operationCart.bind(this)}><Cart/></Button>
+             <Button color="inherit"onClick={this.operationCart.bind(this)}><Badge  badgeContent={this.state.badge} color="secondary"><Cart/></Badge></Button>
              
              {/*<Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>*/}  
             

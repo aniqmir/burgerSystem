@@ -10,6 +10,9 @@ import Footer from '../Footer/Footer';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import amber from '@material-ui/core/colors/amber';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Cart from '@material-ui/icons/AddShoppingCart';
 import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme ({
@@ -58,7 +61,10 @@ const styles = theme => ({
       backgroundRepeat: 'repeat',
       //backgroundSize: '100%',
       //background:'linear-gradient(-180deg, red, yellow)'
-}
+},
+snackbar: {
+  backgroundColor: amber[700],
+},
 
 })
 
@@ -144,6 +150,7 @@ class SimpleTabs extends React.Component {
         console.log(this.state.checkoutDetails);
         localStorage.setItem('cartItems',JSON.stringify(this.state.checkoutDetails));
     }
+    window.location.reload();
 
   }
 
@@ -219,33 +226,28 @@ class SimpleTabs extends React.Component {
       </div>
         
             <Footer/>
+            <MuiThemeProvider theme={theme}>
             <Snackbar
+           
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
           }}
+          
           open={this.state.open}
           autoHideDuration={6000}
           onClose={this.handleClose}
-          ContentProps={{
-            'aria-describedby': 'message-id',
-          }}
-          message={<span id="message-id">Added to CART</span>}
-          action={[
-            <Button key="undo" color="secondary" size="small" onClick={this.handleClose}>
-              UNDO
-            </Button>,
-            <IconButton
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              className={classes.close}
-              onClick={this.handleClose}
+        >
+        <SnackbarContent
+            ContentProps={{
+              'aria-describedby': 'message-id',
+            }} 
+            className={classes.snackbar}          
+            message={<span  id="message-id"><h4><Cart/> &nbsp; &nbsp;Added to CART</h4></span>}
             >
-              <CloseIcon />
-            </IconButton>,
-          ]}
-        />
+          </SnackbarContent>
+        </Snackbar>
+        </MuiThemeProvider>
       </div>
       </MuiThemeProvider>
     );
