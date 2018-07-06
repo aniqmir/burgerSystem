@@ -39,7 +39,6 @@ const styles = theme => ({
     marginLeft:100,
     marginRight:100,
     marginTop:25,
-    //maxWidth: 350,
   },
   input: {
     display: '',
@@ -77,10 +76,10 @@ this.state = {
     date: date,
     type: '',
     price:'',
-    build: true,
+    build: false,
     selectedFile:'',
     t:cachetoken,
-    checkBuild:false,
+    checkBuild:true,
   }
 }
   
@@ -141,6 +140,17 @@ canBeSubmitted() {
     this.setState({
       build: e.target.value
     });
+    this.checkBuildStatus();
+  }
+
+  checkBuildStatus=()=>{
+    if(this.state.build===true){
+      this.setState({
+        checkBuild:false,
+      });
+      console.log('check build status',this.state.checkBuild);
+      this.forceUpdate();
+    }
   }
   onChangeFile = (e) => {
     switch (e.target.name) {
@@ -183,7 +193,7 @@ canBeSubmitted() {
           desc: '',
           type: '',
           price:'',
-          build: true,
+          build: false,
           selectedFile:'',     
         })   
       });
