@@ -20,7 +20,6 @@ const theme = createMuiTheme({
   },
 });
 
-import { Grid } from 'material-ui';
 
 const styles = theme => ({
   button: {
