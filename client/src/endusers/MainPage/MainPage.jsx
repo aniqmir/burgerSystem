@@ -8,12 +8,9 @@ import Grow from '@material-ui/core/Grow';
 import SearchImage from './SearchImage';
 import Footer from '../Footer/Footer';
 import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
 import amber from '@material-ui/core/colors/amber';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Cart from '@material-ui/icons/AddShoppingCart';
-import Button from '@material-ui/core/Button';
 
 const theme = createMuiTheme ({
     palette: {

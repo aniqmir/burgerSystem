@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
 const styles = theme => ({
   button: {
@@ -187,7 +186,7 @@ else
     return (
       <div>
         <div className='text-center mt-5'>
-          <img src={'./logo1.png'} />
+          <img src={'./logo1.png'} alt="Logo of MyBigFood" />
         </div>
     <Card className={classes.card}>
      

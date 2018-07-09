@@ -7,6 +7,7 @@ import Card, {  CardContent } from 'material-ui/Card';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
+import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
 import { Grid } from 'material-ui';
@@ -19,7 +20,6 @@ const theme = createMuiTheme({
     ].join(','),
   },
 });
-
 
 
 const styles = theme => ({
@@ -342,6 +342,7 @@ canBeSubmitted() {
           margin="normal"
           refs='price'
         />  
+
         <TextField
           id="build"
           select
@@ -362,8 +363,9 @@ canBeSubmitted() {
               {option.label}
             </option>
           ))}
-          </TextField>     
-      <input
+          </TextField>
+               
+          <input
       accept="image/*"
       className={classes.input}
       //value= {this.state.selectedFile}
@@ -477,6 +479,5 @@ canBeSubmitted() {
 TextFields.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 export default withStyles(styles)(TextFields);
   

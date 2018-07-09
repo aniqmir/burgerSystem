@@ -64,6 +64,7 @@ exports.neworders = function(req,res){
         }
     ); 
 }
+
 //Function to Dispatch an Order
 exports.Dispatchorder = function(req,res){
     order_instance.findByIdAndUpdate(req.body.id,{ $set: { status: 'Dispatched' }},function (err, tank) {
@@ -71,5 +72,25 @@ exports.Dispatchorder = function(req,res){
         else res.json('Success');
     });
 }
-
-//
+//function to Process an Order
+exports.Processorder = function(req,res){
+    order_instance.findByIdAndUpdate(req.body.id,{ $set: { status: 'Processing' }},function (err, tank) {
+        if (err) return res.json(err);
+        else res.json('Success');
+    });
+}
+//Function To Get Orders in Processing
+exports.ordersInProcessing = function(req,res){
+    order_instance.find(
+        // query
+        {status:'Processing'},
+        // callback function
+        (err, ord) => {
+            if (err) return res.status(200).json(err);
+            if(ord==null)
+            return res.status(200).json(message='No Order in Processing');
+            else
+            return res.status(200).json(ord);
+        }
+    ); 
+}
