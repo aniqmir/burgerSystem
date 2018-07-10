@@ -60,6 +60,10 @@ class SimpleMediaCard extends React.Component {
   }
 
 
+  componentDidMount(){
+    console.log(this.props.ingredients);
+  }
+
   cancelHandler = () => {
     console.log('cancel')
    

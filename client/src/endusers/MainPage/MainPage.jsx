@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import amber from '@material-ui/core/colors/amber';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Cart from '@material-ui/icons/AddShoppingCart';
+import _ from 'lodash';
 
 const theme = createMuiTheme ({
     palette: {
@@ -212,7 +213,7 @@ class SimpleTabs extends React.Component {
                     price={type.item_price}             
                     buildDetails={type.buildDetails}
                     checkoutDet={this.checkoutDetailsHandle}
-                    ingredients={type.ingredients}
+                    ingredients={_.split(type.ingredients,",")}
                     />
               </Grid>    
               </Grow>
