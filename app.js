@@ -23,6 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
+
 app.use(express.static('uploads'))
 app.set('view engine', 'ejs');
 
