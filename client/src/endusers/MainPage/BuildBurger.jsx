@@ -85,18 +85,18 @@ function Transition(props) {
 class FullScreenDialog extends React.Component {
   state = {
     open: false,
-    chicken: false,
-    cheese:false,
+    ing:false,
     extradetails:'',
     ingredients: [],
     ingredients2:[],
-    ing:this.props.ingredients,
-    abc:{}
+    tempIng:[],
   };
    
   handleChange = name => event => {
     
-    this.setState({ [name]: event.target.checked, 
+    this.setState({ 
+      [name]: event.target.checked, 
+      ing:!this.state.ing
                   });
     var newArr = this.state.ingredients;
                   newArr.push(name)
@@ -151,7 +151,16 @@ class FullScreenDialog extends React.Component {
   }
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+      let temp = []
+      Object.values(this.props.ingredients).map((type,key)=>{
+            temp.push(type)
+      })
+      console.log(temp);
+    
+    this.setState({ 
+      open: true,
+      tempIng:temp, 
+  });
   };
 
   handleClose = () => {
@@ -200,28 +209,167 @@ class FullScreenDialog extends React.Component {
           <Paper className={classes.paper} elevation={8}>
           <List className={classes.root}>
           <Grid container spacing={12}>
-            <Grid item md={6} sm={12} xs={12}>
-              {
-                Object.values(this.state.abc).map((type,key)=>{
-                return (
-                  <ListItem>
-                  <Typography>{type.name}</Typography><Checkbox
-                  checked={this.state.chicken}
-                  onChange={this.handleChange('chicken')}
-                  value="Chicken"
-                />
-                </ListItem>
-                )
-              })}
-            
-            {/*<ListItem>
-            <Typography>Cheese</Typography> <Checkbox
-                checked={this.state.cheese}
-                onChange={this.handleChange('cheese')}
-                value="Cheese"
-              />
-            </ListItem>*/}
-            </Grid>
+           
+           
+                  {/*
+                    Object.values((this.props.ingredients)).map((type,key)=>{
+                      return (
+                        <ListItem>
+                        <Typography>{type.split(" ")}</Typography>
+                        <Checkbox
+                        checked={this.state.ing}
+                        onChange={this.handleChange(type.split(" "))}
+                        value={type.split("")}
+                      />
+                      </ListItem>
+                      )
+                       })
+                      */ }
+                       <Grid item md={6} sm={12} xs={12}>
+                      {
+                        (this.state.tempIng[0]!==0) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[0]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing0}
+                          onChange={this.handleChange(this.state.tempIng[0])}
+                          value={this.state.tempIng[0]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                    
+                    {
+                        (this.state.tempIng[1]!==0) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[1]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing1}
+                          onChange={this.handleChange(this.state.tempIng[1])}
+                          value={this.state.tempIng[1]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                          {
+                        (this.state.tempIng[2]!==0) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[2]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing2}
+                          onChange={this.handleChange(this.state.tempIng[2])}
+                          value={this.state.tempIng[2]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                          {
+                        (this.state.tempIng[3]) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[3]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing3}
+                          onChange={this.handleChange(this.state.tempIng[3])}
+                          value={this.state.tempIng[3]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                          {
+                        (this.state.tempIng[4]) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[4]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing4}
+                          onChange={this.handleChange(this.state.tempIng[4])}
+                          value={this.state.tempIng[4]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                             {
+                        (this.state.tempIng[5]) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[5]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing5}
+                          onChange={this.handleChange(this.state.tempIng[5])}
+                          value={this.state.tempIng[5]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
+                      <Grid item md={6} sm={12} xs={12}>
+                                                      {
+                        (this.state.tempIng[6]) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[6]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing6}
+                          onChange={this.handleChange(this.state.tempIng[6])}
+                          value={this.state.tempIng[6]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid> 
+                      <Grid item md={6} sm={12} xs={12}>          {
+                        (this.state.tempIng[7]) ? (
+                          <ListItem>
+                          <Typography>{this.state.tempIng[7]}</Typography>
+                          <Checkbox
+                          checked={this.state.ing7}
+                          onChange={this.handleChange(this.state.tempIng[7])}
+                          value={this.state.tempIng[7]}
+                          />
+                          </ListItem>
+                        )
+                        : (
+                          <ListItem>
+                          </ListItem>
+                        )
+                      }
+                      </Grid>
             </Grid>
           </List>
           </Paper>

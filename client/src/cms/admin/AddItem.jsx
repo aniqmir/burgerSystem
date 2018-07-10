@@ -10,7 +10,6 @@ import Typography from 'material-ui/Typography';
 import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/styles';
-import { Grid } from 'material-ui';
 
 const theme = createMuiTheme({
   typography: {
