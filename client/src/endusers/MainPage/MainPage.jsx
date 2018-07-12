@@ -245,7 +245,7 @@ class SimpleTabs extends React.Component {
         </Grid> 
       </div>
         
-            <Footer/>
+            <Footer history={this.props.history}/>
             <MuiThemeProvider theme={theme}>
             <Snackbar
            

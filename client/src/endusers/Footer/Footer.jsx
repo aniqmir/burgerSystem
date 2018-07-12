@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
   
 const theme = createMuiTheme ({
  typography: {
@@ -30,7 +31,10 @@ footer: {
 })
 
 class SimpleTabs extends React.Component {
- 
+  
+  gotoCms = () => {
+    this.props.history.push('/cms')
+  }
 
   render() {
     const { classes } = this.props;
@@ -53,6 +57,9 @@ class SimpleTabs extends React.Component {
         </Grid>
         <Grid item md={12} sm={12} xs={12}>
         <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
+        </Grid>
+        <Grid item md={12} sm={12} xs={12}>
+        <Typography align='center' color='inherit'><Button align="center" onClick={this.gotoCms} size="large" color="primary">CMS</Button></Typography>
         </Grid>
         </Grid>
         </div>

@@ -242,7 +242,7 @@ const styles = {
                  </Grid>
             </div>
                  <div className={classes.footer}>
-                  <Footer/>
+                  <Footer history={this.props.history}/>
                  </div>
           </div>  
           );
