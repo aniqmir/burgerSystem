@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import amber from '@material-ui/core/colors/amber';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Cart from '@material-ui/icons/AddShoppingCart';
+import _ from 'lodash';
 
 const theme = createMuiTheme ({
     palette: {
@@ -241,7 +242,32 @@ class SimpleTabs extends React.Component {
      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>
-        {home}
+       {/*<Grid item xs={12}>
+        <Carousel/>
+        </Grid>*/ } 
+
+           {Object.values(this.state.data).map((type,index) => {  
+            //() => this.setStatus(type.status,type.loading)    
+            return (
+              <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
+              <Grid item lg={3} md={4} sm={6} xs={12}  key={index}>
+              <Home 
+                    itemId={type.primaryKey}
+                    name={type.item_name}
+                    details={type.item_desc} 
+                    status={type.build} 
+                    image={type.imgPath}        
+                    price={type.item_price}             
+                    buildDetails={type.buildDetails}
+                    checkoutDet={this.checkoutDetailsHandle}
+                    ingredients={_.split(type.ingredients,",")}
+                    />
+              </Grid>    
+              </Grow>
+            );
+          })
+        }
+        
         </Grid> 
       </div>
         
