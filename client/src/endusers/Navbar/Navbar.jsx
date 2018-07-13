@@ -11,6 +11,10 @@ import FastFood from '@material-ui/icons/Apps';
 import Face from '@material-ui/icons/Face';
 import Badge from '@material-ui/core/Badge';
 import _ from 'lodash';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Pizza from '@material-ui/icons/SettingsInputSvideo'
 //import {Link} from 'react-router-dom';
 
 
@@ -101,7 +105,9 @@ state = {
   username : 'Sign In',
   check : false,
   logout:'',
-  badge:0
+  badge:0,
+  openMenu:false,
+  anchorEl: null,
 }
 componentWillMount(){
   let cartItem = JSON.parse(localStorage.getItem('cartItems'));
@@ -166,17 +172,104 @@ componentWillUnmount() {
   }
  }
 
+ openMenu = event => {
+   this.setState({
+    anchorEl: event.currentTarget
+   })
+ }
+ closeMenu = () => {
+  this.setState({
+   anchorEl:null
+  })
+}
+
+openAll = () => {
+  this.props.history.push('/home')
+}
+
+openBurger = () => {
+  this.props.history.push('/burger');
+}
+
+openPizza = () => {
+  this.props.history.push('/pizza');
+}
+
+openFreshnaankabaabs = () => {
+  this.props.history.push('/freshnaankababs');
+}
+openSouthernFriedChicken = () => {
+  this.props.history.push('/southernfriedchicken');
+}
+openWraps = () => {
+  this.props.history.push('/wraps');
+}
+openPanini = () => {
+  this.props.history.push('/panini');
+}
+openPeriPeriChicken = () => {
+  this.props.history.push('/periperichicken');
+}
+openFishandChips = () => {
+  this.props.history.push('/fishandchips');
+}
+openDonnerKabbas = () => {
+  this.props.history.push('/donnerkababs');
+}
+openHotbites = () => {
+  this.props.history.push('/hotbites');
+}
+openVegetarian = () => {
+  this.props.history.push('/vegetarian');
+}
+opendeserts = () => {
+  this.props.history.push('/deserts');
+}
+openSauces = () => {
+  this.props.history.push('/sauces');
+}
+openColddrinks = () => {
+  this.props.history.push('/colddrinks');
+}
 render() {
     const { classes } = this.props;
     return (
         <MuiThemeProvider theme={theme}>
+        <ClickAwayListener onClickAway={this.closeMenu}>
         <div className={classes.root}>
           <AppBar color="primary" position="sticky">
             <Toolbar >
               <Typography variant="title" color="primary" className={classes.flex}>
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}></Button>
               </Typography>
-              <Button color="inherit" onClick={this.operationHome.bind(this)}><FastFood/>&nbsp;Items</Button>
+              <div>
+              <Button color="inherit" onClick={this.openMenu}><FastFood/>&nbsp;Food&nbsp; &&nbsp; Drinks</Button>
+              
+        <Menu
+          aria-owns={this.state.anchorEl ? 'simple-menu' : null}
+          id="simple-menu"
+          anchorEl={this.state.anchorEl}
+          open={Boolean(this.state.anchorEl)}
+        >
+          <MenuItem onClick={this.openAll}>All</MenuItem>
+          <MenuItem onClick={this.openPizza}><h3><Pizza/>&nbsp;Pizza</h3></MenuItem>
+          <MenuItem onClick={this.openBurger}><h3><Pizza/>&nbsp;Burger</h3></MenuItem>
+          <MenuItem onClick={this.openFreshnaankabaabs}><h3><Pizza/>&nbsp;Fresh Naan Kabaabs</h3></MenuItem>
+          <MenuItem onClick={this.openSouthernFriedChicken}><h3><Pizza/>&nbsp;Souther Fried Chicken</h3></MenuItem>
+          <MenuItem onClick={this.openWraps}><h3><Pizza/>&nbsp;Wraps</h3></MenuItem>
+          <MenuItem onClick={this.openPanini}><h3><Pizza/>&nbsp;Panini</h3></MenuItem>
+          <MenuItem onClick={this.openPeriPeriChicken}><h3><Pizza/>&nbsp;PeriPeriChicken</h3></MenuItem>
+          <MenuItem onClick={this.openFishandChips}><h3><Pizza/>&nbsp;Fish and Chips</h3></MenuItem>
+          <MenuItem onClick={this.openDonnerKabbas}><h3><Pizza/>&nbsp;Donner Kabbas</h3></MenuItem>
+          <MenuItem onClick={this.openHotbites}><h3><Pizza/>&nbsp;Hotbites</h3></MenuItem>
+          <MenuItem onClick={this.openVegetarian}><h3><Pizza/>&nbsp;Vegetarian</h3></MenuItem>
+          <MenuItem onClick={this.opendeserts}><h3><Pizza/>&nbsp;Deserts</h3></MenuItem>
+          <MenuItem onClick={this.openSauces}><h3><Pizza/>&nbsp;Sauces</h3></MenuItem>
+          <MenuItem onClick={this.openColdDrinks}><h3><Pizza/>&nbsp;ColdDrinks</h3></MenuItem>
+         
+        </Menu>
+        
+      </div>
             <Button color="inherit" onClick={this.operationSignIn.bind(this)} disabled={this.state.check}><Face/>&nbsp; {this.state.username}</Button>
            {/*<Link to={ {pathname:'signin', state:{func:true}}}><Face/>&nbsp; {this.state.username}</Link>*/} 
              <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
@@ -187,7 +280,7 @@ render() {
             </Toolbar>
           </AppBar>
         </div>
-     
+        </ClickAwayListener>
         </MuiThemeProvider>
       );
 }
@@ -197,5 +290,5 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(ButtonAppBar)
 

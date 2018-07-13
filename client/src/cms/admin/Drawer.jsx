@@ -109,6 +109,7 @@ class ResponsiveDrawer extends React.Component {
         data:{},
       open:false,
       openError:false,
+      OnDisplay:<div>Welcome</div>
     };
 
 
@@ -119,13 +120,11 @@ class ResponsiveDrawer extends React.Component {
   };
 
  AddNewLoginHandleClick = () => {
-
     this.setState({
         OnDisplay:<AddNewLogin  handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("Add item on click");
   }
-
 
   
  ViewAllHandleClick = () => {
@@ -293,7 +292,7 @@ ViewItemHandleClick = () => {
           <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              User Added
+              Task Done
             </DialogContentText>
           </DialogContent>
           <DialogActions>

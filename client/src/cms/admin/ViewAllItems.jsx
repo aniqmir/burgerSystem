@@ -37,49 +37,14 @@ const styles = theme => ({
 
 class CustomizedTable extends React.Component {
 
-  componentWillMount(){
-    var details = {
-      'token':this.state.t
-  };
-    var formBody = [];
-    for (var property in details) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(details[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    
-    fetch('/api/admin/allitems', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
-      },
-      body: formBody
-    })
-    .then(res=>res.json())
-    .then(res=>{
-      console.log("we are in this function");
-      console.log(this.state.t);
-      if(res){
-       console.log(res);
-       this.setState({
-         data:res
-       })
-       console.log(this.state.data);
-        console.log("After function");
-        console.log(this.state.t);
-      };
-    }
-    );
 
-  };
  
-    removeProduct = (email) =>
+    removeProduct = (pk) =>
     {
-        console.log(email);
+        console.log(pk);
         
         var details = {
-          'pk': email,
+          'pk': pk,
           'token': sessionStorage.getItem('token'),
         };
           
@@ -110,31 +75,28 @@ class CustomizedTable extends React.Component {
        ;
      }
      );
-      
-  
-   
+     
+
     
     fetch('/api/admin/allitems', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
       },
-      
+      body: formBody
     })
     .then(res=>res.json())
     .then(res=>{
       console.log("we are in this function");
-      console.log(this.state.t);
       if(res){
        console.log(res);
        this.setState({
          data:res
        })
-       console.log(this.state.data);
-        console.log("After function");
       };
     }
     );
+  
     
   }
   constructor(props){
@@ -143,7 +105,7 @@ class CustomizedTable extends React.Component {
       data:{},
       t:this.props.token,
     }
-
+    this.removeProduct = this.removeProduct.bind(this)
 };
 
   render() {
@@ -165,7 +127,6 @@ class CustomizedTable extends React.Component {
             {/*data replaced with json pacakage from api*/}
             {
                Object.values(this.props.data).map((type,index) => {
-                 console.log(this.props.data)
                  return (
                   <TableRow className={classes.row} key={index}>
                     <CustomTableCell>{type.item_name}</CustomTableCell>
@@ -180,17 +141,6 @@ class CustomizedTable extends React.Component {
                 );
               })
             }
-            {/* {data.map(n => {
-              return (
-                <TableRow className={classes.row} key={n.id}>
-                  <CustomTableCell>{n.name}</CustomTableCell>
-                  <CustomTableCell numeric>{n.calories}</CustomTableCell>
-                  <CustomTableCell numeric>{n.fat}</CustomTableCell>
-                  <CustomTableCell numeric>{n.carbs}</CustomTableCell>
-                  <CustomTableCell numeric>{n.protein}</CustomTableCell>
-                </TableRow>
-              );
-            })} */}
           </TableBody>
         </Table>
       </Paper>
