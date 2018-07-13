@@ -152,3 +152,21 @@ exports.fetchallitems= function(req,res){
         });
     });
 };
+exports.Deleteitem= function(req, res)
+ {
+  employee_instance.findOneAndRemove({ primaryKey:req.body.pk})
+  .then(itm=> {
+      if(!itm) {
+          return res.status(404).send({
+              message: "Item not found with this key  " + req.body.email
+          });
+      }
+      res.send({message: "Item deleted successfully!"});
+  }).catch(err => {
+      if(err.kind === 'PrimaryKey' || err.name === 'NotFound') {
+          return res.status(404).send({
+              message: "Item not found with key " + req.body.email
+          });
+      }
+  });
+ }

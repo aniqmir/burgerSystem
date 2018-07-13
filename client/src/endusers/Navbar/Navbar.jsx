@@ -182,7 +182,7 @@ render() {
              <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
              <Button color="inherit"onClick={this.operationCart.bind(this)}><Badge  badgeContent={this.state.badge} color="secondary"><Cart/></Badge></Button>
              
-             {/*<Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>*/}  
+             <Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>
             
             </Toolbar>
           </AppBar>
