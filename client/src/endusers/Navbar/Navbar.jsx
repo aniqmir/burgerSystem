@@ -228,8 +228,8 @@ opendeserts = () => {
 openSauces = () => {
   this.props.history.push('/sauces');
 }
-openColddrinks = () => {
-  this.props.history.push('/colddrinks');
+openColdDrinks = () => {
+  this.props.history.push('/colddrinks')
 }
 render() {
     const { classes } = this.props;
@@ -243,6 +243,7 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}></Button>
               </Typography>
               <div>
+              <Button color="inherit">About US</Button>
               <Button color="inherit" onClick={this.openMenu}><FastFood/>&nbsp;Food&nbsp; &&nbsp; Drinks</Button>
               
         <Menu
