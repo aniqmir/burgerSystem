@@ -17,8 +17,7 @@ const theme = createMuiTheme({
 const styles = theme => ({
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
-    },
- 
+    }
   });
 
   class TextFields extends React.Component {
