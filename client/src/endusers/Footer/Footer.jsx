@@ -127,12 +127,17 @@ class Footer extends React.Component {
                       <i className="fa fa-at fa-2x pr-3"></i>
                     </div>
                     <div className="col-sm-4">
-                      <img src="" alt="mastercard" srcset=""/>
-                      <img src="" alt="mastercard" srcset=""/>
-                      <img src="" alt="mastercard" srcset=""/>
+                      <img src={'./je-payment-logos-amex.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
+                      <img src={'./je-payment-logos-visa.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
+                      <img src={'./je-payment-logos-mastercard.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
                     </div>
                     <div className="col-sm-4">
-                    
+                      <div className="text-center">
+                        <i className="fa fa-comments fa-2x pr-3"></i>
+                        <strong >Feedback</strong>
+                        <a> <small className="block"><strong>Help us</strong> improve our Website!</small>
+                          </a>
+                      </div>
                     </div>
                   </div>
               </div>
