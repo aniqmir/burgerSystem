@@ -63,31 +63,25 @@ class Footer extends React.Component {
                       </div>
                       <div className="col-sm-3">
                         <div className="row">
-                          <h4>customer service</h4>
+                          <h4>Locations</h4>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Contact Us</a></span>
+                          <span><a href="http://">Birmingham</a></span>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Log in</a></span>
+                          <span><a href="http://">Cardiff</a></span>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Sign up</a></span>
+                          <span><a href="http://">Glasgow</a></span>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Blog</a></span>
+                          <span><a href="http://">Leeds</a></span>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Mobile Apps</a></span>
+                          <span><a href="http://">Manchester</a></span>
                         </div>
                         <div className="row">
-                          <span><a href="http://">Suggest a restaurant</a></span>
-                        </div>
-                        <div className="row">
-                          <span><a href="http://">Help</a></span>
-                        </div>
-                        <div className="row">
-                          <span><a href="http://">My Account</a></span>
+                          <span><a href="http://">View All locations</a></span>
                         </div>
                       </div>
                       <div className="col-sm-3"></div>              
