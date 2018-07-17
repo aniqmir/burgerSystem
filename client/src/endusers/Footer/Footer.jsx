@@ -10,9 +10,21 @@ class Footer extends React.Component {
             <div className="container">
                   <div className="row pt-5">
                     <div className="col-sm-3">
-                      <div className="row">
-                        <h5><strong>Customer service</strong></h5>
-                      </div>
+                        <h5 className="pull"><strong>Customer service</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull"><strong>Top Items</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull"><strong>Locations</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull"><strong>About us</strong></h5>
+                    </div>
+                  </div>
+                  <hr/>
+                  <div className="row">
+                    <div className="col-sm-3">
                       <div className="row">
                         <span><a href="http://">Contact Us</a></span>
                       </div>
@@ -39,9 +51,6 @@ class Footer extends React.Component {
                       </div>
                     </div>
                     <div className="col-sm-3">
-                      <div className="row">
-                        <h5><strong>Top Items</strong></h5>
-                        </div>
                         <div className="row">
                           <span><a href="http://">Chinease</a></span>
                         </div>
@@ -63,9 +72,6 @@ class Footer extends React.Component {
                       </div>
                       <div className="col-sm-3">
                         <div className="row">
-                          <h5><strong>Locations</strong></h5>
-                        </div>
-                        <div className="row">
                           <span><a href="http://">Birmingham</a></span>
                         </div>
                         <div className="row">
@@ -85,9 +91,6 @@ class Footer extends React.Component {
                         </div>
                       </div>
                       <div className="col-sm-3">
-                        <div className="row">
-                          <h5><strong>A bit more about us</strong></h5>
-                        </div>
                         <div className="row">
                           <span><a href="http://">Restaurant Sign up</a></span>
                         </div>
