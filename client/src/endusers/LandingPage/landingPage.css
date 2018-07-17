@@ -1,3 +1,14 @@
 .bg{
-    max-height: '90vh';
+    max-height: '60vh';
+}
+
+.box{
+    background-color: #eeeeee;
+    padding: 2em;
+    color: black;
+    text-align: justify;
+}
+
+.maron{
+    color: maroon;
 }
