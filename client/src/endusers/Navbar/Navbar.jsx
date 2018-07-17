@@ -15,8 +15,6 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Pizza from '@material-ui/icons/SettingsInputSvideo'
-//import {Link} from 'react-router-dom';
-
 
 const theme = createMuiTheme ({
     palette: {
@@ -33,13 +31,8 @@ const theme = createMuiTheme ({
         error:red,
         contrastThreshold: 3,
         tonalOffset: 0.2,
- },
- typography: {
-  // Use the system font instead of the default Roboto font.
-  fontFamily: [
-    'Bangers'
-  ].join(','),
-} })
+ } 
+})
 
 const styles = {
   root: {
@@ -58,9 +51,6 @@ const styles = {
   },
   logo: {
     backgroundImage:`url(${"./logo1.png"})`,
-    
-   // backgroundSize: '100%',
-    //background:'linear-gradient(-180deg, red, yellow)'
 }
   
 };
@@ -240,8 +230,11 @@ render() {
                 <Button className={classes.flex} onClick={this.operationLandingPage.bind(this)}></Button>
               </Typography>
               <div>
-              <Button color="inherit">About US</Button>
-              <Button color="inherit" onClick={this.openMenu}><FastFood/>&nbsp;Food&nbsp; &&nbsp; Drinks</Button>
+              <Button color="inherit"><h5>Home</h5></Button>
+              <Button color="inherit" onClick={this.openMenu}><h5><FastFood/> &nbsp;Food&nbsp; &&nbsp; Drinks</h5></Button>
+              <Button color="inherit"><h5>Our Services</h5></Button>
+              <Button color="inherit"><h5>Franchises</h5></Button>
+              <Button color="inherit"><h5>FAQ's</h5></Button>
               
         <Menu
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
@@ -250,7 +243,7 @@ render() {
           open={Boolean(this.state.anchorEl)}
         >
           <MenuItem onClick={this.openAll}>All</MenuItem>
-          <MenuItem onClick={this.openPizza}><h4><Pizza/>&nbsp;Pizza</h4></MenuItem>
+          <MenuItem onClick={this.openPizza}><Pizza/>&nbsp;Pizza</MenuItem>
           <MenuItem onClick={this.openBurger}><h4><Pizza/>&nbsp;Burger</h4></MenuItem>
           <MenuItem onClick={this.openFreshnaankabaabs}><h4><Pizza/>&nbsp;Fresh Naan Kabaabs</h4></MenuItem>
           <MenuItem onClick={this.openSouthernFriedChicken}><h4><Pizza/>&nbsp;Souther Fried Chicken</h4></MenuItem>
@@ -269,9 +262,7 @@ render() {
         
       </div>
             <Button color="inherit" onClick={this.operationSignIn.bind(this)} disabled={this.state.check}><Face/>&nbsp; {this.state.username}</Button>
-           {/*<Link to={ {pathname:'signin', state:{func:true}}}><Face/>&nbsp; {this.state.username}</Link>*/} 
-             <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
-             <Button color="inherit"onClick={this.operationCart.bind(this)}><Badge  badgeContent={this.state.badge} color="secondary"><Cart/></Badge></Button>
+            <Button color="inherit"onClick={this.operationCart.bind(this)}><Badge  badgeContent={this.state.badge} color="secondary"><Cart/></Badge></Button>
             </Toolbar>
           </AppBar>
         </div>
