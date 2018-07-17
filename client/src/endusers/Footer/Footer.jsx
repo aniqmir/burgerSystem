@@ -14,18 +14,83 @@ class Footer extends React.Component {
                         <h4>customer service</h4>
                       </div>
                       <div className="row">
-                        <p><a href="http://">Contact Us</a></p>
-                      </div>
-                      <div className="row">
-                        <p><a href="http://">Log in</a></p>
+                        <span><a href="http://">Contact Us</a></span>
                       </div>
                       <div className="row">
                         <span><a href="http://">Log in</a></span>
                       </div>
+                      <div className="row">
+                        <span><a href="http://">Sign up</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Blog</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Mobile Apps</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Suggest a restaurant</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Help</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">My Account</a></span>
+                      </div>
                     </div>
-                    <div className="col-sm-3"></div>
-                    <div className="col-sm-3"></div>
-                    <div className="col-sm-3"></div>              
+                    <div className="col-sm-3">
+                      <div className="row">
+                          <h4>Top Cuisines</h4>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Chinease</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Indian</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Italian</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Japnese</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Pizza Delivery</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">View all Items</a></span>
+                        </div>
+                      </div>
+                      <div className="col-sm-3">
+                        <div className="row">
+                          <h4>customer service</h4>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Contact Us</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Log in</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Sign up</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Blog</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Mobile Apps</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Suggest a restaurant</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Help</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">My Account</a></span>
+                        </div>
+                      </div>
+                      <div className="col-sm-3"></div>              
                   </div>
                   <hr/>
                   <div className="row">
