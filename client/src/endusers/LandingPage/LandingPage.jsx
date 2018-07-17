@@ -141,7 +141,7 @@ class CarouselPage extends Component {
                     ADD ITEMS TO CART
                   </h3>
                   <small>
-                    Select items from our menu &amp; add them to cart to continue.
+                    Select the items of your choice from our menu and add them to the cart to continue towards the delivery process.
                   </small>
                 </div>
               </div>  
@@ -154,11 +154,36 @@ class CarouselPage extends Component {
                     FILL DELIVERY DETAILS
                   </h3>
                   <small>
-                    Fill your delivery details and click on checkout for delivery.
+                    Fill your delivery details like address, name etc &amp; after filling the details, click on checkout to exit.
                   </small>
                 </div>
               </div>  
             </div>
+            {/* steps end here */}
+
+            {/* featured items */}
+                <div className="row pt-5">
+
+                <h1>Featured Food</h1> 
+                 <div className="col-sm-4">
+                   <div className="box text-center">
+                    <img src={'./logo1.png'} className="img-fluid" alt="" srcset=""/>
+                    <small>Big hakuna burgur</small>
+                   </div>
+                 </div>  
+                 <div className="col-sm-4">
+                   <div className="box text-center">
+                    <img src={'./logo1.png'} className="img-fluid" alt="" srcset=""/>
+                    <small>Big hakuna burgur</small>
+                   </div>
+                 </div>  
+                 <div className="col-sm-4">
+                 <div className="box text-center">
+                    <img src={'./logo1.png'} className="img-fluid" alt="" srcset=""/>
+                    <small>Big hakuna burgur</small>
+                   </div>
+                 </div>  
+               </div>
           </div>
         </div>
         </div>
