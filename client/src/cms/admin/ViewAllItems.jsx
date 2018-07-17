@@ -79,7 +79,7 @@ class CustomizedTable extends React.Component {
 
     
     fetch('/api/admin/allitems', {
-      method: 'GET',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
       },

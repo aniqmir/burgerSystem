@@ -31,17 +31,17 @@ export default function register() {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
+      
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
         checkValidServiceWorker(swUrl);
-
+        
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://goo.gl/SC7cgQ'
+            'worker. To learn more, visit https://goo.gl/SC7cgQ'
           );
         });
       } else {
@@ -49,6 +49,17 @@ export default function register() {
         registerValidSW(swUrl);
       }
     });
+    
+    window.addEventListener('push', function(event) {
+      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      if (event.data) {
+        console.log('This push event has data: ', event.data.text());
+      } else {
+        console.log('This push event has no data.');
+      }
+      registerValidSW(swUrl);
+    });
+
   }
 }
 

@@ -86,9 +86,6 @@ operationCart = () => {
 operationSignIn = () => {
   this.props.history.push('/signin');
 }
-operationSearch = () => {
-  this.props.history.push('/search');
-}
 
 operationLogout = () => {
   console.log('logout')
@@ -253,20 +250,20 @@ render() {
           open={Boolean(this.state.anchorEl)}
         >
           <MenuItem onClick={this.openAll}>All</MenuItem>
-          <MenuItem onClick={this.openPizza}><h3><Pizza/>&nbsp;Pizza</h3></MenuItem>
-          <MenuItem onClick={this.openBurger}><h3><Pizza/>&nbsp;Burger</h3></MenuItem>
-          <MenuItem onClick={this.openFreshnaankabaabs}><h3><Pizza/>&nbsp;Fresh Naan Kabaabs</h3></MenuItem>
-          <MenuItem onClick={this.openSouthernFriedChicken}><h3><Pizza/>&nbsp;Souther Fried Chicken</h3></MenuItem>
-          <MenuItem onClick={this.openWraps}><h3><Pizza/>&nbsp;Wraps</h3></MenuItem>
-          <MenuItem onClick={this.openPanini}><h3><Pizza/>&nbsp;Panini</h3></MenuItem>
-          <MenuItem onClick={this.openPeriPeriChicken}><h3><Pizza/>&nbsp;PeriPeriChicken</h3></MenuItem>
-          <MenuItem onClick={this.openFishandChips}><h3><Pizza/>&nbsp;Fish and Chips</h3></MenuItem>
-          <MenuItem onClick={this.openDonnerKabbas}><h3><Pizza/>&nbsp;Donner Kabbas</h3></MenuItem>
-          <MenuItem onClick={this.openHotbites}><h3><Pizza/>&nbsp;Hotbites</h3></MenuItem>
-          <MenuItem onClick={this.openVegetarian}><h3><Pizza/>&nbsp;Vegetarian</h3></MenuItem>
-          <MenuItem onClick={this.opendeserts}><h3><Pizza/>&nbsp;Deserts</h3></MenuItem>
-          <MenuItem onClick={this.openSauces}><h3><Pizza/>&nbsp;Sauces</h3></MenuItem>
-          <MenuItem onClick={this.openColdDrinks}><h3><Pizza/>&nbsp;ColdDrinks</h3></MenuItem>
+          <MenuItem onClick={this.openPizza}><h4><Pizza/>&nbsp;Pizza</h4></MenuItem>
+          <MenuItem onClick={this.openBurger}><h4><Pizza/>&nbsp;Burger</h4></MenuItem>
+          <MenuItem onClick={this.openFreshnaankabaabs}><h4><Pizza/>&nbsp;Fresh Naan Kabaabs</h4></MenuItem>
+          <MenuItem onClick={this.openSouthernFriedChicken}><h4><Pizza/>&nbsp;Souther Fried Chicken</h4></MenuItem>
+          <MenuItem onClick={this.openWraps}><h4><Pizza/>&nbsp;Wraps</h4></MenuItem>
+          <MenuItem onClick={this.openPanini}><h4><Pizza/>&nbsp;Panini</h4></MenuItem>
+          <MenuItem onClick={this.openPeriPeriChicken}><h4><Pizza/>&nbsp;PeriPeriChicken</h4></MenuItem>
+          <MenuItem onClick={this.openFishandChips}><h4><Pizza/>&nbsp;Fish and Chips</h4></MenuItem>
+          <MenuItem onClick={this.openDonnerKabbas}><h4><Pizza/>&nbsp;Donner Kabbas</h4></MenuItem>
+          <MenuItem onClick={this.openHotbites}><h4><Pizza/>&nbsp;Hotbites</h4></MenuItem>
+          <MenuItem onClick={this.openVegetarian}><h4><Pizza/>&nbsp;Vegetarian</h4></MenuItem>
+          <MenuItem onClick={this.opendeserts}><h4><Pizza/>&nbsp;Deserts</h4></MenuItem>
+          <MenuItem onClick={this.openSauces}><h4><Pizza/>&nbsp;Sauces</h4></MenuItem>
+          <MenuItem onClick={this.openColdDrinks}><h4><Pizza/>&nbsp;ColdDrinks</h4></MenuItem>
          
         </Menu>
         
@@ -275,9 +272,6 @@ render() {
            {/*<Link to={ {pathname:'signin', state:{func:true}}}><Face/>&nbsp; {this.state.username}</Link>*/} 
              <Button color="inherit" onClick={this.operationLogout.bind(this)} disabled={!this.state.check}>{this.state.logout}</Button> 
              <Button color="inherit"onClick={this.operationCart.bind(this)}><Badge  badgeContent={this.state.badge} color="secondary"><Cart/></Badge></Button>
-             
-             <Button color="inherit"onClick={this.operationSearch.bind(this)}>Search</Button>
-            
             </Toolbar>
           </AppBar>
         </div>
