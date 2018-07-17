@@ -1,6 +1,6 @@
 import React from 'react';
 import './footer.css';
-
+import 'font-awesome/css/font-awesome.min.css';
 
 
 class Footer extends React.Component {
@@ -119,9 +119,21 @@ class Footer extends React.Component {
                   </div>
                   <hr/>
                   <div className="row">
-                    <div className="col-sm-4">icons here</div>
-                    <div className="col-sm-4">payment methods here</div>
-                    <div className="col-sm-4">feedback here</div>
+                    <div className="col-sm-4">
+                      <i className="fa fa-facebook fa-2x pr-3"></i>
+                      <i className="fa fa-instagram fa-2x pr-3"></i>
+                      <i className="fa fa-twitter fa-2x pr-3"></i>
+                      <i className="fa fa-youtube fa-2x pr-3"></i>
+                      <i className="fa fa-at fa-2x pr-3"></i>
+                    </div>
+                    <div className="col-sm-4">
+                      <img src="" alt="mastercard" srcset=""/>
+                      <img src="" alt="mastercard" srcset=""/>
+                      <img src="" alt="mastercard" srcset=""/>
+                    </div>
+                    <div className="col-sm-4">
+                    
+                    </div>
                   </div>
               </div>
           </div>
