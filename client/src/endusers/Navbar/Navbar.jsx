@@ -231,7 +231,7 @@ render() {
               </Typography>
               <div>
               <Button color="inherit"><h5>Home</h5></Button>
-              <Button color="inherit" onClick={this.openMenu}><h5><FastFood/> &nbsp;Food&nbsp; &&nbsp; Drinks</h5></Button>
+              <Button color="inherit" onClick={this.openMenu}><h5> &nbsp;Food&nbsp; &&nbsp; Drinks</h5></Button>
               <Button color="inherit"><h5>Our Services</h5></Button>
               <Button color="inherit"><h5>Franchises</h5></Button>
               <Button color="inherit"><h5>FAQ's</h5></Button>

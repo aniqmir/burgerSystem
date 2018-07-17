@@ -1,75 +1,42 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-  
-const theme = createMuiTheme ({
- typography: {
-  // Use the system font instead of the default Roboto font.
-  fontFamily: [
-    'Poppins'
-  ].join(','),
-}, })
-const styles = theme => ({
-footer: {
-    position: 'relative',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    minHeight:'100px',
-    backgroundColor: 'black',
-    color: 'white',
- },
- footerPadding: {
-   paddingTop:'3%'
- },
+import './footer.css';
 
 
 
-})
-
-class SimpleTabs extends React.Component {
-  
-  gotoCms = () => {
-    this.props.history.push('/cms')
-  }
-
+class Footer extends React.Component {
   render() {
-    const { classes } = this.props;
     return (
-     <MuiThemeProvider theme={theme}>
-        <div className={classes.footer}>
-        <div className={classes.footerPadding}>
-        <Grid container spacing={0} justify='center'>
-        <Grid item  md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12}>
-        <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12}>
-        <Typography align='center' color='inherit'><Button align="center" onClick={this.gotoCms} size="large" color="primary">CMS</Button></Typography>
-        </Grid>
-        </Grid>
-        </div>
-        </div>
-      </MuiThemeProvider>
+          <div className="main">
+            <div className="container">
+                  <div className="row">
+                    <div className="col-sm-3">
+                      <div className="row">
+                        <h4>customer service</h4>
+                      </div>
+                      <div className="row">
+                        <p><a href="http://">Contact Us</a></p>
+                      </div>
+                      <div className="row">
+                        <p><a href="http://">Log in</a></p>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Log in</a></span>
+                      </div>
+                    </div>
+                    <div className="col-sm-3"></div>
+                    <div className="col-sm-3"></div>
+                    <div className="col-sm-3"></div>              
+                  </div>
+                  <hr/>
+                  <div className="row">
+                    <div className="col-sm-4">icons here</div>
+                    <div className="col-sm-4">payment methods here</div>
+                    <div className="col-sm-4">feedback here</div>
+                  </div>
+              </div>
+          </div>
     );
   }
 }
-SimpleTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(SimpleTabs);
+export default Footer;
