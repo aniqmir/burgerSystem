@@ -8,10 +8,10 @@ class Footer extends React.Component {
     return (
           <div className="main">
             <div className="container">
-                  <div className="row">
+                  <div className="row pt-5">
                     <div className="col-sm-3">
                       <div className="row">
-                        <h4>customer service</h4>
+                        <h5><strong>Customer service</strong></h5>
                       </div>
                       <div className="row">
                         <span><a href="http://">Contact Us</a></span>
@@ -40,7 +40,7 @@ class Footer extends React.Component {
                     </div>
                     <div className="col-sm-3">
                       <div className="row">
-                          <h4>Top Cuisines</h4>
+                        <h5><strong>Top Items</strong></h5>
                         </div>
                         <div className="row">
                           <span><a href="http://">Chinease</a></span>
@@ -63,7 +63,7 @@ class Footer extends React.Component {
                       </div>
                       <div className="col-sm-3">
                         <div className="row">
-                          <h4>Locations</h4>
+                          <h5><strong>Locations</strong></h5>
                         </div>
                         <div className="row">
                           <span><a href="http://">Birmingham</a></span>
@@ -84,7 +84,38 @@ class Footer extends React.Component {
                           <span><a href="http://">View All locations</a></span>
                         </div>
                       </div>
-                      <div className="col-sm-3"></div>              
+                      <div className="col-sm-3">
+                        <div className="row">
+                          <h5><strong>A bit more about us</strong></h5>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Restaurant Sign up</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Price Promise</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Privacy Policy</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Terms &amp; Conditions</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Cookie Privacy</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">About us</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Company Website</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Careers</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Modern Survery Statment</a></span>
+                        </div>
+                      </div>              
                   </div>
                   <hr/>
                   <div className="row">
