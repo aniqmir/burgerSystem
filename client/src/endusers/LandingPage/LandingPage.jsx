@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import { Carousel, CarouselCaption, CarouselControl, CarouselInner, CarouselItem, CarouselIndicators, CarouselIndicator, View, Mask } from 'mdbreact';
 import './landingPage.css';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Footer from '../Footer/Footer';
 
 class CarouselPage extends Component {
   constructor(props) {
@@ -117,7 +111,7 @@ class CarouselPage extends Component {
             </div>
 
         {/* Steps section */}
-            <div className="row pt-5">
+            <div className="row pt-5 pb-5">
                  
               <div className="col-sm-4">
                 <div className="box text-center">
@@ -162,7 +156,7 @@ class CarouselPage extends Component {
             {/* steps end here */}
 
             {/* featured items */}
-                <div className="row pt-5">
+                <div className="row pt-5 pb-5">
                  <div className="col-sm-4">
                    <div className="box text-center">
                     <img src={'./logo1.png'} className="img-fluid" alt="" srcset=""/>
@@ -185,6 +179,7 @@ class CarouselPage extends Component {
                {/* ends here */}
           </div>
         </div>
+        <Footer/>
         </div>
     );
   }

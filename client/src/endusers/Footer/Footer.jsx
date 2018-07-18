@@ -8,22 +8,22 @@ class Footer extends React.Component {
     return (
           <div className="main">
             <div className="container">
-                  <div className="row pt-5">
+                  <div className="row pt-5 pb-5">
                     <div className="col-sm-3">
-                        <h5 className="pull"><strong>Customer service</strong></h5>
+                        <h5 className="pull head"><strong>Customer service</strong></h5>
                     </div>
                     <div className="col-sm-3">
-                        <h5 className="pull"><strong>Top Items</strong></h5>
+                        <h5 className="pull head"><strong>Top Items</strong></h5>
                     </div>
                     <div className="col-sm-3">
-                        <h5 className="pull"><strong>Locations</strong></h5>
+                        <h5 className="pull head"><strong>Locations</strong></h5>
                     </div>
                     <div className="col-sm-3">
-                        <h5 className="pull"><strong>About us</strong></h5>
+                        <h5 className="pull head"><strong>About us</strong></h5>
                     </div>
                   </div>
-                  <hr/>
-                  <div className="row">
+                  <div className="line pull"></div>
+                  <div className="row pt-5 pb-5">
                     <div className="col-sm-3">
                       <div className="row">
                         <span><a href="http://">Contact Us</a></span>
@@ -120,13 +120,13 @@ class Footer extends React.Component {
                         </div>
                       </div>              
                   </div>
-                  <hr/>
-                  <div className="row">
+                  <div className="line pull"></div>
+                  <div className="row pt-5">
                     <div className="col-sm-4">
-                      <i className="fa fa-facebook fa-2x pr-3"></i>
-                      <i className="fa fa-instagram fa-2x pr-3"></i>
-                      <i className="fa fa-twitter fa-2x pr-3"></i>
-                      <i className="fa fa-youtube fa-2x pr-3"></i>
+                      <i className="fa fa-facebook fa-2x pr-3 head"></i>
+                      <i className="fa fa-instagram fa-2x pr-3 head"></i>
+                      <i className="fa fa-twitter fa-2x pr-3 head"></i>
+                      <i className="fa fa-youtube fa-2x pr-3 head"></i>
                       <i className="fa fa-at fa-2x pr-3"></i>
                     </div>
                     <div className="col-sm-4">
@@ -136,8 +136,8 @@ class Footer extends React.Component {
                     </div>
                     <div className="col-sm-4">
                       <div className="text-center">
-                        <i className="fa fa-comments fa-2x pr-3"></i>
-                        <strong >Feedback</strong>
+                        <i className="fa fa-comments fa-2x pr-3 head"></i>
+                        <strong className="head">Feedback</strong>
                         <a> <small className="block"><strong>Help us</strong> improve our Website!</small>
                           </a>
                       </div>
