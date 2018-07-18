@@ -112,9 +112,6 @@ class CarouselPage extends Component {
 
         {/* Steps section */}
             <div className="row pt-5 pb-5">
-                <div className="row block">
-                  <h1>Order in 3 simple steps</h1>
-                </div>
               <div className="col-sm-4">
                 <div className="box text-center">
                   <h5 className="maron">
