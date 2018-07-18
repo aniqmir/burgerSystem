@@ -163,8 +163,6 @@ class CarouselPage extends Component {
 
             {/* featured items */}
                 <div className="row pt-5">
-
-                <h1>Featured Food</h1> 
                  <div className="col-sm-4">
                    <div className="box text-center">
                     <img src={'./logo1.png'} className="img-fluid" alt="" srcset=""/>
@@ -184,6 +182,7 @@ class CarouselPage extends Component {
                    </div>
                  </div>  
                </div>
+               {/* ends here */}
           </div>
         </div>
         </div>
