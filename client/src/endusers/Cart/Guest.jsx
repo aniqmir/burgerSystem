@@ -165,7 +165,14 @@ const styles = {
       })
   }
 
+  confirmOrderGuest = () => {
 
+  }
+
+  confirmOrderMember = () => {
+
+  }
+  
   componentWillMount() {
     let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
     const { classes } = this.props;
@@ -230,7 +237,7 @@ const styles = {
         </CardContent>
         <CardContent>
           <Link to='/signin'>Already a member?</Link>
-          <Button>Confirm Order</Button>
+          <Button onClick={this.confirmOrderGuest}>Confirm Order</Button>
           </CardContent>
         
         </Card>
@@ -300,7 +307,7 @@ const styles = {
                           ),
                         }}     
                       />
-                    <Button>Confirm Order</Button>
+                    <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
                     </Card>
                 </Grid>
                     </Grid>
