@@ -62,109 +62,11 @@ const styles = {
             
         }
     }
-
-   loginHandle = () => {
-       
-    console.log('email')
-    console.log(this.state.email);
-    console.log('password')
-    console.log(this.state.password)
-
-    var details = {
-      'password': this.state.password,
-      'email':this.state.email,
-  
-  };
-  
-  
-  var formBody = [];
-  for (var property in details) {
-    var encodedKey = encodeURIComponent(property);
-    var encodedValue = encodeURIComponent(details[property]);
-    formBody.push(encodedKey + "=" + encodedValue);
-  }
-  formBody = formBody.join("&");
-  
-  
-  fetch('/api/user/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
-    },
-    body: formBody
-  }).then(res=>res.json())
-  .then(res=>{
-    console.log("we are in this function");
-    console.log(res);
-    if(res.msg==='Login Complete'){
+    changeAddress = e => {
       this.setState({
-        name:res.username,
-        id:res.userid,
-      })
-      let loginDetails = [];
-      loginDetails.push(this.state.name);
-      loginDetails.push(this.state.id);
-      sessionStorage.setItem('LoginDetails',JSON.stringify(loginDetails));
-      this.props.history.push('./home')
-      window.location.reload();
-     console.log(loginDetails);
-     
-    }
-    else{
-        console.log('Error')
-    }
-  }
-  );
-   /* this.setState({
-        email:'',
-        password:'',
-       // name:this.props.name
-    })*/
-   }
-
-
-   signUpHandle = () => {
-       console.log('signup handle')
-   }
-
-   operationSignUp = () => {
-    this.props.history.push('/signup');
-  }
-
-   changeEmail = e => {
-    console.log('From Change Email',e.target.value);
-    this.setState({
-      email: e.target.value
-    });
-  };
-
-  changePassword = e => {
-    this.setState({
-      password: e.target.value
-    });
-}
-
-  changeAddress = e => {
-      this.setState({
-          address:e.target.value
-      })
-  }
-  changeContact = e => {
-      this.setState({
-          contact:e.target.value
-      })
-  }
-  changeCreditCard = e => {
-      this.setState({
-            creditCard:e.target.value
-      })
-  }
-
-  changeBankName = e => {
-      this.setState({
-          bankName:e.target.value
-      })
-  }
+        address: e.target.value
+      });
+    };
 
   confirmOrderGuest = () => {
 
@@ -174,153 +76,39 @@ const styles = {
 
   }
   
-  componentWillMount() {
-    let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
-    const { classes } = this.props;
 
-    if(loginDetails===null){
-        this.setState({
-            display: <Grid container spacing={12}>
-        <Grid item md={6}>
-        <Card className={classes.left}>
-         <CardContent>
-               <Typography variant='display1'>Guest Information </Typography>
-            </CardContent>
-         <CardContent className={classes.cardcontent}>
-        <TextField
-          id="email"
-          label="Email"
-          placeholder="Enter Email"
-          className={classes.textField}
-          value={this.state.email}
-          margin="normal"
-          onChange={e => this.changeEmail(e)} 
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Email />
-              </InputAdornment>
-            ),
-          }}               
-        />
-        <TextField
-          id="contact"
-          label="Contact"
-          placeholder="Enter Contact"
-          className={classes.textField}
-          value={this.state.contact}
-          margin="normal"
-          onChange={e => this.changeContact(e)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Label />
-              </InputAdornment>
-            ),
-          }}     
-        />
-            <TextField
-          id="Address"
-          label="Address"
-          placeholder="Enter Address"
-          className={classes.textField}
-          value={this.state.address}
-          margin="normal"
-          onChange={e => this.changeAddress(e)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Label />
-              </InputAdornment>
-             ),
-          }}     
-        />
-        </CardContent>
-        <CardContent>
-          <Link to='/signin'>Already a member?</Link>
-          <Button onClick={this.confirmOrderGuest}>Confirm Order</Button>
-          </CardContent>
-        
-        </Card>
-        </Grid>
-        <Grid item md={6}>
-        <Card className={classes.right}>
-        <CardContent>
-               <Typography variant="display1"> Card Information </Typography>
-            </CardContent>
-            <CardContent>
-            <TextField
-                    id="creditcard"
-                    label="Credit Card Number"
-                    placeholder="Enter Credit Card Number"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.creditCard}
-                    onChange={e=>this.changeCreditCard(e)}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-            
-                        </InputAdornment>
-                      ),
-                    }}
-                />
-                <TextField
-                    id="bankname"
-                    label="Credit Bank Name"
-                    placeholder="Enter Bank Name"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.bankName}
-                    onChange={e=>this.changeBankName(e)}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          
-                        </InputAdornment>
-                      ),
-                    }}
-                />
-            </CardContent>
-            </Card>
-        </Grid>
-        </Grid>})
-        }
-        else if(loginDetails!=null){
-            this.setState({
-                display:<Grid container spacing={12}>
+    render() {      
+      let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
+      if(loginDetails===null){
+        loginDetails=['NONE']
+      }
+      const { classes } = this.props;
+        return (
+            <div>
+                <Grid container spacing={12}>
                 <Grid item md={12}>
                     <Card>
                     <Typography variant='display1' color='primary'>Logged in As {loginDetails[0].toUpperCase()}</Typography>
                     <TextField
-                      id="Address"
-                      label="Address"
-                      placeholder="Enter  another Address(Optional)"
-                      className={classes.textField}
-                      value={this.state.address}
-                      margin="normal"
-                      onChange={e => this.changeAddress(e)}
-                      InputProps={{
-                        startAdornment: (
-                           <InputAdornment position="start">
-                               <Label />
-                            </InputAdornment>
-                          ),
-                        }}     
-                      />
+                            id="Address"
+                            label="Address"
+                            placeholder="Enter Address (optional)"
+                            className={classes.textField}
+                            margin="normal"
+                            value={this.state.address}
+                            onChange={e=>this.changeAddress(e)}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Email/>
+                                </InputAdornment>
+                              ),
+                            }}
+                     />
                     <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
                     </Card>
                 </Grid>
                     </Grid>
-            })
-        }
-    }
-  
-
-    render() {      
-        return (
-            <div>
-                {this.state.display}
                 </div>
           );
         }
