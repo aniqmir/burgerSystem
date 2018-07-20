@@ -11,6 +11,7 @@ import Label from '@material-ui/icons/Label';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from 'material-ui';
 import {Link} from 'react-router-dom';
+import Checkout from './StripeCheckout';
 
 
 const styles = {
@@ -115,11 +116,6 @@ const styles = {
     }
   }
   );
-   /* this.setState({
-        email:'',
-        password:'',
-       // name:this.props.name
-    })*/
    }
 
 
@@ -212,7 +208,7 @@ const styles = {
             ),
           }}     
         />
-            <TextField
+        <TextField
           id="Address"
           label="Address"
           placeholder="Enter Address"
