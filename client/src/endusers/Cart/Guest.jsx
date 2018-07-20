@@ -115,11 +115,11 @@ const styles = {
     }
   }
   );
-    this.setState({
+   /* this.setState({
         email:'',
         password:'',
        // name:this.props.name
-    })
+    })*/
    }
 
 
@@ -132,6 +132,7 @@ const styles = {
   }
 
    changeEmail = e => {
+    console.log('From Change Email',e.target.value);
     this.setState({
       email: e.target.value
     });
@@ -224,7 +225,7 @@ const styles = {
               <InputAdornment position="start">
                 <Label />
               </InputAdornment>
-            ),
+             ),
           }}     
         />
         </CardContent>
