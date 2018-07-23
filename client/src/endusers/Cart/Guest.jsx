@@ -2,15 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
-import Label from '@material-ui/icons/Label';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from 'material-ui';
-import {Link} from 'react-router-dom';
 
 
 const styles = {
@@ -62,110 +59,22 @@ const styles = {
             
         }
     }
-
-   loginHandle = () => {
-       
-    console.log('email')
-    console.log(this.state.email);
-    console.log('password')
-    console.log(this.state.password)
-
-    var details = {
-      'password': this.state.password,
-      'email':this.state.email,
-  
-  };
-  
-  
-  var formBody = [];
-  for (var property in details) {
-    var encodedKey = encodeURIComponent(property);
-    var encodedValue = encodeURIComponent(details[property]);
-    formBody.push(encodedKey + "=" + encodedValue);
-  }
-  formBody = formBody.join("&");
-  
-  
-  fetch('/api/user/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
-    },
-    body: formBody
-  }).then(res=>res.json())
-  .then(res=>{
-    console.log("we are in this function");
-    console.log(res);
-    if(res.msg==='Login Complete'){
+    changeAddress = e => {
       this.setState({
-        name:res.username,
-        id:res.userid,
-      })
-      let loginDetails = [];
-      loginDetails.push(this.state.name);
-      loginDetails.push(this.state.id);
-      sessionStorage.setItem('LoginDetails',JSON.stringify(loginDetails));
-      this.props.history.push('./home')
-      window.location.reload();
-     console.log(loginDetails);
-     
-    }
-    else{
-        console.log('Error')
-    }
-  }
-  );
-   /* this.setState({
-        email:'',
-        password:'',
-       // name:this.props.name
-    })*/
-   }
+        address: e.target.value
+      });
+    };
 
+  confirmOrderGuest = () => {
 
-   signUpHandle = () => {
-       console.log('signup handle')
-   }
-
-   operationSignUp = () => {
-    this.props.history.push('/signup');
   }
 
-   changeEmail = e => {
-    console.log('From Change Email',e.target.value);
-    this.setState({
-      email: e.target.value
-    });
-  };
+  confirmOrderMember = () => {
 
-  changePassword = e => {
-    this.setState({
-      password: e.target.value
-    });
-}
+  }
+  
 
-  changeAddress = e => {
-      this.setState({
-          address:e.target.value
-      })
-  }
-  changeContact = e => {
-      this.setState({
-          contact:e.target.value
-      })
-  }
-  changeCreditCard = e => {
-      this.setState({
-            creditCard:e.target.value
-      })
-  }
-
-  changeBankName = e => {
-      this.setState({
-          bankName:e.target.value
-      })
-  }
-
+<<<<<<< HEAD
 
   componentWillMount() {
     let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
@@ -282,10 +191,22 @@ const styles = {
         else if(loginDetails!=null){
             this.setState({
                 display:<Grid container spacing={12}>
+=======
+    render() {      
+      let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
+      if(loginDetails===null){
+        loginDetails=['NONE']
+      }
+      const { classes } = this.props;
+        return (
+            <div>
+                <Grid container spacing={12}>
+>>>>>>> 048f8c5b7fe3e54105ab7ecd9dcfae6bd3dd53e3
                 <Grid item md={12}>
                     <Card>
                     <Typography variant='display1' color='primary'>Logged in As {loginDetails[0].toUpperCase()}</Typography>
                     <TextField
+<<<<<<< HEAD
                       id="Address"
                       label="Address"
                       placeholder="Enter  another Address(Optional)"
@@ -302,18 +223,27 @@ const styles = {
                         }}     
                       />
                     <Button>Confirm Order</Button>
+=======
+                            id="Address"
+                            label="Address"
+                            placeholder="Enter Address (optional)"
+                            className={classes.textField}
+                            margin="normal"
+                            value={this.state.address}
+                            onChange={e=>this.changeAddress(e)}
+                            InputProps={{
+                              startAdornment: (
+                                <InputAdornment position="start">
+                                  <Email/>
+                                </InputAdornment>
+                              ),
+                            }}
+                     />
+                    <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
+>>>>>>> 048f8c5b7fe3e54105ab7ecd9dcfae6bd3dd53e3
                     </Card>
                 </Grid>
                     </Grid>
-            })
-        }
-    }
-  
-
-    render() {      
-        return (
-            <div>
-                {this.state.display}
                 </div>
           );
         }
