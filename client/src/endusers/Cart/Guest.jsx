@@ -239,7 +239,7 @@ const styles = {
         <Grid item md={6}>
         <Card className={classes.right}>
         <CardContent>
-               <Typography variant="display1"> Card Information </Typography>
+                <Typography variant="display1"> Card Information </Typography>
             </CardContent>
             <CardContent>
             <TextField
@@ -290,7 +290,7 @@ const styles = {
                       label="Address"
                       placeholder="Enter  another Address(Optional)"
                       className={classes.textField}
-                      value={this.state.address}
+                       value={this.state.address}
                       margin="normal"
                       onChange={e => this.changeAddress(e)}
                       InputProps={{
