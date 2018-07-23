@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from 'material-ui';
-
+import StripeCheckout from './StripeCheckout';
 
 const styles = {
   card: {
@@ -104,6 +104,11 @@ const styles = {
                      />
                     <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
                     </Card>
+                    <StripeCheckout
+                        name={'The Road to learn React'}
+                        description={'Only the Book'}
+                        amount={1}
+                      />
                 </Grid>
                     </Grid>
                 </div>
