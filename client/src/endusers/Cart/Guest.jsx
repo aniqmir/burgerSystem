@@ -8,7 +8,11 @@ import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from 'material-ui';
+<<<<<<< HEAD
 import urlBase64ToUint8Array from 'url-base64-to-uint8array';
+=======
+import StripeCheckout from './StripeCheckout';
+>>>>>>> ad79ac12f52f6727742793aee2748f3325e3b211
 
 const styles = {
   card: {
@@ -167,6 +171,11 @@ function askPermission() {
                      />
                     <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
                     </Card>
+                    <StripeCheckout
+                        name={'The Road to learn React'}
+                        description={'Only the Book'}
+                        amount={1}
+                      />
                 </Grid>
                     </Grid>
                 </div>

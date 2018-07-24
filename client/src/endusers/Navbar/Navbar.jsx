@@ -32,7 +32,7 @@ const theme = createMuiTheme ({
         contrastThreshold: 3,
         tonalOffset: 0.2,
  } 
-})
+});
 
 const styles = {
   root: {
@@ -240,8 +240,7 @@ render() {
           aria-owns={this.state.anchorEl ? 'simple-menu' : null}
           id="simple-menu"
           anchorEl={this.state.anchorEl}
-          open={Boolean(this.state.anchorEl)}
-        >
+          open={Boolean(this.state.anchorEl)}>
           <MenuItem onClick={this.openAll}>All</MenuItem>
           <MenuItem onClick={this.openPizza}><Pizza/>&nbsp;Pizza</MenuItem>
           <MenuItem onClick={this.openBurger}><h4><Pizza/>&nbsp;Burger</h4></MenuItem>
@@ -257,7 +256,6 @@ render() {
           <MenuItem onClick={this.opendeserts}><h4><Pizza/>&nbsp;Deserts</h4></MenuItem>
           <MenuItem onClick={this.openSauces}><h4><Pizza/>&nbsp;Sauces</h4></MenuItem>
           <MenuItem onClick={this.openColdDrinks}><h4><Pizza/>&nbsp;ColdDrinks</h4></MenuItem>
-         
         </Menu>
         
       </div>

@@ -16,7 +16,7 @@ var UserRouter = require('./routes/users');
 var adminRouter= require('./routes/admin');
 var EmpRouter= require('./routes/emps');
 // view engine setup
-
+const paymentApi = require('./routes/payment');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -27,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.static('uploads'))
 app.set('view engine', 'ejs');
 
+paymentApi(app);
 var expressSession = require('express-session');
 app.set('trust proxy', 1) // trust first proxy
 var expiryDate = new Date(Date.now() + 60 * 60 *60 * 1000 *1000*10) // 1 hour
