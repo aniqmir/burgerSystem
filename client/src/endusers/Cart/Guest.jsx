@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Email from '@material-ui/icons/Email';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Typography } from 'material-ui';
-
+import urlBase64ToUint8Array from 'url-base64-to-uint8array';
 
 const styles = {
   card: {
@@ -43,7 +43,21 @@ const styles = {
     paddingTop:"5%"
   }
 };
- 
+function askPermission() {
+  return new Promise(function(resolve, reject) {
+    const permissionResult = Notification.requestPermission(function(result) {
+    resolve(result);
+    });
+    if (permissionResult) {
+      permissionResult.then(resolve, reject);
+    }
+  })
+  .then(function(permissionResult) {
+    if (permissionResult !== 'granted') {
+      throw new Error('We weren\'t granted permission.');
+    }
+  });
+}
 
  class SimpleMediaCard extends React.Component {
 
@@ -52,146 +66,77 @@ const styles = {
         this.state = {
             email:'',
             contact:'',
-            address:'',
+            address:'HY',
             creditCard:'',
             bankName:'',
             display:<div></div>
             
         }
-    }
+        if (!('serviceWorker' in navigator)) {
+          console.log('Service Worker isnt supported on this browser, disable or hide UI');
+          return;
+        }
+        
+        if (!('PushManager' in window)) {
+          console.log('Push isnt supported on this browser, disable or hide UI');
+          return;
+        }
+        askPermission();
+        this.subscribeUserToPush = this.subscribeUserToPush.bind(this);
+      }
     changeAddress = e => {
       this.setState({
         address: e.target.value
       });
-    };
+    }
+    sendSubscriptionToBackEnd = (subscription) => {
+      console.log('HERE',this.state.address,JSON.stringify(subscription));
+      return fetch('/api/user/placeorder', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: [JSON.stringify(subscription),this.state.address]
+      })
+      .then(function(response) {
+        if (!response.ok) {
+          throw new Error('Bad status code from server.');
+        }
+    
+        return response.json();
+      })
+      .then(function(responseData) {
+        if (!(responseData.data && responseData.data.success)) {
+          throw new Error('Bad response from server.');
+        }
+      });
+    } 
+    subscribeUserToPush = () => {
+      console.log('testing2',this.state.address)
+      navigator.serviceWorker.register('sw.js')
+      .then(function(registration) {
+        console.log('serviceworker registred successsfully');
+        const subscribeOptions = {
+          userVisibleOnly: true,
+          applicationServerKey: urlBase64ToUint8Array(
+            'BK7j6oEXJUWtmBaMFBSuxST1b5aLCXIZ77wOQtt1BleyrcpwU9zkvysq1TOnFHDqjvyLNE-9m1u37ttKfzKYk8Q')
+        };
+        console.log('testing',this.state.address)
+        return registration.pushManager.subscribe(subscribeOptions);
+      })
+      .then(function (pushSubscription) {
+        console.log('Received Push Subscription:', JSON.stringify(pushSubscription));
+        this.sendSubscriptionToBackEnd(pushSubscription);
+        return pushSubscription;
+      });
+    }
 
   confirmOrderGuest = () => {
-
+     console.log('we are here');
   }
-
   confirmOrderMember = () => {
-
+    this.subscribeUserToPush()
   }
-  
-
-<<<<<<< HEAD
-
-  componentWillMount() {
-    let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
-    const { classes } = this.props;
-
-    if(loginDetails===null){
-        this.setState({
-            display: <Grid container spacing={12}>
-        <Grid item md={6}>
-        <Card className={classes.left}>
-         <CardContent>
-               <Typography variant='display1'>Guest Information </Typography>
-            </CardContent>
-         <CardContent className={classes.cardcontent}>
-        <TextField
-          id="email"
-          label="Email"
-          placeholder="Enter Email"
-          className={classes.textField}
-          value={this.state.email}
-          margin="normal"
-          onChange={e => this.changeEmail(e)} 
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Email />
-              </InputAdornment>
-            ),
-          }}               
-        />
-        <TextField
-          id="contact"
-          label="Contact"
-          placeholder="Enter Contact"
-          className={classes.textField}
-          value={this.state.contact}
-          margin="normal"
-          onChange={e => this.changeContact(e)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Label />
-              </InputAdornment>
-            ),
-          }}     
-        />
-            <TextField
-          id="Address"
-          label="Address"
-          placeholder="Enter Address"
-          className={classes.textField}
-          value={this.state.address}
-          margin="normal"
-          onChange={e => this.changeAddress(e)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Label />
-              </InputAdornment>
-             ),
-          }}     
-        />
-        </CardContent>
-        <CardContent>
-          <Link to='/signin'>Already a member?</Link>
-          <Button>Confirm Order</Button>
-          </CardContent>
-        
-        </Card>
-        </Grid>
-        <Grid item md={6}>
-        <Card className={classes.right}>
-        <CardContent>
-                <Typography variant="display1"> Card Information </Typography>
-            </CardContent>
-            <CardContent>
-            <TextField
-                    id="creditcard"
-                    label="Credit Card Number"
-                    placeholder="Enter Credit Card Number"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.creditCard}
-                    onChange={e=>this.changeCreditCard(e)}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-            
-                        </InputAdornment>
-                      ),
-                    }}
-                />
-                <TextField
-                    id="bankname"
-                    label="Credit Bank Name"
-                    placeholder="Enter Bank Name"
-                    className={classes.textField}
-                    margin="normal"
-                    value={this.state.bankName}
-                    onChange={e=>this.changeBankName(e)}
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          
-                        </InputAdornment>
-                      ),
-                    }}
-                />
-            </CardContent>
-            </Card>
-        </Grid>
-        </Grid>})
-        }
-        else if(loginDetails!=null){
-            this.setState({
-                display:<Grid container spacing={12}>
-=======
     render() {      
       let loginDetails =  JSON.parse(sessionStorage.getItem('LoginDetails'));
       if(loginDetails===null){
@@ -199,31 +144,12 @@ const styles = {
       }
       const { classes } = this.props;
         return (
-            <div>
-                <Grid container spacing={12}>
->>>>>>> 048f8c5b7fe3e54105ab7ecd9dcfae6bd3dd53e3
+            <div> 
+                <Grid containcer spacing={12}>
                 <Grid item md={12}>
                     <Card>
                     <Typography variant='display1' color='primary'>Logged in As {loginDetails[0].toUpperCase()}</Typography>
                     <TextField
-<<<<<<< HEAD
-                      id="Address"
-                      label="Address"
-                      placeholder="Enter  another Address(Optional)"
-                      className={classes.textField}
-                       value={this.state.address}
-                      margin="normal"
-                      onChange={e => this.changeAddress(e)}
-                      InputProps={{
-                        startAdornment: (
-                           <InputAdornment position="start">
-                               <Label />
-                            </InputAdornment>
-                          ),
-                        }}     
-                      />
-                    <Button>Confirm Order</Button>
-=======
                             id="Address"
                             label="Address"
                             placeholder="Enter Address (optional)"
@@ -240,7 +166,6 @@ const styles = {
                             }}
                      />
                     <Button onClick={this.confirmOrderMember}>Confirm Order</Button>
->>>>>>> 048f8c5b7fe3e54105ab7ecd9dcfae6bd3dd53e3
                     </Card>
                 </Grid>
                     </Grid>
