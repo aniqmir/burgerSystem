@@ -13,6 +13,6 @@ router.post('/addEmployee', Controller.CreateEmployee);
 router.post('/Employeeindex', Controller.fetchallemps);
 router.post('/findEmployee', Controller.fetchoneemp);
 router.post('/delEmployee', Controller.Deleteemp);
-
+router.post('/delItem', Controller.Deleteitem);
 
 module.exports = router;

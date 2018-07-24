@@ -102,12 +102,14 @@ const styles = theme => ({
 class ResponsiveDrawer extends React.Component {
   constructor(props){
     super(props)
+    const cachetoken = sessionStorage.getItem('token');  
       this.state = {
       mobileOpen: false,
-      t:this.props.token,
-     
+      t:cachetoken,
+        data:{},
       open:false,
       openError:false,
+      OnDisplay:<div>Welcome</div>
     };
 
 
@@ -118,13 +120,11 @@ class ResponsiveDrawer extends React.Component {
   };
 
  AddNewLoginHandleClick = () => {
-
     this.setState({
         OnDisplay:<AddNewLogin  handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("Add item on click");
   }
-
 
   
  ViewAllHandleClick = () => {
@@ -142,9 +142,34 @@ class ResponsiveDrawer extends React.Component {
   
   }
 ViewItemHandleClick = () => {
-
+    console.log('view all item handle click')
+    {
+      
+      fetch('/api/admin/allitems', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+        },
+      })
+      .then(res=>res.json())
+      .then(res=>{
+        console.log("we are in this function");
+        console.log(this.state.t);
+        if(res){
+         console.log(res);
+         this.setState({
+           data:res
+         })
+         console.log(this.state.data);
+          console.log("After function");
+          console.log(this.state.t);
+        };
+      }
+      );
+  
+    };
     this.setState({
-        OnDisplay:<ViewItems token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+        OnDisplay:<ViewItems data={this.state.data} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
   
   }
@@ -267,7 +292,7 @@ ViewItemHandleClick = () => {
           <DialogTitle id="alert-dialog-title">{"Notification"}</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              User Added
+              Task Done
             </DialogContentText>
           </DialogContent>
           <DialogActions>

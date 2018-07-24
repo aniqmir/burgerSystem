@@ -417,7 +417,7 @@ fetch('/api/user/signup', {
                     </Grid>
                 </Grid>
                 <div className={classes.footer}>
-                   <Footer/>
+                   <Footer history={this.props.history}/>
                 </div>
                 <Snackbar
           anchorOrigin={{

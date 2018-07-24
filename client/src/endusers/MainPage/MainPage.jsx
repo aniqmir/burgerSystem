@@ -11,6 +11,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import amber from '@material-ui/core/colors/amber';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import Cart from '@material-ui/icons/AddShoppingCart';
+import _ from 'lodash';
 
 const theme = createMuiTheme ({
     palette: {
@@ -83,6 +84,7 @@ class SimpleTabs extends React.Component {
     }
   }
   );
+
   }
   
   state = {
@@ -92,6 +94,8 @@ class SimpleTabs extends React.Component {
     checkoutDetails:[],
     fetchCheck:false,
     open:false,
+    home:<div></div>,
+    tempIng:'abc'
   };
 
 
@@ -178,19 +182,63 @@ class SimpleTabs extends React.Component {
     this.props.history.push('/cart');
   }
 
+
  
   render() {
     const { classes } = this.props;
-   
+     
+      let home =[];
+      {Object.values(this.state.data).map((type,index)=> {
+        if(type.build===true) {
+          console.log(type.ingredients)
+          
+            let temp= <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
+            <Grid item lg={3} md={4} sm={6} xs={12}  key={index}>
+            <Home 
+                  itemId={type.primaryKey}
+                  name={type.item_name}
+                  details={type.item_desc} 
+                  status={type.build} 
+                  image={type.imgPath}        
+                  price={type.item_price}             
+                  buildDetails={type.buildDetails}
+                  checkoutDet={this.checkoutDetailsHandle}
+                  ingredients={['ing1','ing2','ing3']}
+                  />
+            </Grid>    
+            </Grow>;
+          home.push(temp);
+        }
+        else {
+          
+           let temp = <Grow in={true} mountOnEnter unmountOnExit  timeout={800}>
+            <Grid item lg={3} md={4} sm={6} xs={12}  key={index}>
+            <Home 
+                  itemId={type.primaryKey}
+                  name={type.item_name}
+                  details={type.item_desc} 
+                  status={type.build} 
+                  image={type.imgPath}        
+                  price={type.item_price}             
+                  buildDetails={type.buildDetails}
+                  checkoutDet={this.checkoutDetailsHandle}
+                  ingredients={['none','none','none']}
+                  />
+            </Grid>    
+            </Grow>
+          home.push(temp);
+        }
+      
+      })}
+ 
+  
+        
+  
+    
     return (
      <MuiThemeProvider theme={theme}>
     
      <SearchImage data={this.state.data} />
-     
-    {/*
-    <Route path='/cart' render={(props) => <Cart {...props} checkout={this.state.checkoutDetails}/>}/>
-     <Link to='/cart'>Cart</Link>
-    */} 
      <div className={classes.parallax}>
       <div className={classes.root}>
         <Grid container spacing={12}>
@@ -212,7 +260,7 @@ class SimpleTabs extends React.Component {
                     price={type.item_price}             
                     buildDetails={type.buildDetails}
                     checkoutDet={this.checkoutDetailsHandle}
-                    ingredients={type.ingredients}
+                    ingredients={_.split(type.ingredients,",")}
                     />
               </Grid>    
               </Grow>
@@ -223,7 +271,7 @@ class SimpleTabs extends React.Component {
         </Grid> 
       </div>
         
-            <Footer/>
+            <Footer history={this.props.history}/>
             <MuiThemeProvider theme={theme}>
             <Snackbar
            

@@ -8,7 +8,6 @@ import { createMuiTheme, MuiThemeProvider, withStyles } from '@material-ui/core/
 
 const theme = createMuiTheme({
   typography: {
-    // Use the system font instead of the default Roboto font.
     fontFamily: [
         'Poppins'
     ].join(','),
@@ -18,18 +17,13 @@ const theme = createMuiTheme({
 const styles = theme => ({
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
-    },
- 
+    }
   });
-
 
   class TextFields extends React.Component {
 
     render() {
-      const { classes } = this.props;
-     
-  
-  
+      const { classes } = this.props;  
       return (
         <div>
             <MuiThemeProvider theme={theme}>

@@ -1,68 +1,152 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { MuiThemeProvider, createMuiTheme,withStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-  
-const theme = createMuiTheme ({
- typography: {
-  // Use the system font instead of the default Roboto font.
-  fontFamily: [
-    'Poppins'
-  ].join(','),
-}, })
-const styles = theme => ({
-footer: {
-    position: 'relative',
-    left: 0,
-    bottom: 0,
-    width: '100%',
-    minHeight:'100px',
-    backgroundColor: 'black',
-    color: 'white',
- },
- footerPadding: {
-   paddingTop:'3%'
- },
+import './footer.css';
+import 'font-awesome/css/font-awesome.min.css';
 
 
-
-})
-
-class SimpleTabs extends React.Component {
- 
-
+class Footer extends React.Component {
   render() {
-    const { classes } = this.props;
     return (
-     <MuiThemeProvider theme={theme}>
-        <div className={classes.footer}>
-        <div className={classes.footerPadding}>
-        <Grid container spacing={0} justify='center'>
-        <Grid item  md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption" align="center" gutterBottom={true}>About Us</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true}>Terms&Conditions</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Privacy Policy</Typography>
-        </Grid>
-        <Grid item md={1} sm={3} xs={6}>
-          <Typography color='inherit' variant="caption"  align="center" gutterBottom={true} >Contact</Typography>
-        </Grid>
-        <Grid item md={12} sm={12} xs={12}>
-        <Typography align='center' color='inherit'>&copy; Powered by Nerdware Tech</Typography>
-        </Grid>
-        </Grid>
-        </div>
-        </div>
-      </MuiThemeProvider>
+          <div className="main">
+            <div className="container">
+                  <div className="row pt-5 pb-5">
+                    <div className="col-sm-3">
+                        <h5 className="pull head"><strong>Customer service</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull head"><strong>Top Items</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull head"><strong>Locations</strong></h5>
+                    </div>
+                    <div className="col-sm-3">
+                        <h5 className="pull head"><strong>About us</strong></h5>
+                    </div>
+                  </div>
+                  <div className="line pull"></div>
+                  <div className="row pt-5 pb-5">
+                    <div className="col-sm-3">
+                      <div className="row">
+                        <span><a href="http://">Contact Us</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Log in</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Sign up</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Blog</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Mobile Apps</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Suggest a restaurant</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">Help</a></span>
+                      </div>
+                      <div className="row">
+                        <span><a href="http://">My Account</a></span>
+                      </div>
+                    </div>
+                    <div className="col-sm-3">
+                        <div className="row">
+                          <span><a href="http://">Chinease</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Indian</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Italian</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Japnese</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Pizza Delivery</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">View all Items</a></span>
+                        </div>
+                      </div>
+                      <div className="col-sm-3">
+                        <div className="row">
+                          <span><a href="http://">Birmingham</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Cardiff</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Glasgow</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Leeds</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Manchester</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">View All locations</a></span>
+                        </div>
+                      </div>
+                      <div className="col-sm-3">
+                        <div className="row">
+                          <span><a href="http://">Restaurant Sign up</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Price Promise</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Privacy Policy</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Terms &amp; Conditions</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Cookie Privacy</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">About us</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Company Website</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Careers</a></span>
+                        </div>
+                        <div className="row">
+                          <span><a href="http://">Modern Survery Statment</a></span>
+                        </div>
+                      </div>              
+                  </div>
+                  <div className="line pull"></div>
+                  <div className="row pt-5">
+                    <div className="col-sm-4">
+                      <i className="fa fa-facebook fa-2x pr-3 head"></i>
+                      <i className="fa fa-instagram fa-2x pr-3 head"></i>
+                      <i className="fa fa-twitter fa-2x pr-3 head"></i>
+                      <i className="fa fa-youtube fa-2x pr-3 head"></i>
+                      <i className="fa fa-at fa-2x pr-3"></i>
+                    </div>
+                    <div className="col-sm-4">
+                      <img src={'./je-payment-logos-amex.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
+                      <img src={'./je-payment-logos-visa.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
+                      <img src={'./je-payment-logos-mastercard.png'} className="payment-method pr-4" alt="mastercard" srcset=""/>
+                    </div>
+                    <div className="col-sm-4">
+                      <div className="text-center">
+                        <i className="fa fa-comments fa-2x pr-3 head"></i>
+                        <strong className="head">Feedback</strong>
+                        <a> <small className="block"><strong>Help us</strong> improve our Website!</small>
+                          </a>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
     );
   }
 }
-SimpleTabs.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
 
-export default withStyles(styles)(SimpleTabs);
+export default Footer;

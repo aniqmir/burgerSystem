@@ -4,6 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
+import IconButton from 'material-ui/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -35,19 +37,48 @@ const styles = theme => ({
 
 class CustomizedTable extends React.Component {
 
-  componentDidMount(){
-    var details = {
-      'token':this.state.t
-  };
-    var formBody = [];
-    for (var property in details) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(details[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
+
+ 
+    removeProduct = (pk) =>
+    {
+        console.log(pk);
+        
+        var details = {
+          'pk': pk,
+          'token': sessionStorage.getItem('token'),
+        };
+          
+     var formBody = [];
+     for (var property in details) {
+       var encodedKey = encodeURIComponent(property);
+       var encodedValue = encodeURIComponent(details[property]);
+       formBody.push(encodedKey + "=" + encodedValue);
+     }
+     formBody = formBody.join("&");
+     
+     fetch('/api/admin/delItem', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+       },
+       body: formBody
+     })
+     .then(res=>res.json())
+     .then(res=>{
+       if(res){
+        console.log(res);
+        this.props.handleopen();
+       }
+       else {
+         this.props.handleError();
+       }
+       ;
+     }
+     );
+     
+
     
-    fetch('/head/ShowEmps', {
+    fetch('/api/admin/allitems', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
@@ -57,27 +88,24 @@ class CustomizedTable extends React.Component {
     .then(res=>res.json())
     .then(res=>{
       console.log("we are in this function");
-      console.log(this.state.t);
       if(res){
        console.log(res);
        this.setState({
          data:res
        })
-        console.log("After function");
-        console.log(this.state.t);
       };
     }
     );
-
-  };
-
+  
+    
+  }
   constructor(props){
     super(props)
     this.state={
       data:{},
       t:this.props.token,
     }
-
+    this.removeProduct = this.removeProduct.bind(this)
 };
 
   render() {
@@ -89,42 +117,30 @@ class CustomizedTable extends React.Component {
           <TableHead>
             <TableRow>
               <CustomTableCell>Name</CustomTableCell>
+              <CustomTableCell numeric>Description</CustomTableCell>
               <CustomTableCell numeric>Type</CustomTableCell>
-              <CustomTableCell numeric>CNIC</CustomTableCell>
-              <CustomTableCell numeric>Password</CustomTableCell>
-              <CustomTableCell numeric>Shop ID</CustomTableCell>
+              <CustomTableCell numeric>Price</CustomTableCell>
+              <CustomTableCell numeric>Operation</CustomTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {/*data replaced with json pacakage from api*/}
             {
-               Object.values(this.state.data).map((type) => {
-                 console.log(type.Emp_cnic);
-                 console.log(type.Emp_password);
-                 console.log(type.Emp_name);
-                 console.log(type.Emp_type);
+               Object.values(this.props.data).map((type,index) => {
                  return (
-                  <TableRow className={classes.row} key={type.Emp_cnic}>
-                    <CustomTableCell>{type.Emp_name}</CustomTableCell>
-                    <CustomTableCell numeric> {type.Emp_type} </CustomTableCell>
-                    <CustomTableCell numeric>{type.Emp_cnic}</CustomTableCell>
-                    <CustomTableCell numeric>{type.Emp_password}</CustomTableCell>
-                    <CustomTableCell numeric>{type.shop_id}</CustomTableCell>
+                  <TableRow className={classes.row} key={index}>
+                    <CustomTableCell>{type.item_name}</CustomTableCell>
+                    <CustomTableCell numeric> {type.item_desc} </CustomTableCell>
+                    <CustomTableCell numeric>{type.item_type}</CustomTableCell>
+                    <CustomTableCell numeric>{type.item_price}</CustomTableCell>
+                    <CustomTableCell numeric> <IconButton className={classes.button} aria-label="Delete" onClick={this.removeProduct.bind(this,type.primaryKey)}>
+                    <DeleteIcon />
+                    </IconButton>
+                    </CustomTableCell>
                   </TableRow>
                 );
               })
             }
-            {/* {data.map(n => {
-              return (
-                <TableRow className={classes.row} key={n.id}>
-                  <CustomTableCell>{n.name}</CustomTableCell>
-                  <CustomTableCell numeric>{n.calories}</CustomTableCell>
-                  <CustomTableCell numeric>{n.fat}</CustomTableCell>
-                  <CustomTableCell numeric>{n.carbs}</CustomTableCell>
-                  <CustomTableCell numeric>{n.protein}</CustomTableCell>
-                </TableRow>
-              );
-            })} */}
           </TableBody>
         </Table>
       </Paper>
