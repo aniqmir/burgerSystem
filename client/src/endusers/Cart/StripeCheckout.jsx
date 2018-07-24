@@ -32,7 +32,9 @@ const Checkout = ({ name, description, amount }) =>
   <StripeCheckout
     name={name}
     description={description}
+    email='mirzafaizanejaz@gmail.com'
     amount={fromEuroToCent(amount)}
+  
     token={onToken(amount, description)}
     currency={CURRENCY}
     stripeKey={STRIPE_PUBLISHABLE}
