@@ -6,10 +6,6 @@
 # testing
 /coverage
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
 # misc
 .DS_Store
 .env.local
